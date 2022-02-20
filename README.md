@@ -14,7 +14,6 @@
 - Started my career at 2016
 - As a student, took great interest in software development, because I wanted to build a lot of useful stuff and make a difference for this industry.
 - I am a **Self Taught Coder,** I learned the fundamentals by reading and watching internet tutorials in the past.
-- I have over five (5) years of experience in Software Development, things I gained working for corporate companies, both international and within Philippines.
 - I did a lot of side projects when I was a student for monetary gain, for me to aid my expenses and for additional allowance.
 - On my free time, I enjoy playing computer games, cooking and going out with my friends
 - I am a hard worker, I always challenge myself to be greater than I was before.
