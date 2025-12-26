@@ -4,6 +4,7 @@ import { usePages } from '@/hooks/usePages'
 import { useExperiences } from '@/hooks/useExperiences'
 import PortfolioCard from '@/components/portfolio/PortfolioCard'
 import ExperienceCard from '@/components/experience/ExperienceCard'
+import ServicesSection from '@/components/services/ServicesSection'
 
 function LandingPage() {
 	const { data: pages, loading: pagesLoading } = usePages()
@@ -171,6 +172,9 @@ function LandingPage() {
 					</div>
 				</section>
 			)}
+
+			{/* Services Section */}
+			<ServicesSection />
 
 			{/* Experience Section */}
 			{experiences.length > 0 && (

@@ -66,6 +66,11 @@ collections:
           - { label: 'Site URL', name: 'url', widget: 'string' }
           - { label: 'Author', name: 'author', widget: 'string' }
           - { label: 'Logo', name: 'logo', widget: 'image', required: false }
+      - label: 'Services'
+        name: 'services'
+        file: 'cms/content/settings/services.json'
+        fields:
+          - { label: 'Services', name: 'services', widget: 'list', field: { label: 'Service', name: 'service', widget: 'string' } }
 
   - name: 'experiences' # Used in routes, e.g., /admin/collections/experiences
     label: 'Experiences' # Used in the UI

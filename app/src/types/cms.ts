@@ -47,3 +47,7 @@ export interface Experience extends ExperienceFrontMatter {
 	// No body field needed for experiences
 }
 
+export interface Services {
+	services: string[]
+}
+

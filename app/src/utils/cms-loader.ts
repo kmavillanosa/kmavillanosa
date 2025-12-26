@@ -1,4 +1,4 @@
-import type { Page, Post, SiteSettings, Experience } from '@/types/cms'
+import type { Page, Post, SiteSettings, Experience, Services } from '@/types/cms'
 import type { ContentManifest } from '@/types/content-manifest'
 import contentManifestJson from '../content-manifest.json'
 import { parseFrontmatter } from './frontmatter-parser'
@@ -44,6 +44,31 @@ export async function loadSiteSettings(): Promise<SiteSettings> {
 			description: 'I make cool stuff for a living',
 			url: 'https://kmavillanosa.github.io/kmavillanosa',
 			author: 'Kim Avillanosa',
+		}
+	}
+}
+
+/**
+ * Loads services from the CMS
+ */
+export async function loadServices(): Promise<Services> {
+	try {
+		const response = await fetch(`${CMS_CONTENT_BASE}/settings/services.json`)
+		if (!response.ok) {
+			throw new Error('Failed to load services')
+		}
+		return await response.json()
+	} catch (error) {
+		console.error('Error loading services:', error)
+		return {
+			services: [
+				'Front-end Development',
+				'Back-end Development',
+				'Desktop Applications Development',
+				'Web Scraping and other automation',
+				'Mobile Development',
+				'Workflow Automations',
+			],
 		}
 	}
 }
