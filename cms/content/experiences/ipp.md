@@ -5,11 +5,12 @@ companyAbout: International Payments Processing (IPP) is a boutique firm that de
 companyLocation: Puerto Princesa City, Palawan
 position: Programmer
 companyLogo: /kmavillanosa/cms/media/ipp.jpg
-period: December 2016 - March 2018
+period: May 2016 - Feb 2018
 responsibilities:
-  - Served as a member of the Research and Development department, developed desktop applications and software tools that complies the requests of clients and other departments in the company.
-  - Developed tools for data extraction and automation.
-  - Assisted Data analysts on their weekly reports.
+  - Developed data extraction tools for reports
+  - Created automation tools for email forwarding
+  - Built tools for card inventory management
+  - Consolidated data and resolved discrepancies
 slug: ipp
 ---
 

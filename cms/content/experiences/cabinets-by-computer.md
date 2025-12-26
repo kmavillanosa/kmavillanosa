@@ -7,10 +7,10 @@ companyLogo: /kmavillanosa/cms/media/cbc.jpg
 position: Frontend Developer
 period: Nov 2024 - Nov 2025
 responsibilities:
-  - Specialized on handling 3D graphics development
-  - Did visual implementations for some of their products
-  - Made some automations and internal stuff
-  - Mentor other developers
+  - Specialized in handling 3D graphics development
+  - Did visual implementations for some products
+  - Built internal automation tools
+  - Mentored other developers
 slug: cabinets-by-computer
 ---
 

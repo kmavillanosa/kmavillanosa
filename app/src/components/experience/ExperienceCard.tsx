@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { Card } from 'flowbite-react'
 import type { Experience } from '@/types/cms'
 
@@ -6,8 +7,14 @@ interface ExperienceCardProps {
 }
 
 function ExperienceCard({ experience }: ExperienceCardProps) {
+	const experienceUrl = `/kmavillanosa/experience/${experience.slug}`
+	
 	return (
-		<Card className="h-full flex flex-col bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden">
+		<Link
+			to={experienceUrl}
+			className="block h-full group"
+		>
+			<Card className="h-full flex flex-col bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden cursor-pointer">
 			<div className="p-6 flex flex-col h-full">
 				{/* Header Section */}
 				<div className="flex items-start gap-4 mb-5">
@@ -87,6 +94,7 @@ function ExperienceCard({ experience }: ExperienceCardProps) {
 				</div>
 			</div>
 		</Card>
+		</Link>
 	)
 }
 

@@ -384,7 +384,7 @@ export async function loadExperiences(): Promise<Experience[]> {
 		// Fallback: try to fetch directly from CMS
 		// Since we don't have a manifest for experiences, we'll try common filenames
 		// or fetch a directory listing if available
-		const commonSlugs = ['cabinets-by-computer', 'amihan-solutions-medgate', 'amihan-solutions', 'yondu', 'palawan-express', 'ipp']
+		const commonSlugs = ['cabinets-by-computer', 'amihan-solutions-medgate', 'amihan-solutions', 'palawan-group', 'yondu', 'palawan-express', 'ipp', 'city-government-puerto-princesa']
 		
 		for (const slug of commonSlugs) {
 			try {
@@ -424,6 +424,73 @@ export async function loadExperiences(): Promise<Experience[]> {
 	} catch (error) {
 		console.error('Error loading experiences:', error)
 		return []
+	}
+}
+
+/**
+ * Loads a single experience by slug
+ */
+export async function loadExperience(slug: string): Promise<Experience | null> {
+	try {
+		// Try to use import.meta.glob for build-time content loading
+		let experienceModules: Record<string, () => Promise<string>> | Record<string, string> = {}
+		
+		try {
+			const globExperiences = import.meta.glob('../../../../cms/content/experiences/*.md', {
+				eager: false,
+				as: 'raw',
+			})
+			experienceModules = globExperiences
+		} catch {
+			// Fallback: will use fetch API at runtime
+		}
+		
+		// Try to find in import.meta.glob modules first
+		const experienceEntry = Object.entries(experienceModules).find(([path]) => {
+			const filename = path.split('/').pop() || ''
+			return filename.replace(/\.md$/, '') === slug
+		})
+		
+		if (experienceEntry) {
+			const [, loader] = experienceEntry
+			const content = typeof loader === 'function' ? await loader() : loader
+			const fileContent = typeof content === 'string' ? content : ''
+			const parsed = parseFrontmatter(fileContent)
+			
+			const experienceData = parsed.data as Omit<Experience, 'slug'>
+			// Ensure responsibilities is always an array
+			if (!Array.isArray(experienceData.responsibilities)) {
+				experienceData.responsibilities = []
+			}
+			
+			return {
+				...experienceData,
+				slug,
+			}
+		}
+		
+		// Fallback: try to fetch directly from CMS
+		const response = await fetch(`${CMS_CONTENT_BASE}/experiences/${slug}.md`)
+		if (response.ok) {
+			const content = await response.text()
+			const parsed = parseFrontmatter(content)
+			
+			const experienceData = parsed.data as Omit<Experience, 'slug'>
+			// Ensure responsibilities is always an array
+			if (!Array.isArray(experienceData.responsibilities)) {
+				experienceData.responsibilities = []
+			}
+			
+			return {
+				...experienceData,
+				slug,
+			}
+		}
+		
+		return null
+	} catch (error) {
+		console.error(`Error loading experience ${slug}:`, error)
+		return null
 	}
 }
 

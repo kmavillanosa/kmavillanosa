@@ -2,15 +2,21 @@
 type: Contract
 company: Yondu.inc
 companyAbout: Yondu is a top IT solutions company wholly owned by Globe. It helps enterprises scale in the new digital economy by providing industry-standard, secure, and scalable solutions that create happier technological experiences. Yondu's top-notch technology solutions include Custom Software Development, Managed IT Services, Cloud Business Solutions, Messaging Gateways, Business Productivity and Ready-to-Use Platforms.
-companyLocation: Puerto Princesa City, Palawan
+companyLocation: Taguig, Metro Manila / Barcelona, Spain
 companyLogo: /kmavillanosa/cms/media/yondu.jpg
-position: Senior Software Engineer (Full Stack)
-period: March 2022 - August 2023
+position: Lead Senior Software Engineer (Full Stack)
+period: Mar 2022 - Aug 2023
 responsibilities:
-  - Deployed Under (Morphsys inc) Corus Consulting and Applus+
-  - Develop solutions on both backend and frontend
-  - In charge of handling the software architecture and managing the right standards
-  - Manages software documents
+  - Assigned under Morphsys Inc and Applus+
+  - Handled Full Stack Development
+  - Led a multinational development team
+  - Designed system architecture for scalable solutions
+  - Managed data migration and Git workflows
+  - Oversaw handovers to testers
+  - Created user manuals and documentation
+  - Prepared technical presentations
+  - Mentored co-developers and provided guidance
+  - Optimized team processes
 slug: yondu
 ---
 

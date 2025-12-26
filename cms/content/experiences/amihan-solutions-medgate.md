@@ -2,15 +2,16 @@
 type: Full-time
 company: Amihan Solutions
 companyAbout: Amihan Solutions is a Swiss-owned and managed company, which started business operations in mid-2021 in the Philippines and Switzerland.
-companyLocation: BGC Taguig / rafz switzerland
+companyLocation: Rafz, Zurich, Switzerland
 companyLogo: /kmavillanosa/cms/media/medgate.png
 position: Senior Software Developer
-period: November 2023 - Current
+period: Nov 2023 - Oct 2024
 responsibilities:
-  - Deployed under Medgate Switzerland
-  - Frontend development
-  - Scripting, Integration
-  - Collaborative work
+  - Assigned under Medgate
+  - Worked on frontend development
+  - Developed tools for internal operations
+  - Investigated issues and conducted code reviews
+  - Prepared presentations for domain owners
 slug: amihan-solutions-medgate
 ---
 
