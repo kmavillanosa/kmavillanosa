@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
-import { Button, Card, Spinner } from 'flowbite-react'
+import { Button, Spinner } from 'flowbite-react'
 import { usePages } from '@/hooks/usePages'
-import { extractFirstImage } from '@/utils/markdown-utils'
+import PortfolioCard from '@/components/portfolio/PortfolioCard'
 
 function LandingPage() {
 	const { data: pages, loading } = usePages()
@@ -108,52 +108,9 @@ function LandingPage() {
 						) : (
 							<>
 								<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-									{featuredPages.map((page) => {
-										const previewImage = extractFirstImage(page.body)
-										
-										return (
-											<a
-												key={page.slug}
-												href={`/kmavillanosa/portfolio/${page.slug}`}
-												target="_blank"
-												rel="noopener noreferrer"
-												className="block h-full group"
-											>
-												<Card 
-													className="h-full hover:shadow-2xl transition-all duration-300 cursor-pointer transform hover:-translate-y-2 bg-white border-gray-200 overflow-hidden"
-												>
-													{previewImage && (
-														<div className="h-48 w-full overflow-hidden bg-gray-100">
-															<img 
-																src={previewImage} 
-																alt={page.title}
-																className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-300"
-															/>
-														</div>
-													)}
-													<div className="p-5">
-														<h5 className="text-2xl font-bold tracking-tight text-gray-900 group-hover:text-purple-600 transition-colors mb-2">
-															{page.title}
-														</h5>
-														{page.description && (
-															<p className="font-normal text-gray-600 line-clamp-3 mb-2">
-																{page.description}
-															</p>
-														)}
-														{page.date && (
-															<p className="text-sm text-gray-500">
-																{new Date(page.date).toLocaleDateString('en-US', {
-																	year: 'numeric',
-																	month: 'long',
-																	day: 'numeric',
-																})}
-															</p>
-														)}
-													</div>
-												</Card>
-											</a>
-										)
-									})}
+									{featuredPages.map((page) => (
+										<PortfolioCard key={page.slug} page={page} />
+									))}
 								</div>
 
 								{pages.length > featuredPages.length && (
