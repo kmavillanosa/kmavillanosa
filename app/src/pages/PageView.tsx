@@ -4,6 +4,7 @@ import { loadPage } from '@/utils/cms-loader'
 import type { Page } from '@/types/cms'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+import rehypeRaw from 'rehype-raw'
 import { Spinner, Alert, Button } from 'flowbite-react'
 
 function PageView() {
@@ -79,7 +80,20 @@ function PageView() {
 
 			<div className="prose prose-lg max-w-none">
 				{page.body ? (
-					<ReactMarkdown remarkPlugins={[remarkGfm]}>
+					<ReactMarkdown 
+						remarkPlugins={[remarkGfm]}
+						rehypePlugins={[rehypeRaw]}
+						components={{
+							iframe: (props: any) => (
+								<iframe
+									{...props}
+									className="w-full border-0 rounded-lg my-4"
+									loading="lazy"
+									allowFullScreen
+								/>
+							),
+						}}
+					>
 						{page.body}
 					</ReactMarkdown>
 				) : (

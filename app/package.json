@@ -17,6 +17,7 @@
 		"marked": "^13.0.0",
 		"react-markdown": "^9.0.1",
 		"remark-gfm": "^4.0.0",
+		"rehype-raw": "^7.0.0",
 		"flowbite": "^4.0.1",
 		"flowbite-react": "^0.12.10",
 		"zustand": "^4.5.2"
