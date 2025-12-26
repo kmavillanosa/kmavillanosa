@@ -37,7 +37,9 @@ function PortfolioPage() {
 			) : (
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 					{pages.map((page) => (
-						<PortfolioCard key={page.slug} page={page} />
+						<div key={page.slug} className="h-full">
+							<PortfolioCard page={page} />
+						</div>
 					))}
 				</div>
 			)}
