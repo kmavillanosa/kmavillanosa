@@ -72,13 +72,13 @@ function PageView() {
 			</Button>
 			
 			<header className="mb-8">
-				<h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">{page.title}</h1>
+				<h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">{page.title}</h1>
 				{page.description && (
-					<p className="text-xl text-gray-600">{page.description}</p>
+					<p className="text-xl text-gray-600 dark:text-gray-400">{page.description}</p>
 				)}
 			</header>
 
-			<div className="prose prose-lg max-w-none">
+			<div className="prose prose-lg dark:prose-invert max-w-none">
 				{page.body ? (
 					<ReactMarkdown 
 						remarkPlugins={[remarkGfm]}
@@ -97,7 +97,7 @@ function PageView() {
 						{page.body}
 					</ReactMarkdown>
 				) : (
-					<p className="text-gray-600">No content available.</p>
+					<p className="text-gray-600 dark:text-gray-400">No content available.</p>
 				)}
 			</div>
 		</article>

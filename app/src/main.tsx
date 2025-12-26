@@ -3,11 +3,29 @@ import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import App from './App'
 import './index.css'
+import { useThemeStore } from './stores/themeStore'
 
-// Ensure light mode is set
+// Initialize theme from store on page load
 if (typeof document !== 'undefined') {
-	document.documentElement.classList.remove('dark')
-	document.documentElement.classList.add('light')
+	// Get initial theme from localStorage or default to light
+	const storedTheme = localStorage.getItem('theme-storage')
+	let theme = 'light'
+	if (storedTheme) {
+		try {
+			const parsed = JSON.parse(storedTheme)
+			theme = parsed.state?.theme || 'light'
+		} catch {
+			theme = 'light'
+		}
+	}
+	
+	if (theme === 'dark') {
+		document.documentElement.classList.add('dark')
+		document.documentElement.classList.remove('light')
+	} else {
+		document.documentElement.classList.remove('dark')
+		document.documentElement.classList.add('light')
+	}
 }
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

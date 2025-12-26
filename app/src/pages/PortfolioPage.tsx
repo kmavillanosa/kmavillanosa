@@ -26,13 +26,13 @@ function PortfolioPage() {
 	return (
 		<div className="max-w-7xl mx-auto px-4 py-8">
 			<header className="text-center mb-12">
-				<h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">My Work</h1>
-				<p className="text-xl text-gray-600">A collection of projects and work I've done</p>
+				<h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">My Work</h1>
+				<p className="text-xl text-gray-600 dark:text-gray-400">A collection of projects and work I've done</p>
 			</header>
 
 			{pages.length === 0 ? (
 				<div className="text-center py-12">
-					<p className="text-gray-600 text-lg">No portfolio items yet. Check back soon!</p>
+					<p className="text-gray-600 dark:text-gray-400 text-lg">No portfolio items yet. Check back soon!</p>
 				</div>
 			) : (
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

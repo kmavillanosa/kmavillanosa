@@ -19,31 +19,31 @@ function LandingPage() {
 	return (
 		<div className="min-h-screen">
 			{/* Hero Section */}
-			<section className="relative flex items-center justify-center min-h-[calc(100vh-200px)] px-4 py-20 overflow-hidden">
+			<section className="relative flex items-center justify-center min-h-[calc(100vh-200px)] px-4 py-20 overflow-hidden bg-white dark:bg-gray-900">
 				{/* Decorative background elements */}
 				<div className="absolute inset-0 overflow-hidden pointer-events-none">
-					<div className="absolute top-20 left-10 w-72 h-72 bg-purple-100 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob"></div>
-					<div className="absolute top-40 right-10 w-72 h-72 bg-blue-100 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000"></div>
-					<div className="absolute -bottom-8 left-1/2 w-72 h-72 bg-pink-100 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-4000"></div>
+					<div className="absolute top-20 left-10 w-72 h-72 bg-purple-100 dark:bg-purple-900 rounded-full mix-blend-multiply dark:mix-blend-normal filter blur-xl opacity-30 dark:opacity-20 animate-blob"></div>
+					<div className="absolute top-40 right-10 w-72 h-72 bg-blue-100 dark:bg-blue-900 rounded-full mix-blend-multiply dark:mix-blend-normal filter blur-xl opacity-30 dark:opacity-20 animate-blob animation-delay-2000"></div>
+					<div className="absolute -bottom-8 left-1/2 w-72 h-72 bg-pink-100 dark:bg-pink-900 rounded-full mix-blend-multiply dark:mix-blend-normal filter blur-xl opacity-30 dark:opacity-20 animate-blob animation-delay-4000"></div>
 				</div>
 
 				<div className="text-center max-w-5xl w-full relative z-10">
 					<div className="flex flex-col items-center gap-8 animate-fade-in">
 						{/* Badge */}
-						<div className="inline-flex items-center gap-2 px-4 py-2 bg-purple-50 border border-purple-200 rounded-full text-sm text-purple-700 font-medium mb-2">
-							<svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+						<div className="inline-flex items-center gap-2.5 px-5 py-2.5 bg-purple-50 dark:bg-purple-900/30 border border-purple-200 dark:border-purple-800 rounded-full text-sm text-purple-700 dark:text-purple-300 font-medium shadow-sm">
+							<svg className="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
 								<path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
 							</svg>
-							Available for opportunities
+							<span className="whitespace-nowrap">Available for opportunities</span>
 						</div>
 
-						<h1 className="text-6xl md:text-7xl lg:text-8xl font-bold bg-gradient-to-r from-purple-600 via-blue-500 to-purple-600 bg-clip-text text-transparent animate-gradient leading-tight">
+						<h1 className="text-6xl md:text-7xl lg:text-8xl font-bold bg-gradient-to-r from-purple-600 via-blue-500 to-purple-600 dark:from-purple-400 dark:via-blue-400 dark:to-purple-400 bg-clip-text text-transparent animate-gradient leading-tight">
 							Kim Avillanosa
 						</h1>
 						
 						<div className="space-y-4">
-							<p className="text-2xl md:text-3xl font-semibold text-gray-800">Software Engineer</p>
-							<p className="text-lg md:text-xl text-gray-600 max-w-3xl leading-relaxed">
+							<p className="text-2xl md:text-3xl font-semibold text-gray-800 dark:text-gray-200">Software Engineer</p>
+							<p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-3xl leading-relaxed">
 								I make cool stuff for a living. Building innovative solutions and bringing ideas to life through code.
 							</p>
 						</div>
@@ -108,7 +108,7 @@ function LandingPage() {
 						{featuredPages.length > 0 && (
 							<button
 								onClick={scrollToPortfolio}
-								className="mt-12 flex flex-col items-center gap-2 text-gray-500 hover:text-purple-600 transition-colors group"
+								className="mt-12 flex flex-col items-center gap-2 text-gray-500 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors group"
 							>
 								<span className="text-sm font-medium">Explore My Work</span>
 								<svg className="w-6 h-6 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -122,16 +122,16 @@ function LandingPage() {
 
 			{/* Portfolio Section */}
 			{featuredPages.length > 0 && (
-				<section id="portfolio-section" className="py-20 px-4 bg-gradient-to-b from-white to-gray-50">
+				<section id="portfolio-section" className="py-20 px-4 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
 					<div className="max-w-7xl mx-auto">
 						<div className="text-center mb-16">
 							<div className="inline-block mb-4">
-								<span className="text-purple-600 font-semibold text-sm uppercase tracking-wider">Portfolio</span>
+								<span className="text-purple-600 dark:text-purple-400 font-semibold text-sm uppercase tracking-wider">Portfolio</span>
 							</div>
-							<h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+							<h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6">
 								Featured Work
 							</h2>
-							<p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+							<p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
 								Explore some of my recent projects and contributions. Each project represents a unique challenge and creative solution.
 							</p>
 						</div>
