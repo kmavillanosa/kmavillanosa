@@ -366,8 +366,14 @@ export async function loadExperiences(): Promise<Experience[]> {
 				const filename = path.split('/').pop() || ''
 				const slug = filename.replace(/\.md$/, '')
 				
+				const experienceData = parsed.data as Omit<Experience, 'slug'>
+				// Ensure responsibilities is always an array
+				if (!Array.isArray(experienceData.responsibilities)) {
+					experienceData.responsibilities = []
+				}
+				
 				experiences.push({
-					...parsed.data as Omit<Experience, 'slug'>,
+					...experienceData,
 					slug,
 				})
 			} catch (error) {
@@ -390,8 +396,14 @@ export async function loadExperiences(): Promise<Experience[]> {
 					const content = await response.text()
 					const parsed = parseFrontmatter(content)
 					
+					const experienceData = parsed.data as Omit<Experience, 'slug'>
+					// Ensure responsibilities is always an array
+					if (!Array.isArray(experienceData.responsibilities)) {
+						experienceData.responsibilities = []
+					}
+					
 					experiences.push({
-						...parsed.data as Omit<Experience, 'slug'>,
+						...experienceData,
 						slug,
 					})
 				}

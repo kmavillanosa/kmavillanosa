@@ -10,21 +10,75 @@ interface ParsedContent {
 
 /**
  * Simple YAML frontmatter parser for browser
- * Handles basic key-value pairs and simple types
+ * Handles basic key-value pairs, simple types, and arrays
  */
 function parseYAML(yaml: string): Record<string, unknown> {
 	const result: Record<string, unknown> = {}
 	const lines = yaml.split('\n')
+	let i = 0
 	
-	for (const line of lines) {
+	while (i < lines.length) {
+		const line = lines[i]
 		const trimmed = line.trim()
-		if (!trimmed || trimmed.startsWith('#')) continue
+		
+		// Skip empty lines and comments
+		if (!trimmed || trimmed.startsWith('#')) {
+			i++
+			continue
+		}
 		
 		const colonIndex = trimmed.indexOf(':')
-		if (colonIndex === -1) continue
+		if (colonIndex === -1) {
+			i++
+			continue
+		}
 		
 		const key = trimmed.substring(0, colonIndex).trim()
-		let value: unknown = trimmed.substring(colonIndex + 1).trim()
+		const valueStr = trimmed.substring(colonIndex + 1).trim()
+		
+		// Check if this is the start of an array (value is empty and next line starts with -)
+		if (valueStr === '' && i + 1 < lines.length) {
+			const nextLineTrimmed = lines[i + 1].trim()
+			if (nextLineTrimmed.startsWith('-')) {
+				// Parse array
+				const array: string[] = []
+				i++ // Move to first array item
+				
+				while (i < lines.length) {
+					const currentLine = lines[i]
+					const arrayLineTrimmed = currentLine.trim()
+					
+					// Check if this line is an array item (starts with -) or is indented (part of array)
+					if (arrayLineTrimmed.startsWith('-')) {
+						// Extract value after the dash
+						const itemValue = arrayLineTrimmed.substring(1).trim()
+						// Remove quotes if present
+						if ((itemValue.startsWith('"') && itemValue.endsWith('"')) ||
+							(itemValue.startsWith("'") && itemValue.endsWith("'"))) {
+							array.push(itemValue.slice(1, -1))
+						} else {
+							array.push(itemValue)
+						}
+						i++
+					} else if (arrayLineTrimmed === '' || arrayLineTrimmed.startsWith('#')) {
+						// Empty line or comment, continue
+						i++
+					} else if (arrayLineTrimmed.includes(':') && !currentLine.match(/^\s+/)) {
+						// Next key-value pair (not indented), stop parsing array
+						break
+					} else {
+						// Indented line that's not an array item, skip it
+						i++
+					}
+				}
+				
+				result[key] = array
+				continue
+			}
+		}
+		
+		// Regular key-value pair
+		let value: unknown = valueStr
 		
 		// Remove quotes if present
 		if (typeof value === 'string') {
@@ -44,6 +98,7 @@ function parseYAML(yaml: string): Record<string, unknown> {
 		}
 		
 		result[key] = value
+		i++
 	}
 	
 	return result
