@@ -1,10 +1,13 @@
 import { Link } from 'react-router-dom'
 import { Button, Spinner } from 'flowbite-react'
 import { usePages } from '@/hooks/usePages'
+import { useExperiences } from '@/hooks/useExperiences'
 import PortfolioCard from '@/components/portfolio/PortfolioCard'
+import ExperienceCard from '@/components/experience/ExperienceCard'
 
 function LandingPage() {
-	const { data: pages, loading } = usePages()
+	const { data: pages, loading: pagesLoading } = usePages()
+	const { data: experiences, loading: experiencesLoading } = useExperiences()
 	const featuredPages = pages.slice(0, 6) // Show up to 6 featured projects
 
 	const handleDownloadResume = () => {
@@ -136,7 +139,7 @@ function LandingPage() {
 							</p>
 						</div>
 
-						{loading ? (
+						{pagesLoading ? (
 							<div className="flex justify-center items-center min-h-[400px]">
 								<Spinner size="xl" />
 							</div>
@@ -164,6 +167,39 @@ function LandingPage() {
 									</div>
 								)}
 							</>
+						)}
+					</div>
+				</section>
+			)}
+
+			{/* Experience Section */}
+			{experiences.length > 0 && (
+				<section id="experience-section" className="py-20 px-4 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900">
+					<div className="max-w-7xl mx-auto">
+						<div className="text-center mb-16">
+							<div className="inline-block mb-4">
+								<span className="text-purple-600 dark:text-purple-400 font-semibold text-sm uppercase tracking-wider">Experience</span>
+							</div>
+							<h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6">
+								Professional Journey
+							</h2>
+							<p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
+								My career path and the companies I've had the privilege to work with.
+							</p>
+						</div>
+
+						{experiencesLoading ? (
+							<div className="flex justify-center items-center min-h-[400px]">
+								<Spinner size="xl" />
+							</div>
+						) : (
+							<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+								{experiences.map((experience) => (
+									<div key={experience.slug} className="h-full">
+										<ExperienceCard experience={experience} />
+									</div>
+								))}
+							</div>
 						)}
 					</div>
 				</section>

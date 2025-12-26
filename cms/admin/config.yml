@@ -66,3 +66,18 @@ collections:
           - { label: 'Site URL', name: 'url', widget: 'string' }
           - { label: 'Author', name: 'author', widget: 'string' }
           - { label: 'Logo', name: 'logo', widget: 'image', required: false }
+
+  - name: 'experiences' # Used in routes, e.g., /admin/collections/experiences
+    label: 'Experiences' # Used in the UI
+    folder: 'cms/content/experiences' # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    slug: '{{slug}}' # Filename template
+    fields: # The fields for each document, usually in front matter
+      - { label: 'Type', name: 'type', widget: 'select', options: ['Full-time', 'Part-time', 'Contract', 'Internship', 'Freelance'] }
+      - { label: 'Company', name: 'company', widget: 'string' }
+      - { label: 'Company About', name: 'companyAbout', widget: 'text' }
+      - { label: 'Company Location', name: 'companyLocation', widget: 'string' }
+      - { label: 'Company Logo', name: 'companyLogo', widget: 'image', required: false }
+      - { label: 'Position', name: 'position', widget: 'string' }
+      - { label: 'Period', name: 'period', widget: 'string' }
+      - { label: 'Responsibilities', name: 'responsibilities', widget: 'list', field: { label: 'Responsibility', name: 'responsibility', widget: 'string' } }

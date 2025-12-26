@@ -1,4 +1,4 @@
-import type { Page, Post, SiteSettings } from '@/types/cms'
+import type { Page, Post, SiteSettings, Experience } from '@/types/cms'
 import type { ContentManifest } from '@/types/content-manifest'
 import contentManifestJson from '../content-manifest.json'
 import { parseFrontmatter } from './frontmatter-parser'
@@ -333,6 +333,85 @@ export async function loadPost(slug: string): Promise<Post | null> {
 	} catch (error) {
 		console.error(`Error loading post ${slug}:`, error)
 		return null
+	}
+}
+
+/**
+ * Loads all experiences from the CMS
+ * Experiences are stored as markdown files with frontmatter
+ */
+export async function loadExperiences(): Promise<Experience[]> {
+	try {
+		const experiences: Experience[] = []
+		
+		// Try to use import.meta.glob for build-time content loading
+		let experienceModules: Record<string, () => Promise<string>> | Record<string, string> = {}
+		
+		try {
+			const globExperiences = import.meta.glob('../../../../cms/content/experiences/*.md', {
+				eager: false,
+				as: 'raw',
+			})
+			experienceModules = globExperiences
+		} catch {
+			// Fallback: will use fetch API at runtime
+		}
+		
+		// Try to use import.meta.glob modules (for build-time bundled content)
+		for (const [path, loader] of Object.entries(experienceModules)) {
+			try {
+				const content = typeof loader === 'function' ? await loader() : loader
+				const fileContent = typeof content === 'string' ? content : ''
+				const parsed = parseFrontmatter(fileContent)
+				const filename = path.split('/').pop() || ''
+				const slug = filename.replace(/\.md$/, '')
+				
+				experiences.push({
+					...parsed.data as Omit<Experience, 'slug'>,
+					slug,
+				})
+			} catch (error) {
+				console.error(`Error loading experience ${path}:`, error)
+			}
+		}
+		
+		// Fallback: try to fetch directly from CMS
+		// Since we don't have a manifest for experiences, we'll try common filenames
+		// or fetch a directory listing if available
+		const commonSlugs = ['cabinets-by-computer', 'amihan-solutions-medgate', 'amihan-solutions', 'yondu', 'palawan-express', 'ipp']
+		
+		for (const slug of commonSlugs) {
+			try {
+				// Check if already loaded
+				if (experiences.some(exp => exp.slug === slug)) continue
+				
+				const response = await fetch(`${CMS_CONTENT_BASE}/experiences/${slug}.md`)
+				if (response.ok) {
+					const content = await response.text()
+					const parsed = parseFrontmatter(content)
+					
+					experiences.push({
+						...parsed.data as Omit<Experience, 'slug'>,
+						slug,
+					})
+				}
+			} catch (error) {
+				console.error(`Error loading experience ${slug}:`, error)
+			}
+		}
+		
+		// Sort by period (most recent first) - simple string comparison for now
+		return experiences.sort((a, b) => {
+			// Extract year from period string for sorting
+			const getYear = (period: string) => {
+				const match = period.match(/\d{4}/)
+				return match ? parseInt(match[0], 10) : 0
+			}
+			return getYear(b.period) - getYear(a.period)
+		})
+	} catch (error) {
+		console.error('Error loading experiences:', error)
+		return []
 	}
 }
 

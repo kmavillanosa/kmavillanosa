@@ -31,3 +31,19 @@ export interface Post extends PostFrontMatter {
 	body: string
 }
 
+export interface ExperienceFrontMatter {
+	type: string
+	company: string
+	companyAbout: string
+	companyLocation: string
+	companyLogo: string
+	position: string
+	period: string
+	responsibilities: string[]
+	slug: string
+}
+
+export interface Experience extends ExperienceFrontMatter {
+	// No body field needed for experiences
+}
+
