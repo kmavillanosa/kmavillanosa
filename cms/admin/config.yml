@@ -1,49 +1,32 @@
+# Use DecapBridge PKCE auth (required)
 backend:
-  name: github
+  name: git-gateway
   repo: kmavillanosa/kmavillanosa
   branch: main
-  base_url: https://kmavillanosa.github.io/kmavillanosa
-  # For GitHub Pages, you'll need to set up GitHub OAuth
-  # See README.md for detailed instructions
+  auth_type: pkce
+  base_url: https://auth.decapbridge.com
+  auth_endpoint: /sites/f785d29f-fc7f-4ead-98c7-b457e364b5e1/pkce
+  auth_token_endpoint: /sites/f785d29f-fc7f-4ead-98c7-b457e364b5e1/token
+  gateway_url: https://gateway.decapbridge.com
 
-media_folder: 'cms/media' # Media files will be stored in the repo under cms/media
-public_folder: '/kmavillanosa/cms/media' # The src attribute for uploaded media will begin with /kmavillanosa/cms/media
+  # See who did what (optional)
+  commit_messages:
+    create: Create {{collection}} “{{slug}}” - {{author-name}} <{{author-login}}> via DecapBridge
+    update: Update {{collection}} “{{slug}}” - {{author-name}} <{{author-login}}> via DecapBridge
+    delete: Delete {{collection}} “{{slug}}” - {{author-name}} <{{author-login}}> via DecapBridge
+    uploadMedia: Upload “{{path}}” - {{author-name}} <{{author-login}}> via DecapBridge
+    deleteMedia: Delete “{{path}}” - {{author-name}} <{{author-login}}> via DecapBridge
+    openAuthoring: Message {{message}} - {{author-name}} <{{author-login}}> via DecapBridge
 
-collections:
-  - name: 'pages' # Used in routes, e.g., /admin/collections/pages
-    label: 'Pages' # Used in the UI
-    folder: 'cms/content/pages' # The path to the folder where the documents are stored
-    create: true # Allow users to create new documents in this collection
-    slug: '{{slug}}' # Filename template, e.g., YYYY-MM-DD-title.md
-    fields: # The fields for each document, usually in front matter
-      - { label: 'Title', name: 'title', widget: 'string' }
-      - { label: 'Publish Date', name: 'date', widget: 'datetime' }
-      - { label: 'Description', name: 'description', widget: 'text' }
-      - { label: 'Body', name: 'body', widget: 'markdown' }
+# Enable PKCE fields (optional, recommended)
+auth:
+  email_claim: email
+  first_name_claim: first_name
+  last_name_claim: last_name
+  avatar_url_claim: avatar_url
 
-  - name: 'posts' # Used in routes, e.g., /admin/collections/posts
-    label: 'Posts' # Used in the UI
-    folder: 'cms/content/posts' # The path to the folder where the documents are stored
-    create: true # Allow users to create new documents in this collection
-    slug: '{{year}}-{{month}}-{{day}}-{{slug}}' # Filename template, e.g., YYYY-MM-DD-title.md
-    fields: # The fields for each document, usually in front matter
-      - { label: 'Title', name: 'title', widget: 'string' }
-      - { label: 'Publish Date', name: 'date', widget: 'datetime' }
-      - { label: 'Author', name: 'author', widget: 'string', default: 'Admin' }
-      - { label: 'Tags', name: 'tags', widget: 'list', default: [] }
-      - { label: 'Featured Image', name: 'image', widget: 'image', required: false }
-      - { label: 'Description', name: 'description', widget: 'text' }
-      - { label: 'Body', name: 'body', widget: 'markdown' }
+# Better Decap + Bridge logo (optional)
+logo_url: https://decapbridge.com/decapcms-with-bridge.svg
 
-  - name: 'settings' # Used in routes, e.g., /admin/collections/settings
-    label: 'Settings' # Used in the UI
-    files:
-      - label: 'Site Settings'
-        name: 'site'
-        file: 'cms/content/settings/site.json'
-        fields:
-          - { label: 'Site Title', name: 'title', widget: 'string' }
-          - { label: 'Site Description', name: 'description', widget: 'text' }
-          - { label: 'Site URL', name: 'url', widget: 'string' }
-          - { label: 'Author', name: 'author', widget: 'string' }
-          - { label: 'Logo', name: 'logo', widget: 'image', required: false }
+# Add site links in Decap CMS (optional)
+site_url: https://kmavillanosa.github.io
