@@ -1,4 +1,4 @@
-gimport { Card } from 'flowbite-react'
+import { Card } from 'flowbite-react'
 
 function ContactPage() {
 	return (
