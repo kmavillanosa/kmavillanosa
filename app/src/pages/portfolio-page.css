@@ -26,11 +26,18 @@
 	gap: 2rem;
 }
 
+.portfolio-item-link {
+	text-decoration: none;
+	color: inherit;
+	display: block;
+}
+
 .portfolio-item {
 	background-color: #1a1a1a;
 	border-radius: 8px;
 	padding: 2rem;
 	transition: transform 0.2s, box-shadow 0.2s;
+	cursor: pointer;
 }
 
 .portfolio-item:hover {

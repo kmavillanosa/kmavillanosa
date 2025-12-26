@@ -40,7 +40,7 @@ function PageView() {
 			<div className="error">
 				<h1>Page Not Found</h1>
 				<p>The page you're looking for doesn't exist.</p>
-				<Link to="/">← Back to Home</Link>
+				<Link to="/portfolio">← Back to Portfolio</Link>
 			</div>
 		)
 	}
@@ -48,6 +48,8 @@ function PageView() {
 	if (!page.body || page.body.trim() === '') {
 		return (
 			<article className="page-view">
+				<Link to="/portfolio" className="back-link">← Back to Portfolio</Link>
+				
 				<header className="page-header">
 					<h1>{page.title}</h1>
 					{page.description && (
@@ -63,6 +65,8 @@ function PageView() {
 
 	return (
 		<article className="page-view">
+			<Link to="/portfolio" className="back-link">← Back to Portfolio</Link>
+			
 			<header className="page-header">
 				<h1>{page.title}</h1>
 				{page.description && (

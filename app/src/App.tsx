@@ -16,6 +16,7 @@ function App() {
 				<Route path="/" element={<LandingPage />} />
 				<Route path="/ocr" element={<OcrRedirect />} />
 				<Route path="/portfolio" element={<PortfolioPage />} />
+				<Route path="/portfolio/:slug" element={<PageView />} />
 				<Route path="/contact" element={<ContactPage />} />
 				<Route path="/pages/:slug" element={<PageView />} />
 				<Route path="/posts" element={<PostList />} />

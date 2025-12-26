@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { usePages } from '@/hooks/usePages'
 import './portfolio-page.css'
 import './pages.css'
@@ -27,23 +28,29 @@ function PortfolioPage() {
 			) : (
 				<div className="portfolio-grid">
 					{pages.map((page) => (
-						<article key={page.slug} className="portfolio-item">
-							<h2>{page.title}</h2>
-							{page.description && (
-								<p className="portfolio-description">{page.description}</p>
-							)}
-							<div className="portfolio-meta">
-								{page.date && (
-									<span className="portfolio-date">
-										{new Date(page.date).toLocaleDateString('en-US', {
-											year: 'numeric',
-											month: 'long',
-											day: 'numeric',
-										})}
-									</span>
+						<Link 
+							key={page.slug} 
+							to={`/portfolio/${page.slug}`}
+							className="portfolio-item-link"
+						>
+							<article className="portfolio-item">
+								<h2>{page.title}</h2>
+								{page.description && (
+									<p className="portfolio-description">{page.description}</p>
 								)}
-							</div>
-						</article>
+								<div className="portfolio-meta">
+									{page.date && (
+										<span className="portfolio-date">
+											{new Date(page.date).toLocaleDateString('en-US', {
+												year: 'numeric',
+												month: 'long',
+												day: 'numeric',
+											})}
+										</span>
+									)}
+								</div>
+							</article>
+						</Link>
 					))}
 				</div>
 			)}
