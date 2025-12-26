@@ -7,7 +7,7 @@ interface ExperienceCardProps {
 }
 
 function ExperienceCard({ experience }: ExperienceCardProps) {
-	const experienceUrl = `/kmavillanosa/experience/${experience.slug}`
+	const experienceUrl = `/experience/${experience.slug}`
 	
 	return (
 		<Link

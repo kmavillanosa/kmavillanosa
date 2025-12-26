@@ -384,7 +384,7 @@ export async function loadExperiences(): Promise<Experience[]> {
 		// Fallback: try to fetch directly from CMS
 		// Since we don't have a manifest for experiences, we'll try common filenames
 		// or fetch a directory listing if available
-		const commonSlugs = ['cabinets-by-computer', 'amihan-solutions-medgate', 'amihan-solutions', 'palawan-group', 'yondu', 'palawan-express', 'ipp', 'city-government-puerto-princesa']
+		const commonSlugs = ['cabinets-by-computer', 'amihan-solutions', 'palawan-group', 'yondu', 'palawan-express', 'ipp', 'city-government-puerto-princesa']
 		
 		for (const slug of commonSlugs) {
 			try {
@@ -432,6 +432,8 @@ export async function loadExperiences(): Promise<Experience[]> {
  */
 export async function loadExperience(slug: string): Promise<Experience | null> {
 	try {
+		console.log('Loading experience with slug:', slug)
+		
 		// Try to use import.meta.glob for build-time content loading
 		let experienceModules: Record<string, () => Promise<string>> | Record<string, string> = {}
 		
@@ -441,17 +443,22 @@ export async function loadExperience(slug: string): Promise<Experience | null> {
 				as: 'raw',
 			})
 			experienceModules = globExperiences
-		} catch {
+			console.log('Found experience modules:', Object.keys(experienceModules))
+		} catch (error) {
+			console.log('Could not use import.meta.glob, will use fetch:', error)
 			// Fallback: will use fetch API at runtime
 		}
 		
 		// Try to find in import.meta.glob modules first
 		const experienceEntry = Object.entries(experienceModules).find(([path]) => {
 			const filename = path.split('/').pop() || ''
-			return filename.replace(/\.md$/, '') === slug
+			const fileSlug = filename.replace(/\.md$/, '')
+			console.log('Checking file:', filename, 'slug:', fileSlug, 'matches:', fileSlug === slug)
+			return fileSlug === slug
 		})
 		
 		if (experienceEntry) {
+			console.log('Found experience in modules:', experienceEntry[0])
 			const [, loader] = experienceEntry
 			const content = typeof loader === 'function' ? await loader() : loader
 			const fileContent = typeof content === 'string' ? content : ''
@@ -470,7 +477,11 @@ export async function loadExperience(slug: string): Promise<Experience | null> {
 		}
 		
 		// Fallback: try to fetch directly from CMS
-		const response = await fetch(`${CMS_CONTENT_BASE}/experiences/${slug}.md`)
+		const fetchUrl = `${CMS_CONTENT_BASE}/experiences/${slug}.md`
+		console.log('Trying to fetch from:', fetchUrl)
+		const response = await fetch(fetchUrl)
+		console.log('Fetch response status:', response.status, response.ok)
+		
 		if (response.ok) {
 			const content = await response.text()
 			const parsed = parseFrontmatter(content)
@@ -485,6 +496,8 @@ export async function loadExperience(slug: string): Promise<Experience | null> {
 				...experienceData,
 				slug,
 			}
+		} else {
+			console.error(`Failed to fetch experience: ${response.status} ${response.statusText}`)
 		}
 		
 		return null
