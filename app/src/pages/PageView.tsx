@@ -50,7 +50,7 @@ function PageView() {
 				<Alert color="failure" className="mb-4">
 					<h3 className="text-xl font-semibold mb-2">Page Not Found</h3>
 					<p className="mb-4">The page you're looking for doesn't exist.</p>
-					<Button as={Link} to="/portfolio" gradientDuoTone="purpleToBlue">
+					<Button as={Link} to="/portfolio" color="purple">
 						← Back to Portfolio
 					</Button>
 				</Alert>
@@ -64,7 +64,7 @@ function PageView() {
 				as={Link} 
 				to="/portfolio" 
 				outline
-				gradientDuoTone="purpleToBlue"
+				color="purple"
 				className="mb-6"
 			>
 				← Back to Portfolio

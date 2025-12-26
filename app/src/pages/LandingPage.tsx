@@ -17,7 +17,7 @@ function LandingPage() {
 					<div className="flex flex-wrap gap-4 justify-center mt-4">
 						<Button 
 							onClick={handleDownloadResume}
-							gradientDuoTone="purpleToBlue"
+							color="purple"
 							size="xl"
 						>
 							Download Resume
@@ -27,7 +27,7 @@ function LandingPage() {
 							target="_blank" 
 							rel="noopener noreferrer"
 							outline
-							gradientDuoTone="purpleToBlue"
+							color="purple"
 							size="xl"
 							as="a"
 						>
@@ -38,7 +38,7 @@ function LandingPage() {
 							target="_blank" 
 							rel="noopener noreferrer"
 							outline
-							gradientDuoTone="purpleToBlue"
+							color="purple"
 							size="xl"
 							as="a"
 						>
@@ -48,7 +48,7 @@ function LandingPage() {
 							as={Link}
 							to="/contact"
 							outline
-							gradientDuoTone="purpleToBlue"
+							color="purple"
 							size="xl"
 						>
 							Contact Me
