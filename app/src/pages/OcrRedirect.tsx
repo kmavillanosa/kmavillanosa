@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import './pages.css'
+import { Spinner } from 'flowbite-react'
 
 function OcrRedirect() {
 	useEffect(() => {
@@ -7,8 +7,9 @@ function OcrRedirect() {
 	}, [])
 
 	return (
-		<div className="redirect-page loading">
-			<p>Redirecting to resume...</p>
+		<div className="flex flex-col items-center justify-center min-h-[400px]">
+			<Spinner size="xl" />
+			<p className="mt-4 text-gray-400">Redirecting to resume...</p>
 		</div>
 	)
 }

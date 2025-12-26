@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
-import './landing-page.css'
-import './pages.css'
+import { Button } from 'flowbite-react'
 
 function LandingPage() {
 	const handleDownloadResume = () => {
@@ -8,40 +7,52 @@ function LandingPage() {
 	}
 
 	return (
-		<div className="landing-page">
-			<section className="hero-section">
-				<div className="hero-content">
-					<h1 className="hero-name">Kim Avillanosa</h1>
-					<p className="hero-title">Software Engineer</p>
-					<div className="hero-buttons">
-						<button 
+		<div className="flex items-center justify-center min-h-[calc(100vh-200px)] px-4 py-8">
+			<section className="text-center max-w-4xl w-full">
+				<div className="flex flex-col items-center gap-6">
+					<h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+						Kim Avillanosa
+					</h1>
+					<p className="text-xl md:text-2xl text-gray-400">Software Engineer</p>
+					<div className="flex flex-wrap gap-4 justify-center mt-4">
+						<Button 
 							onClick={handleDownloadResume}
-							className="btn btn-primary"
+							gradientDuoTone="purpleToBlue"
+							size="xl"
 						>
 							Download Resume
-						</button>
-						<a 
+						</Button>
+						<Button 
 							href="https://linkedin.com/in/kmavillanosa" 
 							target="_blank" 
 							rel="noopener noreferrer"
-							className="btn btn-secondary"
+							outline
+							gradientDuoTone="purpleToBlue"
+							size="xl"
+							as="a"
 						>
 							LinkedIn
-						</a>
-						<a 
+						</Button>
+						<Button 
 							href="https://github.com/kmavillanosa" 
 							target="_blank" 
 							rel="noopener noreferrer"
-							className="btn btn-secondary"
+							outline
+							gradientDuoTone="purpleToBlue"
+							size="xl"
+							as="a"
 						>
 							GitHub
-						</a>
-						<Link 
+						</Button>
+						<Button 
+							as={Link}
 							to="/contact"
-							className="btn btn-secondary"
+							outline
+							gradientDuoTone="purpleToBlue"
+							size="xl"
 						>
 							Contact Me
-						</Link>
+						</Button>
 					</div>
 				</div>
 			</section>

@@ -1,32 +1,41 @@
 import { usePages } from '@/hooks/usePages'
 import { extractFirstImage } from '@/utils/markdown-utils'
-import './portfolio-page.css'
-import './pages.css'
+import { Card, Spinner, Alert } from 'flowbite-react'
 
 function PortfolioPage() {
 	const { data: pages, loading, error } = usePages()
 
 	if (loading) {
-		return <div className="loading">Loading portfolio...</div>
+		return (
+			<div className="flex justify-center items-center min-h-[400px]">
+				<Spinner size="xl" />
+			</div>
+		)
 	}
 
 	if (error) {
-		return <div className="error">Error loading portfolio: {error.message}</div>
+		return (
+			<div className="max-w-4xl mx-auto p-4">
+				<Alert color="failure">
+					Error loading portfolio: {error.message}
+				</Alert>
+			</div>
+		)
 	}
 
 	return (
-		<div className="portfolio-page">
-			<header className="portfolio-header">
-				<h1>My Work</h1>
-				<p className="portfolio-subtitle">A collection of projects and work I've done</p>
+		<div className="max-w-7xl mx-auto px-4 py-8">
+			<header className="text-center mb-12">
+				<h1 className="text-4xl md:text-5xl font-bold text-white mb-4">My Work</h1>
+				<p className="text-xl text-gray-400">A collection of projects and work I've done</p>
 			</header>
 
 			{pages.length === 0 ? (
-				<div className="empty-state">
-					<p>No portfolio items yet. Check back soon!</p>
+				<div className="text-center py-12">
+					<p className="text-gray-400 text-lg">No portfolio items yet. Check back soon!</p>
 				</div>
 			) : (
-				<div className="portfolio-grid">
+				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 					{pages.map((page) => {
 						const previewImage = extractFirstImage(page.body)
 						
@@ -36,36 +45,31 @@ function PortfolioPage() {
 								href={`/kmavillanosa/portfolio/${page.slug}`}
 								target="_blank"
 								rel="noopener noreferrer"
-								className="portfolio-item-link"
+								className="block h-full"
 							>
-								<article className="portfolio-item">
-									{previewImage && (
-										<div className="portfolio-image-wrapper">
-											<img 
-												src={previewImage} 
-												alt={page.title}
-												className="portfolio-preview-image"
-											/>
-										</div>
+								<Card 
+									className="h-full hover:shadow-lg transition-shadow cursor-pointer"
+									imgSrc={previewImage || undefined}
+									imgAlt={page.title}
+								>
+									<h5 className="text-2xl font-bold tracking-tight text-white">
+										{page.title}
+									</h5>
+									{page.description && (
+										<p className="font-normal text-gray-400 line-clamp-3">
+											{page.description}
+										</p>
 									)}
-									<div className="portfolio-item-content">
-										<h2>{page.title}</h2>
-										{page.description && (
-											<p className="portfolio-description">{page.description}</p>
-										)}
-										<div className="portfolio-meta">
-											{page.date && (
-												<span className="portfolio-date">
-													{new Date(page.date).toLocaleDateString('en-US', {
-														year: 'numeric',
-														month: 'long',
-														day: 'numeric',
-													})}
-												</span>
-											)}
-										</div>
-									</div>
-								</article>
+									{page.date && (
+										<p className="text-sm text-gray-500">
+											{new Date(page.date).toLocaleDateString('en-US', {
+												year: 'numeric',
+												month: 'long',
+												day: 'numeric',
+											})}
+										</p>
+									)}
+								</Card>
 							</a>
 						)
 					})}

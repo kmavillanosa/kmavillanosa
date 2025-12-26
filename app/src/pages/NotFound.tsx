@@ -1,12 +1,14 @@
 import { Link } from 'react-router-dom'
-import './pages.css'
+import { Button } from 'flowbite-react'
 
 function NotFound() {
 	return (
-		<div className="not-found">
-			<h1>404</h1>
-			<p>Page not found</p>
-			<Link to="/">← Back to Home</Link>
+		<div className="flex flex-col items-center justify-center min-h-[400px] text-center px-4">
+			<h1 className="text-6xl md:text-8xl font-bold text-white mb-4">404</h1>
+			<p className="text-xl text-gray-400 mb-8">Page not found</p>
+			<Button as={Link} to="/" gradientDuoTone="purpleToBlue" size="xl">
+				← Back to Home
+			</Button>
 		</div>
 	)
 }

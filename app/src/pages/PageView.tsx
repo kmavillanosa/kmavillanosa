@@ -4,7 +4,7 @@ import { loadPage } from '@/utils/cms-loader'
 import type { Page } from '@/types/cms'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
-import './pages.css'
+import { Spinner, Alert, Button } from 'flowbite-react'
 
 function PageView() {
 	const { slug } = useParams<{ slug: string }>()
@@ -37,55 +37,53 @@ function PageView() {
 	}, [slug])
 
 	if (loading) {
-		return <div className="loading">Loading page...</div>
-	}
-
-	if (error || !page) {
 		return (
-			<div className="error">
-				<h1>Page Not Found</h1>
-				<p>The page you're looking for doesn't exist.</p>
-				<Link to="/portfolio">← Back to Portfolio</Link>
+			<div className="flex justify-center items-center min-h-[400px]">
+				<Spinner size="xl" />
 			</div>
 		)
 	}
 
-	if (!page.body || page.body.trim() === '') {
+	if (error || !page) {
 		return (
-			<article className="page-view">
-				<Link to="/portfolio" className="back-link">← Back to Portfolio</Link>
-				
-				<header className="page-header">
-					<h1>{page.title}</h1>
-					{page.description && (
-						<p className="page-description">{page.description}</p>
-					)}
-				</header>
-				<div className="page-body">
-					<p>No content available.</p>
-				</div>
-			</article>
+			<div className="max-w-4xl mx-auto px-4 py-8">
+				<Alert color="failure" className="mb-4">
+					<h3 className="text-xl font-semibold mb-2">Page Not Found</h3>
+					<p className="mb-4">The page you're looking for doesn't exist.</p>
+					<Button as={Link} to="/portfolio" gradientDuoTone="purpleToBlue">
+						← Back to Portfolio
+					</Button>
+				</Alert>
+			</div>
 		)
 	}
 
 	return (
-		<article className="page-view">
-			<Link to="/portfolio" className="back-link">← Back to Portfolio</Link>
+		<article className="max-w-4xl mx-auto px-4 py-8">
+			<Button 
+				as={Link} 
+				to="/portfolio" 
+				outline
+				gradientDuoTone="purpleToBlue"
+				className="mb-6"
+			>
+				← Back to Portfolio
+			</Button>
 			
-			<header className="page-header">
-				<h1>{page.title}</h1>
+			<header className="mb-8">
+				<h1 className="text-4xl md:text-5xl font-bold text-white mb-4">{page.title}</h1>
 				{page.description && (
-					<p className="page-description">{page.description}</p>
+					<p className="text-xl text-gray-400">{page.description}</p>
 				)}
 			</header>
 
-			<div className="page-body">
+			<div className="prose prose-invert prose-lg max-w-none">
 				{page.body ? (
 					<ReactMarkdown remarkPlugins={[remarkGfm]}>
 						{page.body}
 					</ReactMarkdown>
 				) : (
-					<p>No content available.</p>
+					<p className="text-gray-400">No content available.</p>
 				)}
 			</div>
 		</article>
