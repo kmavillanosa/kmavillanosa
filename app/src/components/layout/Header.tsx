@@ -9,7 +9,7 @@ function Header() {
 		<nav 
 			className={`fixed top-0 left-0 right-0 z-50 px-4 py-4 transition-all duration-300 ${
 				isLandingPage 
-					? 'bg-transparent backdrop-blur-md border-b border-white/10 dark:border-gray-700/30' 
+					? 'bg-white/10 dark:bg-gray-900/10 backdrop-blur-md border-b border-gray-200/20 dark:border-gray-700/30' 
 					: 'bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 shadow-sm'
 			}`}
 		>
@@ -18,7 +18,7 @@ function Header() {
 					to="/" 
 					className={`text-xl font-semibold transition-colors ${
 						isLandingPage
-							? 'text-white dark:text-white hover:text-gray-200 dark:hover:text-gray-200'
+							? 'text-gray-900 dark:text-white hover:text-gray-700 dark:hover:text-gray-200'
 							: 'text-gray-900 dark:text-white hover:text-gray-600 dark:hover:text-gray-300'
 					}`}
 				>
@@ -29,7 +29,7 @@ function Header() {
 						to="/" 
 						className={`px-3 py-2 transition-colors ${
 							isLandingPage
-								? 'text-white dark:text-white hover:text-gray-200 dark:hover:text-gray-200'
+								? 'text-gray-800 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white'
 								: 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
 						}`}
 					>
@@ -39,7 +39,7 @@ function Header() {
 						to="/portfolio" 
 						className={`px-3 py-2 transition-colors ${
 							isLandingPage
-								? 'text-white dark:text-white hover:text-gray-200 dark:hover:text-gray-200'
+								? 'text-gray-800 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white'
 								: 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
 						}`}
 					>
@@ -52,7 +52,7 @@ function Header() {
 						rel="noopener noreferrer"
 						className={`px-2 py-1 text-sm transition-colors ${
 							isLandingPage
-								? 'text-white/80 dark:text-white/80 hover:text-white dark:hover:text-white'
+								? 'text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200'
 								: 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
 						}`}
 					>

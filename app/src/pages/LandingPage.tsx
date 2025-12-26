@@ -24,28 +24,18 @@ function LandingPage() {
 		<div className="min-h-screen">
 			{/* Hero Section */}
 			<section className="relative flex items-center justify-center min-h-[calc(100vh-200px)] px-4 pt-24 pb-20 overflow-hidden">
-				{/* Background GIF */}
+				{/* Background timelapse GIF */}
 				<div className="absolute inset-0 overflow-hidden pointer-events-none">
 					<img
 						src="/kmavillanosa/cms/media/timelapse.gif"
 						alt=""
-						className="w-full h-full object-cover opacity-30 dark:opacity-20"
+						className="w-full h-full object-cover opacity-60 dark:opacity-30 brightness-75 dark:brightness-100"
 						aria-hidden="true"
 					/>
-					{/* Overlay for better text readability */}
-					<div className="absolute inset-0 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm"></div>
 				</div>
-
-				{/* Background timelapse GIF */}
-				<div 
-					className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20 dark:opacity-10"
-					style={{
-						backgroundImage: 'url(/kmavillanosa/cms/media/timelapse.gif)',
-					}}
-				></div>
 				
 				{/* Overlay for better text readability */}
-				<div className="absolute inset-0 bg-white/50 dark:bg-gray-900/50"></div>
+				<div className="absolute inset-0 bg-white/40 dark:bg-gray-900/60 backdrop-blur-[2px]"></div>
 				
 				{/* Decorative background elements */}
 				<div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
