@@ -120,28 +120,36 @@ function LandingPage() {
 												className="block h-full group"
 											>
 												<Card 
-													className="h-full hover:shadow-2xl transition-all duration-300 cursor-pointer transform hover:-translate-y-2 bg-gray-900 border-gray-700"
-													imgSrc={previewImage || undefined}
-													imgAlt={page.title}
-													imgClassName="h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+													className="h-full hover:shadow-2xl transition-all duration-300 cursor-pointer transform hover:-translate-y-2 bg-gray-900 border-gray-700 overflow-hidden"
 												>
-													<h5 className="text-2xl font-bold tracking-tight text-white group-hover:text-purple-400 transition-colors">
-														{page.title}
-													</h5>
-													{page.description && (
-														<p className="font-normal text-gray-400 line-clamp-3">
-															{page.description}
-														</p>
+													{previewImage && (
+														<div className="h-48 w-full overflow-hidden">
+															<img 
+																src={previewImage} 
+																alt={page.title}
+																className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-300"
+															/>
+														</div>
 													)}
-													{page.date && (
-														<p className="text-sm text-gray-500 mt-2">
-															{new Date(page.date).toLocaleDateString('en-US', {
-																year: 'numeric',
-																month: 'long',
-																day: 'numeric',
-															})}
-														</p>
-													)}
+													<div className="p-5">
+														<h5 className="text-2xl font-bold tracking-tight text-white group-hover:text-purple-400 transition-colors mb-2">
+															{page.title}
+														</h5>
+														{page.description && (
+															<p className="font-normal text-gray-400 line-clamp-3 mb-2">
+																{page.description}
+															</p>
+														)}
+														{page.date && (
+															<p className="text-sm text-gray-500">
+																{new Date(page.date).toLocaleDateString('en-US', {
+																	year: 'numeric',
+																	month: 'long',
+																	day: 'numeric',
+																})}
+															</p>
+														)}
+													</div>
 												</Card>
 											</a>
 										)
