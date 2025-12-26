@@ -6,15 +6,15 @@ import './index.css'
 
 // Initialize theme from store on page load
 if (typeof document !== 'undefined') {
-	// Get initial theme from localStorage or default to light
+	// Get initial theme from localStorage or default to dark
 	const storedTheme = localStorage.getItem('theme-storage')
-	let theme = 'light'
+	let theme = 'dark'
 	if (storedTheme) {
 		try {
 			const parsed = JSON.parse(storedTheme)
-			theme = parsed.state?.theme || 'light'
+			theme = parsed.state?.theme || 'dark'
 		} catch {
-			theme = 'light'
+			theme = 'dark'
 		}
 	}
 	
