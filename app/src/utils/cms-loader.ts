@@ -1,7 +1,7 @@
-import matter from 'gray-matter'
 import type { Page, Post, SiteSettings } from '@/types/cms'
 import type { ContentManifest } from '@/types/content-manifest'
 import contentManifestJson from '../content-manifest.json'
+import { parseFrontmatter } from './frontmatter-parser'
 
 const contentManifest = contentManifestJson as ContentManifest
 
@@ -67,7 +67,7 @@ export async function loadPages(): Promise<Page[]> {
 					if (!response.ok) continue
 					
 					const content = await response.text()
-					const parsed = matter(content)
+					const parsed = parseFrontmatter(content)
 					
 					pages.push({
 						...parsed.data as Omit<Page, 'body' | 'slug'>,
@@ -92,7 +92,7 @@ export async function loadPages(): Promise<Page[]> {
 				
 				const content = typeof loader === 'function' ? await loader() : loader
 				const fileContent = typeof content === 'string' ? content : ''
-				const parsed = matter(fileContent)
+				const parsed = parseFrontmatter(fileContent)
 				
 				pages.push({
 					...parsed.data as Omit<Page, 'body' | 'slug'>,
@@ -130,7 +130,7 @@ export async function loadPage(slug: string): Promise<Page | null> {
 				const response = await fetch(`${CMS_CONTENT_BASE}/${pageInfo.path}`)
 				if (response.ok) {
 					const content = await response.text()
-					const parsed = matter(content)
+					const parsed = parseFrontmatter(content)
 					return {
 						...parsed.data as Omit<Page, 'body'>,
 						body: parsed.content,
@@ -145,7 +145,7 @@ export async function loadPage(slug: string): Promise<Page | null> {
 		const directResponse = await fetch(`${CMS_CONTENT_BASE}/pages/${slug}.md`)
 		if (directResponse.ok) {
 			const content = await directResponse.text()
-			const parsed = matter(content)
+			const parsed = parseFrontmatter(content)
 			
 			// Ensure we have a valid body
 			const body = parsed.content || ''
@@ -174,7 +174,7 @@ export async function loadPage(slug: string): Promise<Page | null> {
 			const [, loader] = pageEntry
 			const content = typeof loader === 'function' ? await loader() : loader
 			const fileContent = typeof content === 'string' ? content : ''
-			const parsed = matter(fileContent)
+			const parsed = parseFrontmatter(fileContent)
 			
 			return {
 				...parsed.data as Omit<Page, 'body'>,
@@ -206,7 +206,7 @@ export async function loadPosts(): Promise<Post[]> {
 					if (!response.ok) continue
 					
 					const content = await response.text()
-					const parsed = matter(content)
+					const parsed = parseFrontmatter(content)
 					
 					posts.push({
 						...parsed.data as Omit<Post, 'body' | 'slug'>,
@@ -223,7 +223,7 @@ export async function loadPosts(): Promise<Post[]> {
 				try {
 					const content = typeof loader === 'function' ? await loader() : loader
 					const fileContent = typeof content === 'string' ? content : ''
-					const parsed = matter(fileContent)
+					const parsed = parseFrontmatter(fileContent)
 					const filename = path.split('/').pop() || ''
 					
 					// Extract slug from filename (format: YYYY-MM-DD-slug.md)
@@ -262,7 +262,7 @@ export async function loadPost(slug: string): Promise<Post | null> {
 				const response = await fetch(`${CMS_CONTENT_BASE}/${postInfo.path}`)
 				if (response.ok) {
 					const content = await response.text()
-					const parsed = matter(content)
+					const parsed = parseFrontmatter(content)
 					return {
 						...parsed.data as Omit<Post, 'body' | 'slug'>,
 						body: parsed.content,
@@ -289,7 +289,7 @@ export async function loadPost(slug: string): Promise<Post | null> {
 						const response = await fetch(`${CMS_CONTENT_BASE}/posts/${filename}`)
 						if (response.ok) {
 							const content = await response.text()
-							const parsed = matter(content)
+							const parsed = parseFrontmatter(content)
 							return {
 								...parsed.data as Omit<Post, 'body' | 'slug'>,
 								body: parsed.content,
@@ -313,7 +313,7 @@ export async function loadPost(slug: string): Promise<Post | null> {
 			const [, loader] = postEntry
 			const content = typeof loader === 'function' ? await loader() : loader
 			const fileContent = typeof content === 'string' ? content : ''
-			const parsed = matter(fileContent)
+			const parsed = parseFrontmatter(fileContent)
 			const filename = postEntry[0].split('/').pop() || ''
 			const slugMatch = filename.match(/^\d{4}-\d{2}-\d{2}-(.+)\.md$/)
 			const extractedSlug = slugMatch ? slugMatch[1] : filename.replace(/\.md$/, '')
