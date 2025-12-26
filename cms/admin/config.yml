@@ -1,4 +1,4 @@
-# Use DecapBridge PKCE auth (required)
+# Use DecapBridge PKCE auth with GitHub (required)
 backend:
   name: git-gateway
   repo: kmavillanosa/kmavillanosa
@@ -8,6 +8,7 @@ backend:
   auth_endpoint: /sites/f785d29f-fc7f-4ead-98c7-b457e364b5e1/pkce
   auth_token_endpoint: /sites/f785d29f-fc7f-4ead-98c7-b457e364b5e1/token
   gateway_url: https://gateway.decapbridge.com
+  # Note: OAuth provider (GitHub/Google) is configured in DecapBridge dashboard
 
   # See who did what (optional)
   commit_messages:
@@ -29,7 +30,7 @@ auth:
 logo_url: https://decapbridge.com/decapcms-with-bridge.svg
 
 # Add site links in Decap CMS (optional)
-site_url: https://kmavillanosa.github.io/kmavillanosa
+site_url: https://kmavillanosa.github.io/kmavillanosa/cms/admin
 
 # Media files configuration
 media_folder: 'cms/media' # Media files will be stored in the repo under cms/media
