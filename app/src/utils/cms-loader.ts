@@ -146,9 +146,20 @@ export async function loadPage(slug: string): Promise<Page | null> {
 		if (directResponse.ok) {
 			const content = await directResponse.text()
 			const parsed = matter(content)
+			
+			// Ensure we have a valid body
+			const body = parsed.content || ''
+			
+			console.log('Direct fetch - parsed content:', {
+				frontMatter: parsed.data,
+				bodyLength: body.length,
+				bodyPreview: body.substring(0, 100),
+				hasBody: body.length > 0,
+			})
+			
 			return {
 				...parsed.data as Omit<Page, 'body'>,
-				body: parsed.content,
+				body: body.trim(),
 				slug,
 			}
 		}

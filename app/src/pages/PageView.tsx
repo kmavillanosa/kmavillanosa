@@ -20,8 +20,14 @@ function PageView() {
 		}
 
 		loadPage(slug)
-			.then(setPage)
-			.catch(setError)
+			.then((pageData) => {
+				console.log('Loaded page data:', pageData)
+				setPage(pageData)
+			})
+			.catch((err) => {
+				console.error('Error loading page:', err)
+				setError(err)
+			})
 			.finally(() => setLoading(false))
 	}, [slug])
 
@@ -39,6 +45,22 @@ function PageView() {
 		)
 	}
 
+	if (!page.body || page.body.trim() === '') {
+		return (
+			<article className="page-view">
+				<header className="page-header">
+					<h1>{page.title}</h1>
+					{page.description && (
+						<p className="page-description">{page.description}</p>
+					)}
+				</header>
+				<div className="page-body">
+					<p>No content available.</p>
+				</div>
+			</article>
+		)
+	}
+
 	return (
 		<article className="page-view">
 			<header className="page-header">
@@ -49,9 +71,13 @@ function PageView() {
 			</header>
 
 			<div className="page-body">
-				<ReactMarkdown remarkPlugins={[remarkGfm]}>
-					{page.body}
-				</ReactMarkdown>
+				{page.body ? (
+					<ReactMarkdown remarkPlugins={[remarkGfm]}>
+						{page.body}
+					</ReactMarkdown>
+				) : (
+					<p>No content available.</p>
+				)}
 			</div>
 		</article>
 	)
