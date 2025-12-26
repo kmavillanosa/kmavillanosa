@@ -5,7 +5,7 @@ companyAbout: Amihan Solutions is a Swiss-owned and managed company, which start
 companyLocation: BGC Taguig / rafz switzerland
 companyLogo: /kmavillanosa/cms/media/amihan.jpg
 position: Senior Software Developer
-period: November 2023 - Current
+period: November 2023 - November 2023
 responsibilities:
   - Deployed under Medgate Switzerland
   - Frontend development
