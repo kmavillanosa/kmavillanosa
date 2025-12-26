@@ -9,7 +9,7 @@ function OcrRedirect() {
 	return (
 		<div className="flex flex-col items-center justify-center min-h-[400px]">
 			<Spinner size="xl" />
-			<p className="mt-4 text-gray-400">Redirecting to resume...</p>
+			<p className="mt-4 text-gray-600">Redirecting to resume...</p>
 		</div>
 	)
 }

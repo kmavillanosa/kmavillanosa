@@ -6,11 +6,15 @@ export default {
 		'node_modules/flowbite-react/lib/esm/**/*.js',
 	],
 	theme: {
-		extend: {},
+		extend: {
+			fontFamily: {
+				sans: ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'sans-serif'],
+			},
+		},
 	},
 	plugins: [
 		require('flowbite/plugin')
 	],
-	darkMode: 'class',
+	darkMode: false,
 }
 

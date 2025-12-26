@@ -25,8 +25,8 @@ function LandingPage() {
 						<h1 className="text-5xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-purple-600 via-blue-500 to-purple-600 bg-clip-text text-transparent animate-gradient">
 							Kim Avillanosa
 						</h1>
-						<p className="text-xl md:text-2xl text-gray-400">Software Engineer</p>
-						<p className="text-lg text-gray-500 max-w-2xl">
+						<p className="text-xl md:text-2xl text-gray-600">Software Engineer</p>
+						<p className="text-lg text-gray-700 max-w-2xl">
 							I make cool stuff for a living. Building innovative solutions and bringing ideas to life.
 						</p>
 						<div className="flex flex-wrap gap-4 justify-center mt-6">
@@ -90,13 +90,13 @@ function LandingPage() {
 
 			{/* Portfolio Section */}
 			{featuredPages.length > 0 && (
-				<section id="portfolio-section" className="py-16 px-4 bg-gray-800/50">
+				<section id="portfolio-section" className="py-16 px-4 bg-gray-50">
 					<div className="max-w-7xl mx-auto">
 						<div className="text-center mb-12">
-							<h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+							<h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
 								Featured Work
 							</h2>
-							<p className="text-xl text-gray-400 max-w-2xl mx-auto">
+							<p className="text-xl text-gray-600 max-w-2xl mx-auto">
 								Explore some of my recent projects and contributions
 							</p>
 						</div>
@@ -120,10 +120,10 @@ function LandingPage() {
 												className="block h-full group"
 											>
 												<Card 
-													className="h-full hover:shadow-2xl transition-all duration-300 cursor-pointer transform hover:-translate-y-2 bg-gray-900 border-gray-700 overflow-hidden"
+													className="h-full hover:shadow-2xl transition-all duration-300 cursor-pointer transform hover:-translate-y-2 bg-white border-gray-200 overflow-hidden"
 												>
 													{previewImage && (
-														<div className="h-48 w-full overflow-hidden">
+														<div className="h-48 w-full overflow-hidden bg-gray-100">
 															<img 
 																src={previewImage} 
 																alt={page.title}
@@ -132,11 +132,11 @@ function LandingPage() {
 														</div>
 													)}
 													<div className="p-5">
-														<h5 className="text-2xl font-bold tracking-tight text-white group-hover:text-purple-400 transition-colors mb-2">
+														<h5 className="text-2xl font-bold tracking-tight text-gray-900 group-hover:text-purple-600 transition-colors mb-2">
 															{page.title}
 														</h5>
 														{page.description && (
-															<p className="font-normal text-gray-400 line-clamp-3 mb-2">
+															<p className="font-normal text-gray-600 line-clamp-3 mb-2">
 																{page.description}
 															</p>
 														)}

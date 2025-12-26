@@ -26,6 +26,10 @@ auth:
   last_name_claim: last_name
   avatar_url_claim: avatar_url
 
+# Session configuration - extend timeout to 1 day (1440 minutes)
+session:
+  duration: 1440
+
 # Better Decap + Bridge logo (optional)
 logo_url: https://decapbridge.com/decapcms-with-bridge.svg
 
