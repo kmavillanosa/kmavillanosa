@@ -12,9 +12,6 @@ function PortfolioCard({ page }: PortfolioCardProps) {
 	const previewLink = extractFirstLink(page.body)
 	const pageUrl = `/kmavillanosa/portfolio/${page.slug}`
 
-	// Determine which preview to show: iframe > image > link preview > placeholder
-	const hasPreview = previewIframe || previewImage || previewLink
-
 	return (
 		<a
 			href={pageUrl}
