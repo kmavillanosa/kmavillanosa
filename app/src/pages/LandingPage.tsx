@@ -23,7 +23,7 @@ function LandingPage() {
 	return (
 		<div className="min-h-screen">
 			{/* Hero Section */}
-			<section className="relative flex items-center justify-center min-h-[calc(100vh-200px)] px-4 py-20 overflow-hidden">
+			<section className="relative flex items-center justify-center min-h-[calc(100vh-200px)] px-4 pt-24 pb-20 overflow-hidden">
 				{/* Background GIF */}
 				<div className="absolute inset-0 overflow-hidden pointer-events-none">
 					<img
