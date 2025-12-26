@@ -2,12 +2,12 @@ backend:
   name: github
   repo: kmavillanosa/kmavillanosa
   branch: main
-  base_url: https://kmavillanosa.github.io
+  base_url: https://kmavillanosa.github.io/kmavillanosa
   # For GitHub Pages, you'll need to set up GitHub OAuth
   # See README.md for detailed instructions
 
 media_folder: 'cms/media' # Media files will be stored in the repo under cms/media
-public_folder: '/cms/media' # The src attribute for uploaded media will begin with /cms/media
+public_folder: '/kmavillanosa/cms/media' # The src attribute for uploaded media will begin with /kmavillanosa/cms/media
 
 collections:
   - name: 'pages' # Used in routes, e.g., /admin/collections/pages

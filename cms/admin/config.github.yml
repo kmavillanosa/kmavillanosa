@@ -6,12 +6,12 @@ backend:
   name: github
   repo: kmavillanosa/kmavillanosa
   branch: main
-  base_url: https://kmavillanosa.github.io
+  base_url: https://kmavillanosa.github.io/kmavillanosa
   auth_type: implicit # Uses GitHub OAuth
   auth_endpoint: https://api.github.com/authorizations
 
 media_folder: 'cms/media'
-public_folder: '/cms/media'
+public_folder: '/kmavillanosa/cms/media'
 
 collections:
   - name: 'pages'
