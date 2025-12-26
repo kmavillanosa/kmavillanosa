@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom'
 import { usePages } from '@/hooks/usePages'
+import { extractFirstImage } from '@/utils/markdown-utils'
 import './portfolio-page.css'
 import './pages.css'
 
@@ -27,31 +27,48 @@ function PortfolioPage() {
 				</div>
 			) : (
 				<div className="portfolio-grid">
-					{pages.map((page) => (
-						<Link 
-							key={page.slug} 
-							to={`/portfolio/${page.slug}`}
-							className="portfolio-item-link"
-						>
-							<article className="portfolio-item">
-								<h2>{page.title}</h2>
-								{page.description && (
-									<p className="portfolio-description">{page.description}</p>
-								)}
-								<div className="portfolio-meta">
-									{page.date && (
-										<span className="portfolio-date">
-											{new Date(page.date).toLocaleDateString('en-US', {
-												year: 'numeric',
-												month: 'long',
-												day: 'numeric',
-											})}
-										</span>
+					{pages.map((page) => {
+						const previewImage = extractFirstImage(page.body)
+						
+						return (
+							<a
+								key={page.slug}
+								href={`/kmavillanosa/portfolio/${page.slug}`}
+								target="_blank"
+								rel="noopener noreferrer"
+								className="portfolio-item-link"
+							>
+								<article className="portfolio-item">
+									{previewImage && (
+										<div className="portfolio-image-wrapper">
+											<img 
+												src={previewImage} 
+												alt={page.title}
+												className="portfolio-preview-image"
+											/>
+										</div>
 									)}
-								</div>
-							</article>
-						</Link>
-					))}
+									<div className="portfolio-item-content">
+										<h2>{page.title}</h2>
+										{page.description && (
+											<p className="portfolio-description">{page.description}</p>
+										)}
+										<div className="portfolio-meta">
+											{page.date && (
+												<span className="portfolio-date">
+													{new Date(page.date).toLocaleDateString('en-US', {
+														year: 'numeric',
+														month: 'long',
+														day: 'numeric',
+													})}
+												</span>
+											)}
+										</div>
+									</div>
+								</article>
+							</a>
+						)
+					})}
 				</div>
 			)}
 		</div>
