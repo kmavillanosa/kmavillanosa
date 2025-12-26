@@ -1,6 +1,9 @@
 import { Routes, Route } from 'react-router-dom'
 import Layout from './components/layout/Layout'
-import HomePage from './pages/HomePage'
+import LandingPage from './pages/LandingPage'
+import PortfolioPage from './pages/PortfolioPage'
+import OcrRedirect from './pages/OcrRedirect'
+import ContactPage from './pages/ContactPage'
 import PageView from './pages/PageView'
 import PostList from './pages/PostList'
 import PostView from './pages/PostView'
@@ -10,7 +13,10 @@ function App() {
 	return (
 		<Layout>
 			<Routes>
-				<Route path="/" element={<HomePage />} />
+				<Route path="/" element={<LandingPage />} />
+				<Route path="/ocr" element={<OcrRedirect />} />
+				<Route path="/portfolio" element={<PortfolioPage />} />
+				<Route path="/contact" element={<ContactPage />} />
 				<Route path="/pages/:slug" element={<PageView />} />
 				<Route path="/posts" element={<PostList />} />
 				<Route path="/posts/:slug" element={<PostView />} />
