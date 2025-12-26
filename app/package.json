@@ -18,7 +18,8 @@
 		"react-markdown": "^9.0.1",
 		"remark-gfm": "^4.0.0",
 		"flowbite": "^4.0.1",
-		"flowbite-react": "^0.12.10"
+		"flowbite-react": "^0.12.10",
+		"zustand": "^4.5.2"
 	},
 	"devDependencies": {
 		"@types/react": "^18.3.5",

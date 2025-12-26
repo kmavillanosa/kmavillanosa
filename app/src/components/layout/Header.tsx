@@ -18,9 +18,9 @@ function Header() {
 						href="/kmavillanosa/cms/admin/index.html" 
 						target="_blank"
 						rel="noopener noreferrer"
-						className="text-gray-700 hover:text-gray-900 px-3 py-2"
+						className="text-gray-500 hover:text-gray-700 px-2 py-1 text-sm"
 					>
-						CMS Admin
+						Admin
 					</a>
 				</div>
 			</div>
