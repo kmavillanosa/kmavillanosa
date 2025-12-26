@@ -19,10 +19,15 @@ function PageView() {
 			return
 		}
 
+		console.log('Loading page with slug:', slug)
 		loadPage(slug)
 			.then((pageData) => {
 				console.log('Loaded page data:', pageData)
-				setPage(pageData)
+				if (!pageData) {
+					setError(new Error(`Page "${slug}" not found`))
+				} else {
+					setPage(pageData)
+				}
 			})
 			.catch((err) => {
 				console.error('Error loading page:', err)

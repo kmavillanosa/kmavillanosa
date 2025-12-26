@@ -142,7 +142,9 @@ export async function loadPage(slug: string): Promise<Page | null> {
 		
 		// Fallback: try to fetch directly (for new content not in manifest)
 		// This allows CMS-created content to work without rebuilding
-		const directResponse = await fetch(`${CMS_CONTENT_BASE}/pages/${slug}.md`)
+		const directUrl = `${CMS_CONTENT_BASE}/pages/${slug}.md`
+		console.log('Trying direct fetch from:', directUrl)
+		const directResponse = await fetch(directUrl)
 		if (directResponse.ok) {
 			const content = await directResponse.text()
 			const parsed = parseFrontmatter(content)
@@ -162,6 +164,8 @@ export async function loadPage(slug: string): Promise<Page | null> {
 				body: body.trim(),
 				slug,
 			}
+		} else {
+			console.warn(`Direct fetch failed: ${directResponse.status} ${directResponse.statusText}`)
 		}
 		
 		// Fallback: try import.meta.glob (for build-time bundled content)

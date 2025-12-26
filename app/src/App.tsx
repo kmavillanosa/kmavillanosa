@@ -5,8 +5,6 @@ import PortfolioPage from './pages/PortfolioPage'
 import OcrRedirect from './pages/OcrRedirect'
 import ContactPage from './pages/ContactPage'
 import PageView from './pages/PageView'
-import PostList from './pages/PostList'
-import PostView from './pages/PostView'
 import NotFound from './pages/NotFound'
 
 function App() {
@@ -18,9 +16,6 @@ function App() {
 				<Route path="/portfolio" element={<PortfolioPage />} />
 				<Route path="/portfolio/:slug" element={<PageView />} />
 				<Route path="/contact" element={<ContactPage />} />
-				<Route path="/pages/:slug" element={<PageView />} />
-				<Route path="/posts" element={<PostList />} />
-				<Route path="/posts/:slug" element={<PostView />} />
 				<Route path="*" element={<NotFound />} />
 			</Routes>
 		</Layout>

@@ -29,22 +29,25 @@
 	<body>
 		<script type="text/javascript">
 			// Single Page Apps for GitHub Pages
-			// Keep the base path segment (/kmavillanosa)
-			var pathSegmentsToKeep = 1;
-
 			var l = window.location;
 			var basePath = '/kmavillanosa';
 			
 			// Extract the path after the base
-			var pathAfterBase = l.pathname.replace(basePath, '') || '/';
+			var pathAfterBase = l.pathname;
+			if (pathAfterBase.startsWith(basePath)) {
+				pathAfterBase = pathAfterBase.substring(basePath.length);
+			}
+			if (!pathAfterBase || pathAfterBase === '/') {
+				pathAfterBase = '/';
+			}
 			
-			l.replace(
-				l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-				basePath + '/?/' +
+			// Redirect to index.html with path in query string
+			var redirectPath = basePath + '/?/' + 
 				pathAfterBase.slice(1).replace(/&/g, '~and~') +
 				(l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
-				l.hash
-			);
+				l.hash;
+			
+			l.replace(redirectPath);
 		</script>
 	</body>
 </html>
