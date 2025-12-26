@@ -23,15 +23,38 @@ function LandingPage() {
 	return (
 		<div className="min-h-screen">
 			{/* Hero Section */}
-			<section className="relative flex items-center justify-center min-h-[calc(100vh-200px)] px-4 py-20 overflow-hidden bg-white dark:bg-gray-900">
-				{/* Decorative background elements */}
+			<section className="relative flex items-center justify-center min-h-[calc(100vh-200px)] px-4 py-20 overflow-hidden">
+				{/* Background GIF */}
 				<div className="absolute inset-0 overflow-hidden pointer-events-none">
-					<div className="absolute top-20 left-10 w-72 h-72 bg-purple-100 dark:bg-purple-900 rounded-full mix-blend-multiply dark:mix-blend-normal filter blur-xl opacity-30 dark:opacity-20 animate-blob"></div>
-					<div className="absolute top-40 right-10 w-72 h-72 bg-blue-100 dark:bg-blue-900 rounded-full mix-blend-multiply dark:mix-blend-normal filter blur-xl opacity-30 dark:opacity-20 animate-blob animation-delay-2000"></div>
-					<div className="absolute -bottom-8 left-1/2 w-72 h-72 bg-pink-100 dark:bg-pink-900 rounded-full mix-blend-multiply dark:mix-blend-normal filter blur-xl opacity-30 dark:opacity-20 animate-blob animation-delay-4000"></div>
+					<img
+						src="/kmavillanosa/cms/media/timelapse.gif"
+						alt=""
+						className="w-full h-full object-cover opacity-30 dark:opacity-20"
+						aria-hidden="true"
+					/>
+					{/* Overlay for better text readability */}
+					<div className="absolute inset-0 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm"></div>
 				</div>
 
-				<div className="text-center max-w-5xl w-full relative z-10">
+				{/* Background timelapse GIF */}
+				<div 
+					className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20 dark:opacity-10"
+					style={{
+						backgroundImage: 'url(/kmavillanosa/cms/media/timelapse.gif)',
+					}}
+				></div>
+				
+				{/* Overlay for better text readability */}
+				<div className="absolute inset-0 bg-white/50 dark:bg-gray-900/50"></div>
+				
+				{/* Decorative background elements */}
+				<div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+					<div className="absolute top-20 left-10 w-72 h-72 bg-purple-100 dark:bg-purple-900 rounded-full mix-blend-multiply dark:mix-blend-normal filter blur-xl opacity-20 dark:opacity-10 animate-blob"></div>
+					<div className="absolute top-40 right-10 w-72 h-72 bg-blue-100 dark:bg-blue-900 rounded-full mix-blend-multiply dark:mix-blend-normal filter blur-xl opacity-20 dark:opacity-10 animate-blob animation-delay-2000"></div>
+					<div className="absolute -bottom-8 left-1/2 w-72 h-72 bg-pink-100 dark:bg-pink-900 rounded-full mix-blend-multiply dark:mix-blend-normal filter blur-xl opacity-20 dark:opacity-10 animate-blob animation-delay-4000"></div>
+				</div>
+
+				<div className="text-center max-w-5xl w-full relative z-10 backdrop-blur-0">
 					<div className="flex flex-col items-center gap-8 animate-fade-in">
 						{/* Badge */}
 						<div className="inline-flex items-center gap-2.5 px-5 py-2.5 bg-purple-50 dark:bg-purple-900/30 border border-purple-200 dark:border-purple-800 rounded-full text-sm text-purple-700 dark:text-purple-300 font-medium shadow-sm">
