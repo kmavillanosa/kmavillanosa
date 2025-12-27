@@ -1,12 +1,12 @@
 {
-	"title": "Kim Avillanosa",
-	"description": "I make cool stuff for a living",
-	"url": "https://kmavillanosa.github.io/kmavillanosa",
-	"author": "Kim Avillanosa",
-	"theme": {
-		"primaryColor": "green",
-		"secondaryColor": "emerald",
-		"accentColor": "teal"
-	}
+  "title": "Kim Avillanosa",
+  "description": "I make cool stuff for a living",
+  "url": "https://kmavillanosa.github.io/kmavillanosa",
+  "author": "Kim Avillanosa",
+  "theme": {
+    "primaryColor": "green",
+    "secondaryColor": "emerald",
+    "accentColor": "teal"
+  },
+  "logo": "/kmavillanosa/cms/media/484150136_28887338870879440_7384188797542236195_n.jpg"
 }
-
