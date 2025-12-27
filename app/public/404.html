@@ -30,22 +30,30 @@
 		<script type="text/javascript">
 			// Single Page Apps for GitHub Pages
 			var l = window.location;
-			var basePath = '';
+			var path = l.pathname;
+			var search = l.search;
+			var hash = l.hash;
 			
-			// Extract the path
-			var pathAfterBase = l.pathname;
-			if (!pathAfterBase || pathAfterBase === '/') {
-				pathAfterBase = '/';
+			// If we're already on index.html with a redirect query, don't redirect again
+			if (path === '/' && search && search[1] === '/') {
+				return;
 			}
 			
-			// Redirect to index.html with path in query string
-			var redirectPath = basePath + '/?/' + 
-				pathAfterBase.slice(1).replace(/&/g, '~and~') +
-				(l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
-				l.hash;
+			// Build the redirect path
+			var pathSegments = path.split('/').filter(function(segment) {
+				return segment.length > 0;
+			});
 			
+			var redirectPath = '/?/' + 
+				pathSegments.join('/').replace(/&/g, '~and~') +
+				(search && search.length > 1 ? '&' + search.slice(1).replace(/&/g, '~and~') : '') +
+				hash;
+			
+			// Redirect to index.html with path in query string
 			l.replace(redirectPath);
 		</script>
+		<!-- This comment ensures the file is at least 512 bytes for some browsers to recognize it as a valid 404 page. -->
+		<!-- Additional padding to meet the 512 byte requirement for proper 404 handling on GitHub Pages. -->
 	</body>
 </html>
 
