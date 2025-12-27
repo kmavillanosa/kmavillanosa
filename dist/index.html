@@ -3,8 +3,71 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta name="description" content="Kim Avillanosa - I make cool stuff for a living" />
-		<title>Kim Avillanosa</title>
+		<meta name="description" content="Kim Avillanosa - Full Stack Software Engineer with 8+ years of experience. Specializing in React, TypeScript, Node.js, 3D graphics, and scalable system architecture. Available for opportunities." />
+		<meta name="keywords" content="Software Engineer, Full Stack Developer, React Developer, TypeScript, Node.js, Web Developer, Frontend Developer, Backend Developer, 3D Graphics, System Architecture, Philippines, Remote Developer" />
+		<meta name="author" content="Kim Avillanosa" />
+		<meta name="robots" content="index, follow" />
+		
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://kmavillanosa.github.io/kmavillanosa/" />
+		<meta property="og:title" content="Kim Avillanosa - Full Stack Software Engineer" />
+		<meta property="og:description" content="Full Stack Software Engineer with 8+ years of experience. Specializing in React, TypeScript, Node.js, 3D graphics, and scalable system architecture." />
+		<meta property="og:image" content="https://kmavillanosa.github.io/kmavillanosa/cms/media/484150136_28887338870879440_7384188797542236195_n.jpg" />
+		
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content="https://kmavillanosa.github.io/kmavillanosa/" />
+		<meta property="twitter:title" content="Kim Avillanosa - Full Stack Software Engineer" />
+		<meta property="twitter:description" content="Full Stack Software Engineer with 8+ years of experience. Specializing in React, TypeScript, Node.js, 3D graphics, and scalable system architecture." />
+		<meta property="twitter:image" content="https://kmavillanosa.github.io/kmavillanosa/cms/media/484150136_28887338870879440_7384188797542236195_n.jpg" />
+		
+		<title>Kim Avillanosa - Full Stack Software Engineer | Portfolio</title>
+		
+		<!-- Structured Data for SEO -->
+		<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "Person",
+			"name": "Kim Avillanosa",
+			"jobTitle": "Full Stack Software Engineer",
+			"url": "https://kmavillanosa.github.io/kmavillanosa/",
+			"sameAs": [
+				"https://linkedin.com/in/kmavillanosa",
+				"https://github.com/kmavillanosa"
+			],
+			"email": "careers.kmavillanosa@gmail.com",
+			"address": {
+				"@type": "PostalAddress",
+				"addressLocality": "Puerto Princesa City",
+				"addressRegion": "Palawan",
+				"addressCountry": "Philippines"
+			},
+			"knowsAbout": [
+				"React",
+				"TypeScript",
+				"JavaScript",
+				"Node.js",
+				"Full Stack Development",
+				"3D Graphics",
+				"System Architecture",
+				"Web Development",
+				"Software Engineering"
+			],
+			"alumniOf": {
+				"@type": "Organization",
+				"name": "Yondu.inc"
+			}
+		}
+		</script>
+		<!-- Microsoft Clarity Analytics -->
+		<script type="text/javascript">
+			(function(c,l,a,r,i,t,y){
+				c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+				t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+				y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+			})(window, document, "clarity", "script", "urwfh7life");
+		</script>
 		<script>
 			// Force light mode on page load
 			document.documentElement.classList.remove('dark');
@@ -25,16 +88,21 @@
 					var decoded = l.search.slice(1).split('&').map(function(s) { 
 						return s.replace(/~and~/g, '&')
 					}).join('?');
-					// Ensure the decoded path starts with /
+					// Ensure the decoded path starts with / and includes base path
+					var basePath = '/kmavillanosa';
 					var path = decoded.startsWith('/') ? decoded : '/' + decoded;
+					// Ensure path includes base path
+					if (!path.startsWith(basePath)) {
+						path = basePath + path;
+					}
 					window.history.replaceState(null, null,
 						path + l.hash
 					);
 				}
 			}(window.location))
 		</script>
-		<script type="module" crossorigin src="/assets/index-1dRNlCIf.js"></script>
-		<link rel="stylesheet" crossorigin href="/assets/index-DEdBf3BK.css">
+		<script type="module" crossorigin src="/kmavillanosa/assets/index-Y8W2huSX.js"></script>
+		<link rel="stylesheet" crossorigin href="/kmavillanosa/assets/index-Bsd7-AzF.css">
 	</head>
 	<body>
 		<div id="root"></div>

@@ -1,5 +1,3 @@
-import { Card } from 'flowbite-react'
-
 interface Skill {
 	name: string
 	category: string
@@ -12,28 +10,27 @@ const skills: Skill[] = [
 	{ name: 'TypeScript', category: 'Frontend' },
 	{ name: 'JavaScript', category: 'Frontend' },
 	{ name: 'Next.js', category: 'Frontend' },
-	{ name: 'Vite', category: 'Frontend' },
-	{ name: 'Tailwind CSS', category: 'Frontend' },
-	{ name: 'HTML/CSS', category: 'Frontend' },
-	{ name: 'Three.js', category: 'Frontend' },
+	{ name: 'Redux', category: 'Frontend' },
+	{ name: 'Zustand', category: 'Frontend' },
 	// Backend
-	{ name: 'Node.js', category: 'Backend' },
-	{ name: 'Python', category: 'Backend' },
-	{ name: 'PHP', category: 'Backend' },
-	{ name: 'REST APIs', category: 'Backend' },
-	{ name: 'GraphQL', category: 'Backend' },
+	{ name: 'Express.js', category: 'Backend' },
+	{ name: 'NestJS', category: 'Backend' },
+	{ name: 'C#', category: 'Backend' },
+	{ name: '.NET', category: 'Backend' },
 	// Database
-	{ name: 'PostgreSQL', category: 'Database' },
-	{ name: 'MySQL', category: 'Database' },
-	{ name: 'MongoDB', category: 'Database' },
-	// Tools & Others
+	{ name: 'SQL', category: 'Database' },
+	{ name: 'Entity Framework', category: 'Database' },
+	// Tools & DevOps
 	{ name: 'Git', category: 'Tools' },
 	{ name: 'Docker', category: 'Tools' },
-	{ name: 'CI/CD', category: 'Tools' },
+	{ name: 'Docker Compose', category: 'Tools' },
+	{ name: 'Jenkins', category: 'Tools' },
+	{ name: 'Azure', category: 'Tools' },
 	{ name: 'Web Scraping', category: 'Tools' },
-	{ name: 'Automation', category: 'Tools' },
-	{ name: '3D Graphics', category: 'Specialized' },
-	{ name: 'System Architecture', category: 'Specialized' },
+	// Specialized
+	{ name: 'WPF', category: 'Specialized' },
+	{ name: 'MVVM', category: 'Specialized' },
+	{ name: 'OutSystems', category: 'Specialized' },
 ]
 
 const categoryColors: Record<string, string> = {
