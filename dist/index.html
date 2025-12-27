@@ -25,15 +25,16 @@
 					var decoded = l.search.slice(1).split('&').map(function(s) { 
 						return s.replace(/~and~/g, '&')
 					}).join('?');
-					var basePath = '/kmavillanosa';
+					// Ensure the decoded path starts with /
+					var path = decoded.startsWith('/') ? decoded : '/' + decoded;
 					window.history.replaceState(null, null,
-						basePath + decoded + l.hash
+						path + l.hash
 					);
 				}
 			}(window.location))
 		</script>
-		<script type="module" crossorigin src="/kmavillanosa/assets/index-0q-xAPb9.js"></script>
-		<link rel="stylesheet" crossorigin href="/kmavillanosa/assets/index-wmKHVuAm.css">
+		<script type="module" crossorigin src="/assets/index-1dRNlCIf.js"></script>
+		<link rel="stylesheet" crossorigin href="/assets/index-DEdBf3BK.css">
 	</head>
 	<body>
 		<div id="root"></div>
