@@ -46,7 +46,7 @@ function CTASection() {
 						to="/contact"
 						outline
 						size="xl"
-						className="px-8 py-4 border-2 border-white text-white font-semibold text-lg transition-all duration-200 hover:bg-white hover:text-green-600 hover:border-white active:scale-95"
+						className="px-8 py-4 border-2 border-white text-white font-semibold text-lg transition-all duration-200 hover:!bg-white hover:!text-green-600 hover:!border-white active:scale-95"
 					>
 						<span className="flex items-center gap-2.5">
 							<svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -62,7 +62,7 @@ function CTASection() {
 						outline
 						size="xl"
 						as="a"
-						className="px-8 py-4 border-2 border-white text-white font-semibold text-lg transition-all duration-200 hover:bg-white hover:text-green-600 hover:border-white active:scale-95"
+						className="px-8 py-4 border-2 border-white text-white font-semibold text-lg transition-all duration-200 hover:!bg-white hover:!text-green-600 hover:!border-white active:scale-95"
 					>
 						<span className="flex items-center gap-2.5">
 							<svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">

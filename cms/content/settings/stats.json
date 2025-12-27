@@ -6,19 +6,14 @@
 			"description": "Building software solutions"
 		},
 		{
-			"value": "20+",
-			"label": "Projects Completed",
-			"description": "Across various industries"
-		},
-		{
-			"value": "7+",
-			"label": "Companies Worked With",
-			"description": "Diverse industries & markets"
-		},
-		{
 			"value": "Full Stack",
 			"label": "Specialization",
 			"description": "End-to-end development"
+		},
+		{
+			"value": "Global",
+			"label": "Client Experience",
+			"description": "Worked with different clients across the globe"
 		}
 	]
 }
