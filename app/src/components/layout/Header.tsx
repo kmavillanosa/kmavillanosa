@@ -16,13 +16,16 @@ function Header() {
 			<div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between">
 				<Link 
 					to="/" 
-					className={`text-xl font-semibold transition-colors ${
-						isLandingPage
-							? 'text-gray-900 dark:text-white hover:text-gray-700 dark:hover:text-gray-200'
-							: 'text-gray-900 dark:text-white hover:text-gray-600 dark:hover:text-gray-300'
-					}`}
+					className="flex items-center transition-opacity hover:opacity-80"
 				>
-					Kim Avillanosa
+					<img
+						src="/kmavillanosa/cms/media/logo.jpg"
+						alt="Kim Avillanosa"
+						className="h-10 w-10 rounded-lg object-cover border border-gray-200 dark:border-gray-700"
+						onError={(e) => {
+							;(e.target as HTMLImageElement).style.display = 'none'
+						}}
+					/>
 				</Link>
 				<div className="flex items-center space-x-4">
 					<Link 
