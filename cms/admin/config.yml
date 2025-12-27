@@ -66,6 +66,14 @@ collections:
           - { label: 'Site URL', name: 'url', widget: 'string' }
           - { label: 'Author', name: 'author', widget: 'string' }
           - { label: 'Logo', name: 'logo', widget: 'image', required: false }
+          - label: 'Theme Colors'
+            name: 'theme'
+            widget: 'object'
+            required: false
+            fields:
+              - { label: 'Primary Color', name: 'primaryColor', widget: 'select', options: ['green', 'blue', 'purple', 'pink', 'red', 'orange', 'yellow', 'indigo', 'cyan', 'teal', 'emerald', 'lime'], default: 'green' }
+              - { label: 'Secondary Color', name: 'secondaryColor', widget: 'select', options: ['green', 'blue', 'purple', 'pink', 'red', 'orange', 'yellow', 'indigo', 'cyan', 'teal', 'emerald', 'lime'], default: 'emerald' }
+              - { label: 'Accent Color', name: 'accentColor', widget: 'select', options: ['green', 'blue', 'purple', 'pink', 'red', 'orange', 'yellow', 'indigo', 'cyan', 'teal', 'emerald', 'lime'], default: 'teal' }
       - label: 'Services'
         name: 'services'
         file: 'cms/content/settings/services.json'

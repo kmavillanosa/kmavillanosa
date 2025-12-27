@@ -46,7 +46,7 @@ function ExperienceView() {
 				<Alert color="failure" className="mb-4">
 					<h3 className="text-xl font-semibold mb-2">Experience Not Found</h3>
 					<p className="mb-4">The experience you're looking for doesn't exist.</p>
-					<Button as={Link} to="/" color="purple">
+					<Button as={Link} to="/" color="success">
 						← Back to Home
 					</Button>
 				</Alert>
@@ -55,12 +55,12 @@ function ExperienceView() {
 	}
 
 	return (
-		<article className="max-w-4xl mx-auto px-4 py-8">
+		<article className="max-w-4xl mx-auto px-4 py-8 pt-4">
 			<Button 
 				as={Link} 
 				to="/" 
 				outline
-				color="purple"
+				color="success"
 				className="mb-6"
 			>
 				← Back to Home
@@ -86,7 +86,7 @@ function ExperienceView() {
 							<h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
 								{experience.company}
 							</h1>
-							<span className="px-3 py-1.5 text-sm font-semibold bg-gradient-to-r from-purple-100 to-purple-50 dark:from-purple-900/40 dark:to-purple-800/40 text-purple-700 dark:text-purple-300 rounded-lg whitespace-nowrap flex-shrink-0 shadow-sm">
+							<span className="px-3 py-1.5 text-sm font-semibold bg-gradient-to-r from-green-100 to-green-50 dark:from-green-900/40 dark:to-green-800/40 text-green-700 dark:text-green-300 rounded-lg whitespace-nowrap flex-shrink-0 shadow-sm">
 								{experience.type}
 							</span>
 						</div>
@@ -101,7 +101,7 @@ function ExperienceView() {
 								<span>{experience.period}</span>
 							</div>
 							<div className="flex items-center gap-1.5">
-								<svg className="w-4 h-4 flex-shrink-0 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<svg className="w-4 h-4 flex-shrink-0 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 									<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
 									<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
 								</svg>
@@ -127,7 +127,7 @@ function ExperienceView() {
 							experience.responsibilities.map((responsibility, index) => (
 								<li key={index} className="flex items-start gap-3">
 									<div className="flex-shrink-0 mt-1.5">
-										<div className="w-2 h-2 rounded-full bg-purple-600 dark:bg-purple-400"></div>
+										<div className="w-2 h-2 rounded-full bg-green-600 dark:bg-green-400"></div>
 									</div>
 									<span className="text-gray-700 dark:text-gray-300 leading-relaxed flex-1">
 										{responsibility}

@@ -35,7 +35,7 @@ function ExperienceCard({ experience }: ExperienceCardProps) {
 							<h3 className="text-lg font-bold text-gray-900 dark:text-white leading-tight">
 								{experience.company}
 							</h3>
-							<span className="px-2.5 py-1 text-xs font-semibold bg-gradient-to-r from-purple-100 to-purple-50 dark:from-purple-900/40 dark:to-purple-800/40 text-purple-700 dark:text-purple-300 rounded-md whitespace-nowrap flex-shrink-0 shadow-sm">
+							<span className="px-2.5 py-1 text-xs font-semibold bg-gradient-to-r from-green-100 to-green-50 dark:from-green-900/40 dark:to-green-800/40 text-green-700 dark:text-green-300 rounded-md whitespace-nowrap flex-shrink-0 shadow-sm">
 								{experience.type}
 							</span>
 						</div>
@@ -58,7 +58,7 @@ function ExperienceCard({ experience }: ExperienceCardProps) {
 
 				{/* Location */}
 				<div className="flex items-center gap-2 mb-5 px-3 py-2 bg-gray-50 dark:bg-gray-900/50 rounded-lg border border-gray-200 dark:border-gray-700">
-					<svg className="w-4 h-4 text-purple-600 dark:text-purple-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<svg className="w-4 h-4 text-green-600 dark:text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 						<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
 						<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
 					</svg>
@@ -77,7 +77,7 @@ function ExperienceCard({ experience }: ExperienceCardProps) {
 							? experience.responsibilities.slice(0, 3).map((responsibility, index) => (
 							<li key={index} className="flex items-start gap-2.5">
 								<div className="flex-shrink-0 mt-0.5">
-									<div className="w-1.5 h-1.5 rounded-full bg-purple-600 dark:bg-purple-400"></div>
+									<div className="w-1.5 h-1.5 rounded-full bg-green-600 dark:bg-green-400"></div>
 								</div>
 								<span className="text-xs text-gray-600 dark:text-gray-400 leading-relaxed flex-1">
 									{responsibility}

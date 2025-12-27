@@ -1,9 +1,20 @@
+export interface ThemeColors {
+	primary: string
+	secondary: string
+	accent: string
+}
+
 export interface SiteSettings {
 	title: string
 	description: string
 	url: string
 	author: string
 	logo?: string
+	theme?: {
+		primaryColor: string
+		secondaryColor: string
+		accentColor: string
+	}
 }
 
 export interface PageFrontMatter {

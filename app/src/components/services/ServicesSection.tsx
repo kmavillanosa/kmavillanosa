@@ -62,7 +62,7 @@ function ServicesSection() {
 			<div className="max-w-7xl mx-auto">
 				<div className="text-center mb-16">
 					<div className="inline-block mb-4">
-						<span className="text-purple-600 dark:text-purple-400 font-semibold text-sm uppercase tracking-wider">Services</span>
+						<span className="text-green-600 dark:text-green-400 font-semibold text-sm uppercase tracking-wider">Services</span>
 					</div>
 					<h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6">
 						What I Offer
@@ -76,19 +76,19 @@ function ServicesSection() {
 					{services.services.map((service, index) => (
 						<div
 							key={index}
-							className="group relative bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 hover:border-purple-300 dark:hover:border-purple-700 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+							className="group relative bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 hover:border-green-300 dark:hover:border-green-700 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
 						>
 							<div className="flex items-start gap-4">
-								<div className="flex-shrink-0 w-14 h-14 rounded-lg bg-gradient-to-br from-purple-100 to-purple-50 dark:from-purple-900/40 dark:to-purple-800/40 flex items-center justify-center text-purple-600 dark:text-purple-400 group-hover:scale-110 transition-transform duration-300">
+								<div className="flex-shrink-0 w-14 h-14 rounded-lg bg-gradient-to-br from-green-100 to-green-50 dark:from-green-900/40 dark:to-green-800/40 flex items-center justify-center text-green-600 dark:text-green-400 group-hover:scale-110 transition-transform duration-300">
 									{getServiceIcon(service)}
 								</div>
 								<div className="flex-1 min-w-0">
-									<h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+									<h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">
 										{service}
 									</h3>
 								</div>
 							</div>
-							<div className="absolute inset-0 rounded-xl bg-gradient-to-br from-purple-50/0 to-purple-50/0 dark:from-purple-900/0 dark:to-purple-900/0 group-hover:from-purple-50/50 group-hover:to-purple-50/30 dark:group-hover:from-purple-900/20 dark:group-hover:to-purple-900/10 transition-all duration-300 pointer-events-none"></div>
+							<div className="absolute inset-0 rounded-xl bg-gradient-to-br from-green-50/0 to-green-50/0 dark:from-green-900/0 dark:to-green-900/0 group-hover:from-green-50/50 group-hover:to-green-50/30 dark:group-hover:from-green-900/20 dark:group-hover:to-green-900/10 transition-all duration-300 pointer-events-none"></div>
 						</div>
 					))}
 				</div>

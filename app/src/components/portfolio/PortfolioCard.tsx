@@ -45,8 +45,8 @@ function PortfolioCard({ page }: PortfolioCardProps) {
 							className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-300"
 						/>
 					) : previewLink ? (
-						<div className="h-full w-full flex flex-col items-center justify-center bg-gradient-to-br from-purple-50 to-blue-50 dark:from-purple-900/30 dark:to-blue-900/30 p-4">
-							<svg className="w-12 h-12 text-purple-500 dark:text-purple-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<div className="h-full w-full flex flex-col items-center justify-center bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/30 dark:to-emerald-900/30 p-4">
+							<svg className="w-12 h-12 text-green-500 dark:text-green-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 								<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
 							</svg>
 							<p className="text-xs text-gray-600 dark:text-gray-300 text-center break-all line-clamp-2">
@@ -62,7 +62,7 @@ function PortfolioCard({ page }: PortfolioCardProps) {
 					)}
 				</div>
 				<div className="p-5 flex-1 flex flex-col">
-					<h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors mb-2 line-clamp-2">
+					<h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors mb-2 line-clamp-2">
 						{page.title}
 					</h5>
 					{page.description && (

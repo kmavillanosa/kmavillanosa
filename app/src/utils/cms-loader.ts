@@ -44,6 +44,11 @@ export async function loadSiteSettings(): Promise<SiteSettings> {
 			description: 'I make cool stuff for a living',
 			url: 'https://kmavillanosa.github.io/kmavillanosa',
 			author: 'Kim Avillanosa',
+			theme: {
+				primaryColor: 'green',
+				secondaryColor: 'emerald',
+				accentColor: 'teal',
+			},
 		}
 	}
 }

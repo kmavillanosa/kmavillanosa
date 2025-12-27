@@ -2,10 +2,10 @@ import { Card } from 'flowbite-react'
 
 function ContactPage() {
 	return (
-		<div className="max-w-5xl mx-auto px-4 py-12">
+		<div className="max-w-5xl mx-auto px-4 py-12 pt-4">
 			<header className="text-center mb-16">
 				<div className="inline-block mb-4">
-					<span className="text-purple-600 dark:text-purple-400 font-semibold text-sm uppercase tracking-wider">Get In Touch</span>
+					<span className="text-green-600 dark:text-green-400 font-semibold text-sm uppercase tracking-wider">Get In Touch</span>
 				</div>
 				<h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6">Contact Me</h1>
 				<p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
@@ -16,8 +16,8 @@ function ContactPage() {
 			<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 				<Card className="bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
 					<div className="flex items-start gap-4">
-						<div className="flex-shrink-0 w-12 h-12 rounded-lg bg-purple-100 dark:bg-purple-900/30 flex items-center justify-center">
-							<svg className="w-6 h-6 text-purple-600 dark:text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<div className="flex-shrink-0 w-12 h-12 rounded-lg bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
+							<svg className="w-6 h-6 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 								<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
 							</svg>
 						</div>

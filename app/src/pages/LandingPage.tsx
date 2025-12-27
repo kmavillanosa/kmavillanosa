@@ -39,22 +39,22 @@ function LandingPage() {
 				
 				{/* Decorative background elements */}
 				<div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-					<div className="absolute top-20 left-10 w-72 h-72 bg-purple-100 dark:bg-purple-900 rounded-full mix-blend-multiply dark:mix-blend-normal filter blur-xl opacity-20 dark:opacity-10 animate-blob"></div>
-					<div className="absolute top-40 right-10 w-72 h-72 bg-blue-100 dark:bg-blue-900 rounded-full mix-blend-multiply dark:mix-blend-normal filter blur-xl opacity-20 dark:opacity-10 animate-blob animation-delay-2000"></div>
-					<div className="absolute -bottom-8 left-1/2 w-72 h-72 bg-pink-100 dark:bg-pink-900 rounded-full mix-blend-multiply dark:mix-blend-normal filter blur-xl opacity-20 dark:opacity-10 animate-blob animation-delay-4000"></div>
+					<div className="absolute top-20 left-10 w-72 h-72 bg-green-100 dark:bg-green-900 rounded-full mix-blend-multiply dark:mix-blend-normal filter blur-xl opacity-20 dark:opacity-10 animate-blob"></div>
+					<div className="absolute top-40 right-10 w-72 h-72 bg-emerald-100 dark:bg-emerald-900 rounded-full mix-blend-multiply dark:mix-blend-normal filter blur-xl opacity-20 dark:opacity-10 animate-blob animation-delay-2000"></div>
+					<div className="absolute -bottom-8 left-1/2 w-72 h-72 bg-teal-100 dark:bg-teal-900 rounded-full mix-blend-multiply dark:mix-blend-normal filter blur-xl opacity-20 dark:opacity-10 animate-blob animation-delay-4000"></div>
 				</div>
 
 				<div className="text-center max-w-5xl w-full relative z-10 backdrop-blur-0">
 					<div className="flex flex-col items-center gap-8 animate-fade-in">
 						{/* Badge */}
-						<div className="inline-flex items-center gap-2.5 px-5 py-2.5 bg-purple-50 dark:bg-purple-900/30 border border-purple-200 dark:border-purple-800 rounded-full text-sm text-purple-700 dark:text-purple-300 font-medium shadow-sm">
+						<div className="inline-flex items-center gap-2.5 px-5 py-2.5 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 rounded-full text-sm text-green-700 dark:text-green-300 font-medium shadow-sm">
 							<svg className="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
 								<path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
 							</svg>
 							<span className="whitespace-nowrap">Available for opportunities</span>
 						</div>
 
-						<h1 className="text-6xl md:text-7xl lg:text-8xl font-bold bg-gradient-to-r from-purple-600 via-blue-500 to-purple-600 dark:from-purple-400 dark:via-blue-400 dark:to-purple-400 bg-clip-text text-transparent animate-gradient leading-tight">
+						<h1 className="text-6xl md:text-7xl lg:text-8xl font-bold bg-gradient-to-r from-green-600 via-emerald-500 to-green-600 dark:from-green-400 dark:via-emerald-400 dark:to-green-400 bg-clip-text text-transparent animate-gradient leading-tight">
 							Kim Avillanosa
 						</h1>
 						
@@ -68,7 +68,7 @@ function LandingPage() {
 						<div className="flex flex-wrap gap-4 justify-center mt-8">
 							<Button 
 								onClick={handleDownloadResume}
-								color="purple"
+								color="success"
 								size="xl"
 								className="px-6 py-3.5 font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl group"
 							>
@@ -84,7 +84,7 @@ function LandingPage() {
 								target="_blank" 
 								rel="noopener noreferrer"
 								outline
-								color="purple"
+								color="success"
 								size="xl"
 								as="a"
 								className="px-6 py-3.5 font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl"
@@ -101,7 +101,7 @@ function LandingPage() {
 								target="_blank" 
 								rel="noopener noreferrer"
 								outline
-								color="purple"
+								color="success"
 								size="xl"
 								as="a"
 								className="px-6 py-3.5 font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl"
@@ -117,7 +117,7 @@ function LandingPage() {
 								as={Link}
 								to="/contact"
 								outline
-								color="purple"
+								color="success"
 								size="xl"
 								className="px-6 py-3.5 font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl"
 							>
@@ -132,7 +132,7 @@ function LandingPage() {
 
 						<button
 							onClick={scrollToServices}
-							className="mt-12 flex flex-col items-center gap-2 text-gray-500 dark:text-gray-400 hover:text-purple-600 dark:hover:text-purple-400 transition-colors group"
+							className="mt-12 flex flex-col items-center gap-2 text-gray-500 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 transition-colors group"
 						>
 							<span className="text-sm font-medium">What I Offer</span>
 							<svg className="w-6 h-6 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -152,7 +152,7 @@ function LandingPage() {
 					<div className="max-w-7xl mx-auto">
 						<div className="text-center mb-16">
 							<div className="inline-block mb-4">
-								<span className="text-purple-600 dark:text-purple-400 font-semibold text-sm uppercase tracking-wider">Portfolio</span>
+								<span className="text-green-600 dark:text-green-400 font-semibold text-sm uppercase tracking-wider">Portfolio</span>
 							</div>
 							<h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6">
 								Featured Work
@@ -181,7 +181,7 @@ function LandingPage() {
 										<Button
 											as={Link}
 											to="/portfolio"
-											color="purple"
+											color="success"
 											size="xl"
 											className="transition-transform hover:scale-105"
 										>
@@ -201,7 +201,7 @@ function LandingPage() {
 					<div className="max-w-7xl mx-auto">
 						<div className="text-center mb-16">
 							<div className="inline-block mb-4">
-								<span className="text-purple-600 dark:text-purple-400 font-semibold text-sm uppercase tracking-wider">Experience</span>
+								<span className="text-green-600 dark:text-green-400 font-semibold text-sm uppercase tracking-wider">Experience</span>
 							</div>
 							<h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6">
 								Professional Journey
