@@ -5,7 +5,7 @@ import { parseFrontmatter } from './frontmatter-parser'
 
 const contentManifest = contentManifestJson as ContentManifest
 
-const CMS_CONTENT_BASE = '/kmavillanosa/cms/content'
+const CMS_CONTENT_BASE = '/cms/content'
 
 // Try to use import.meta.glob for build-time content loading
 let pageModules: Record<string, () => Promise<string>> | Record<string, string> = {}
@@ -42,7 +42,7 @@ export async function loadSiteSettings(): Promise<SiteSettings> {
 		return {
 			title: 'Kim Avillanosa',
 			description: 'I make cool stuff for a living',
-			url: 'https://kmavillanosa.github.io/kmavillanosa',
+			url: 'https://kmavillanosa.github.io',
 			author: 'Kim Avillanosa',
 			theme: {
 				primaryColor: 'green',

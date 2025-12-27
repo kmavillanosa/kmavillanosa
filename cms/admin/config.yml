@@ -34,11 +34,11 @@ session:
 logo_url: https://decapbridge.com/decapcms-with-bridge.svg
 
 # Add site links in Decap CMS (optional)
-site_url: https://kmavillanosa.github.io/kmavillanosa/cms/admin
+site_url: https://kmavillanosa.github.io/cms/admin
 
 # Media files configuration
 media_folder: 'cms/media' # Media files will be stored in the repo under cms/media
-public_folder: '/kmavillanosa/cms/media' # The src attribute for uploaded media will begin with /kmavillanosa/cms/media
+public_folder: '/cms/media' # The src attribute for uploaded media will begin with /cms/media
 
 # Content collections
 collections:
@@ -47,7 +47,7 @@ collections:
     folder: 'cms/content/pages' # The path to the folder where the documents are stored
     create: true # Allow users to create new documents in this collection
     slug: '{{slug}}' # Filename template, e.g., YYYY-MM-DD-title.md
-    preview_path: '/kmavillanosa/portfolio'
+    preview_path: '/portfolio'
     fields: # The fields for each document, usually in front matter
       - { label: 'Title', name: 'title', widget: 'string' }
       - { label: 'Publish Date', name: 'date', widget: 'datetime' }

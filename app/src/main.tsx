@@ -29,7 +29,7 @@ if (typeof document !== 'undefined') {
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
 	<React.StrictMode>
-		<BrowserRouter basename="/kmavillanosa">
+		<BrowserRouter>
 			<App />
 		</BrowserRouter>
 	</React.StrictMode>,

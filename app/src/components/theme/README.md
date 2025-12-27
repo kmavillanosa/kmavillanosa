@@ -4,7 +4,7 @@ The theme colors are now configurable via CMS. You can change the primary, secon
 
 ## CMS Configuration
 
-1. Go to `/kmavillanosa/cms/admin`
+1. Go to `/cms/admin`
 2. Navigate to **Settings** → **Site Settings**
 3. Scroll to **Theme Colors** section
 4. Select your desired colors:

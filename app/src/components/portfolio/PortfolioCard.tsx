@@ -10,7 +10,7 @@ function PortfolioCard({ page }: PortfolioCardProps) {
 	const previewIframe = extractFirstIframe(page.body)
 	const previewImage = extractFirstImage(page.body)
 	const previewLink = extractFirstLink(page.body)
-	const pageUrl = `/kmavillanosa/portfolio/${page.slug}`
+	const pageUrl = `/portfolio/${page.slug}`
 
 	return (
 		<a

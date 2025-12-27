@@ -27,7 +27,7 @@ function LandingPage() {
 				{/* Background timelapse GIF */}
 				<div className="absolute inset-0 overflow-hidden pointer-events-none">
 					<img
-						src="/kmavillanosa/cms/media/timelapse.gif"
+						src="/cms/media/timelapse.gif"
 						alt=""
 						className="w-full h-full object-cover opacity-60 dark:opacity-30 brightness-75 dark:brightness-100"
 						aria-hidden="true"
