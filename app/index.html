@@ -25,8 +25,13 @@
 					var decoded = l.search.slice(1).split('&').map(function(s) { 
 						return s.replace(/~and~/g, '&')
 					}).join('?');
-					// Ensure the decoded path starts with /
+					// Ensure the decoded path starts with / and includes base path
+					var basePath = '/kmavillanosa';
 					var path = decoded.startsWith('/') ? decoded : '/' + decoded;
+					// Ensure path includes base path
+					if (!path.startsWith(basePath)) {
+						path = basePath + path;
+					}
 					window.history.replaceState(null, null,
 						path + l.hash
 					);

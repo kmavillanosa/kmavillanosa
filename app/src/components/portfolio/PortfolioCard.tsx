@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { Card } from 'flowbite-react'
 import type { Page } from '@/types/cms'
 import { extractFirstImage, extractFirstIframe, extractFirstLink } from '@/utils/markdown-utils'
@@ -13,10 +14,8 @@ function PortfolioCard({ page }: PortfolioCardProps) {
 	const pageUrl = `/portfolio/${page.slug}`
 
 	return (
-		<a
-			href={pageUrl}
-			target="_blank"
-			rel="noopener noreferrer"
+		<Link
+			to={pageUrl}
 			className="block h-full group"
 		>
 			<Card 
@@ -86,7 +85,7 @@ function PortfolioCard({ page }: PortfolioCardProps) {
 					)}
 				</div>
 			</Card>
-		</a>
+		</Link>
 	)
 }
 
