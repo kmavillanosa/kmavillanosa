@@ -36,13 +36,6 @@ function LandingPage() {
 				
 				{/* Overlay for better text readability */}
 				<div className="absolute inset-0 bg-white/40 dark:bg-gray-900/60 backdrop-blur-[2px]"></div>
-				
-				{/* Decorative background elements */}
-				<div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-					<div className="absolute top-20 left-10 w-72 h-72 bg-green-100 dark:bg-green-900 rounded-full mix-blend-multiply dark:mix-blend-normal filter blur-xl opacity-20 dark:opacity-10 animate-blob"></div>
-					<div className="absolute top-40 right-10 w-72 h-72 bg-emerald-100 dark:bg-emerald-900 rounded-full mix-blend-multiply dark:mix-blend-normal filter blur-xl opacity-20 dark:opacity-10 animate-blob animation-delay-2000"></div>
-					<div className="absolute -bottom-8 left-1/2 w-72 h-72 bg-teal-100 dark:bg-teal-900 rounded-full mix-blend-multiply dark:mix-blend-normal filter blur-xl opacity-20 dark:opacity-10 animate-blob animation-delay-4000"></div>
-				</div>
 
 				<div className="text-center max-w-5xl w-full relative z-10 backdrop-blur-0">
 					<div className="flex flex-col items-center gap-8 animate-fade-in">
