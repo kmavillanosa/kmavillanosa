@@ -34,11 +34,11 @@ session:
 logo_url: https://decapbridge.com/decapcms-with-bridge.svg
 
 # Add site links in Decap CMS (optional)
-site_url: https://kmavillanosa.github.io/cms/admin
+site_url: https://kmavillanosa.github.io/app/cms/admin
 
 # Media files configuration
 media_folder: 'cms/media' # Media files will be stored in the repo under cms/media
-public_folder: '/cms/media' # The src attribute for uploaded media will begin with /cms/media
+public_folder: '/app/cms/media' # The src attribute for uploaded media will begin with /app/cms/media
 
 # Content collections
 collections:

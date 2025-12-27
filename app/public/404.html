@@ -35,16 +35,20 @@
 			var hash = l.hash;
 			
 			// If we're already on index.html with a redirect query, don't redirect again
-			if (path === '/' && search && search[1] === '/') {
+			if (path === '/app/' && search && search[1] === '/') {
 				return;
 			}
 			
+			// Remove base path from pathname
+			var basePath = '/app';
+			var relativePath = path.startsWith(basePath) ? path.slice(basePath.length) : path;
+			
 			// Build the redirect path
-			var pathSegments = path.split('/').filter(function(segment) {
+			var pathSegments = relativePath.split('/').filter(function(segment) {
 				return segment.length > 0;
 			});
 			
-			var redirectPath = '/?/' + 
+			var redirectPath = basePath + '/?/' + 
 				pathSegments.join('/').replace(/&/g, '~and~') +
 				(search && search.length > 1 ? '&' + search.slice(1).replace(/&/g, '~and~') : '') +
 				hash;
