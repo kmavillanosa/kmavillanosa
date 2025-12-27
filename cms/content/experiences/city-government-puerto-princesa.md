@@ -3,7 +3,7 @@ type: Full-time
 company: City Government of Puerto Princesa
 companyAbout: IT Department of Puerto Princesa City Hall, Palawan Philippines
 companyLocation: Puerto Princesa City, Palawan, Philippines
-companyLogo: /kmavillanosa/cms/media/ppc.png
+companyLogo: /cms/media/ppc.png
 position: Tech Support
 period: Oct 2015 - Mar 2016
 responsibilities:

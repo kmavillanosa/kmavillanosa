@@ -3,7 +3,7 @@ type: Full-time
 company: Palawan Express Pera Padala
 companyAbout: One of the leading financial services in the Philippines.
 companyLocation: Puerto Princesa City, Palawan
-companyLogo: /kmavillanosa/cms/media/pps.jpg
+companyLogo: /cms/media/pps.jpg
 position: Software Engineer
 period: March 2018 - March 2022
 responsibilities:
