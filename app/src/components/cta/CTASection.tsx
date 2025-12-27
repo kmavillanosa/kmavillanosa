@@ -1,9 +1,13 @@
 import { Link } from 'react-router-dom'
 import { Button } from 'flowbite-react'
+import { useSiteSettings } from '@/hooks/useSiteSettings'
 
 function CTASection() {
+	const { data: siteSettings } = useSiteSettings()
+
 	const handleDownloadResume = () => {
-		window.open('http://88.222.245.88/resume/', '_blank')
+		const resumeUrl = siteSettings?.resumeUrl || 'http://88.222.245.88/resume/'
+		window.open(resumeUrl, '_blank')
 	}
 
 	return (
@@ -17,11 +21,10 @@ function CTASection() {
 			<div className="max-w-4xl mx-auto text-center relative z-10">
 				<div className="mb-8">
 					<h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-						Ready to Build Something Amazing?
+						{siteSettings?.cta?.title || "Ready to Build Something Amazing?"}
 					</h2>
 					<p className="text-xl md:text-2xl text-green-50 dark:text-green-100 mb-8 leading-relaxed">
-						I'm actively seeking new opportunities to create impactful solutions. 
-						Let's discuss how I can contribute to your team's success.
+						{siteSettings?.cta?.description || "I'm actively seeking new opportunities to create impactful solutions. Let's discuss how I can contribute to your team's success."}
 					</p>
 				</div>
 
@@ -29,7 +32,7 @@ function CTASection() {
 					<Button
 						onClick={handleDownloadResume}
 						size="xl"
-						className="px-8 py-4 bg-white text-green-600 hover:bg-gray-100 font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+						className="px-8 py-4 bg-white text-green-600 font-semibold text-lg transition-all duration-200 hover:bg-gray-50 hover:shadow-lg active:scale-95"
 					>
 						<span className="flex items-center gap-2.5">
 							<svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -43,7 +46,7 @@ function CTASection() {
 						to="/contact"
 						outline
 						size="xl"
-						className="px-8 py-4 border-2 border-white text-white hover:bg-white hover:text-green-600 font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+						className="px-8 py-4 border-2 border-white text-white font-semibold text-lg transition-all duration-200 hover:bg-white hover:text-green-600 hover:border-white active:scale-95"
 					>
 						<span className="flex items-center gap-2.5">
 							<svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -59,7 +62,7 @@ function CTASection() {
 						outline
 						size="xl"
 						as="a"
-						className="px-8 py-4 border-2 border-white text-white hover:bg-white hover:text-green-600 font-semibold text-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+						className="px-8 py-4 border-2 border-white text-white font-semibold text-lg transition-all duration-200 hover:bg-white hover:text-green-600 hover:border-white active:scale-95"
 					>
 						<span className="flex items-center gap-2.5">
 							<svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -70,11 +73,13 @@ function CTASection() {
 					</Button>
 				</div>
 
-				<div className="mt-12 pt-8 border-t border-green-500/30">
-					<p className="text-green-100 dark:text-green-200 text-sm">
-						📍 Available for remote work • Open to relocation • Full-time & Contract opportunities
-					</p>
-				</div>
+				{siteSettings?.cta?.availability && (
+					<div className="mt-12 pt-8 border-t border-green-500/30">
+						<p className="text-green-100 dark:text-green-200 text-sm">
+							📍 {siteSettings.cta.availability}
+						</p>
+					</div>
+				)}
 			</div>
 		</section>
 	)

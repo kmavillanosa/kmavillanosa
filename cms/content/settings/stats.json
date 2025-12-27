@@ -1,0 +1,25 @@
+{
+	"stats": [
+		{
+			"value": "8+",
+			"label": "Years of Experience",
+			"description": "Building software solutions"
+		},
+		{
+			"value": "20+",
+			"label": "Projects Completed",
+			"description": "Across various industries"
+		},
+		{
+			"value": "7+",
+			"label": "Companies Worked With",
+			"description": "Diverse industries & markets"
+		},
+		{
+			"value": "Full Stack",
+			"label": "Specialization",
+			"description": "End-to-end development"
+		}
+	]
+}
+

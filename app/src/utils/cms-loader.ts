@@ -1,4 +1,4 @@
-import type { Page, Post, SiteSettings, Experience, Services } from '@/types/cms'
+import type { Page, Post, SiteSettings, Experience, Services, Skills, Stats } from '@/types/cms'
 import type { ContentManifest } from '@/types/content-manifest'
 import contentManifestJson from '../content-manifest.json'
 import { parseFrontmatter } from './frontmatter-parser'
@@ -74,6 +74,43 @@ export async function loadServices(): Promise<Services> {
 				'Mobile Development',
 				'Workflow Automations',
 			],
+		}
+	}
+}
+
+/**
+ * Loads skills from the CMS
+ */
+export async function loadSkills(): Promise<Skills> {
+	try {
+		const response = await fetch(`${CMS_CONTENT_BASE}/settings/skills.json`)
+		if (!response.ok) {
+			throw new Error('Failed to load skills')
+		}
+		return await response.json()
+	} catch (error) {
+		console.error('Error loading skills:', error)
+		return {
+			skills: [],
+			categoryColors: {},
+		}
+	}
+}
+
+/**
+ * Loads stats from the CMS
+ */
+export async function loadStats(): Promise<Stats> {
+	try {
+		const response = await fetch(`${CMS_CONTENT_BASE}/settings/stats.json`)
+		if (!response.ok) {
+			throw new Error('Failed to load stats')
+		}
+		return await response.json()
+	} catch (error) {
+		console.error('Error loading stats:', error)
+		return {
+			stats: [],
 		}
 	}
 }

@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { Button, Spinner } from 'flowbite-react'
 import { usePages } from '@/hooks/usePages'
 import { useExperiences } from '@/hooks/useExperiences'
+import { useSiteSettings } from '@/hooks/useSiteSettings'
 import PortfolioCard from '@/components/portfolio/PortfolioCard'
 import ExperienceCard from '@/components/experience/ExperienceCard'
 import ServicesSection from '@/components/services/ServicesSection'
@@ -12,10 +13,12 @@ import CTASection from '@/components/cta/CTASection'
 function LandingPage() {
 	const { data: pages, loading: pagesLoading } = usePages()
 	const { data: experiences, loading: experiencesLoading } = useExperiences()
+	const { data: siteSettings } = useSiteSettings()
 	const featuredPages = pages.slice(0, 6) // Show up to 6 featured projects
 
 	const handleDownloadResume = () => {
-		window.open('http://88.222.245.88/resume/', '_blank')
+		const resumeUrl = siteSettings?.resumeUrl || 'http://88.222.245.88/resume/'
+		window.open(resumeUrl, '_blank')
 	}
 
 	const scrollToServices = () => {
@@ -56,11 +59,10 @@ function LandingPage() {
 						
 						<div className="space-y-4">
 							<p className="text-2xl md:text-3xl font-semibold text-gray-800 dark:text-gray-200">
-								Full Stack Software Engineer
+								{siteSettings?.hero?.subtitle || 'Full Stack Software Engineer'}
 							</p>
 							<p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-3xl leading-relaxed">
-								Transforming complex challenges into elegant solutions. Specializing in full-stack development, 
-								3D graphics, and scalable system architecture. 8+ years of experience building products that make a difference.
+								{siteSettings?.hero?.description || siteSettings?.description || 'I make cool stuff for a living'}
 							</p>
 						</div>
 
@@ -142,11 +144,11 @@ function LandingPage() {
 				</div>
 			</section>
 
-			{/* Stats Section */}
-			<StatsSection />
-
 			{/* Services Section */}
 			<ServicesSection />
+
+			{/* Stats Section */}
+			<StatsSection />
 
 			{/* Skills Section */}
 			<SkillsSection />

@@ -8,5 +8,15 @@
     "secondaryColor": "emerald",
     "accentColor": "teal"
   },
-  "logo": "/kmavillanosa/cms/media/484150136_28887338870879440_7384188797542236195_n.jpg"
+  "logo": "/kmavillanosa/cms/media/484150136_28887338870879440_7384188797542236195_n.jpg",
+  "hero": {
+    "subtitle": "Full Stack Software Engineer",
+    "description": "Transforming complex challenges into elegant solutions. Specializing in full-stack development, 3D graphics, and scalable system architecture. 8+ years of experience building products that make a difference."
+  },
+  "cta": {
+    "title": "Ready to Build Something Amazing?",
+    "description": "I'm actively seeking new opportunities to create impactful solutions. Let's discuss how I can contribute to your team's success.",
+    "availability": "Available for remote work • Full-time & Contract opportunities"
+  },
+  "resumeUrl": "http://88.222.245.88/resume/"
 }

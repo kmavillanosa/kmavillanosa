@@ -1,0 +1,96 @@
+{
+	"skills": [
+		{
+			"name": "React",
+			"category": "Frontend"
+		},
+		{
+			"name": "TypeScript",
+			"category": "Frontend"
+		},
+		{
+			"name": "JavaScript",
+			"category": "Frontend"
+		},
+		{
+			"name": "Next.js",
+			"category": "Frontend"
+		},
+		{
+			"name": "Redux",
+			"category": "Frontend"
+		},
+		{
+			"name": "Zustand",
+			"category": "Frontend"
+		},
+		{
+			"name": "Express.js",
+			"category": "Backend"
+		},
+		{
+			"name": "NestJS",
+			"category": "Backend"
+		},
+		{
+			"name": "C#",
+			"category": "Backend"
+		},
+		{
+			"name": ".NET",
+			"category": "Backend"
+		},
+		{
+			"name": "SQL",
+			"category": "Database"
+		},
+		{
+			"name": "Entity Framework",
+			"category": "Database"
+		},
+		{
+			"name": "Git",
+			"category": "Tools"
+		},
+		{
+			"name": "Docker",
+			"category": "Tools"
+		},
+		{
+			"name": "Docker Compose",
+			"category": "Tools"
+		},
+		{
+			"name": "Jenkins",
+			"category": "Tools"
+		},
+		{
+			"name": "Azure",
+			"category": "Tools"
+		},
+		{
+			"name": "Web Scraping",
+			"category": "Tools"
+		},
+		{
+			"name": "WPF",
+			"category": "Specialized"
+		},
+		{
+			"name": "MVVM",
+			"category": "Specialized"
+		},
+		{
+			"name": "OutSystems",
+			"category": "Specialized"
+		}
+	],
+	"categoryColors": {
+		"Frontend": "from-blue-100 to-blue-50 dark:from-blue-900/40 dark:to-blue-800/40 text-blue-700 dark:text-blue-300",
+		"Backend": "from-green-100 to-green-50 dark:from-green-900/40 dark:to-green-800/40 text-green-700 dark:text-green-300",
+		"Database": "from-purple-100 to-purple-50 dark:from-purple-900/40 dark:to-purple-800/40 text-purple-700 dark:text-purple-300",
+		"Tools": "from-orange-100 to-orange-50 dark:from-orange-900/40 dark:to-orange-800/40 text-orange-700 dark:text-orange-300",
+		"Specialized": "from-teal-100 to-teal-50 dark:from-teal-900/40 dark:to-teal-800/40 text-teal-700 dark:text-teal-300"
+	}
+}
+

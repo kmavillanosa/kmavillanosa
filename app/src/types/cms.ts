@@ -15,6 +15,16 @@ export interface SiteSettings {
 		secondaryColor: string
 		accentColor: string
 	}
+	hero?: {
+		subtitle: string
+		description: string
+	}
+	cta?: {
+		title: string
+		description: string
+		availability: string
+	}
+	resumeUrl?: string
 }
 
 export interface PageFrontMatter {
@@ -62,5 +72,26 @@ export interface Experience extends ExperienceFrontMatter {
 
 export interface Services {
 	services: string[]
+}
+
+export interface Skill {
+	name: string
+	category: string
+	icon?: string
+}
+
+export interface Skills {
+	skills: Skill[]
+	categoryColors: Record<string, string>
+}
+
+export interface Stat {
+	value: string
+	label: string
+	description: string
+}
+
+export interface Stats {
+	stats: Stat[]
 }
 

@@ -1,47 +1,26 @@
-interface Skill {
-	name: string
-	category: string
-	icon?: string
-}
-
-const skills: Skill[] = [
-	// Frontend
-	{ name: 'React', category: 'Frontend' },
-	{ name: 'TypeScript', category: 'Frontend' },
-	{ name: 'JavaScript', category: 'Frontend' },
-	{ name: 'Next.js', category: 'Frontend' },
-	{ name: 'Redux', category: 'Frontend' },
-	{ name: 'Zustand', category: 'Frontend' },
-	// Backend
-	{ name: 'Express.js', category: 'Backend' },
-	{ name: 'NestJS', category: 'Backend' },
-	{ name: 'C#', category: 'Backend' },
-	{ name: '.NET', category: 'Backend' },
-	// Database
-	{ name: 'SQL', category: 'Database' },
-	{ name: 'Entity Framework', category: 'Database' },
-	// Tools & DevOps
-	{ name: 'Git', category: 'Tools' },
-	{ name: 'Docker', category: 'Tools' },
-	{ name: 'Docker Compose', category: 'Tools' },
-	{ name: 'Jenkins', category: 'Tools' },
-	{ name: 'Azure', category: 'Tools' },
-	{ name: 'Web Scraping', category: 'Tools' },
-	// Specialized
-	{ name: 'WPF', category: 'Specialized' },
-	{ name: 'MVVM', category: 'Specialized' },
-	{ name: 'OutSystems', category: 'Specialized' },
-]
-
-const categoryColors: Record<string, string> = {
-	Frontend: 'from-blue-100 to-blue-50 dark:from-blue-900/40 dark:to-blue-800/40 text-blue-700 dark:text-blue-300',
-	Backend: 'from-green-100 to-green-50 dark:from-green-900/40 dark:to-green-800/40 text-green-700 dark:text-green-300',
-	Database: 'from-purple-100 to-purple-50 dark:from-purple-900/40 dark:to-purple-800/40 text-purple-700 dark:text-purple-300',
-	Tools: 'from-orange-100 to-orange-50 dark:from-orange-900/40 dark:to-orange-800/40 text-orange-700 dark:text-orange-300',
-	Specialized: 'from-teal-100 to-teal-50 dark:from-teal-900/40 dark:to-teal-800/40 text-teal-700 dark:text-teal-300',
-}
+import { useSkills } from '@/hooks/useSkills'
+import { Spinner } from 'flowbite-react'
 
 function SkillsSection() {
+	const { data: skillsData, loading } = useSkills()
+
+	if (loading) {
+		return (
+			<section id="skills-section" className="py-20 px-4 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900">
+				<div className="max-w-7xl mx-auto">
+					<div className="flex justify-center items-center min-h-[400px]">
+						<Spinner size="xl" />
+					</div>
+				</div>
+			</section>
+		)
+	}
+
+	if (!skillsData || !skillsData.skills || skillsData.skills.length === 0) {
+		return null
+	}
+
+	const { skills, categoryColors } = skillsData
 	const categories = Array.from(new Set(skills.map(s => s.category)))
 
 	return (
