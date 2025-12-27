@@ -5,6 +5,9 @@ import { useExperiences } from '@/hooks/useExperiences'
 import PortfolioCard from '@/components/portfolio/PortfolioCard'
 import ExperienceCard from '@/components/experience/ExperienceCard'
 import ServicesSection from '@/components/services/ServicesSection'
+import SkillsSection from '@/components/skills/SkillsSection'
+import StatsSection from '@/components/stats/StatsSection'
+import CTASection from '@/components/cta/CTASection'
 
 function LandingPage() {
 	const { data: pages, loading: pagesLoading } = usePages()
@@ -52,9 +55,12 @@ function LandingPage() {
 						</h1>
 						
 						<div className="space-y-4">
-							<p className="text-2xl md:text-3xl font-semibold text-gray-800 dark:text-gray-200">Software Engineer</p>
+							<p className="text-2xl md:text-3xl font-semibold text-gray-800 dark:text-gray-200">
+								Full Stack Software Engineer
+							</p>
 							<p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-3xl leading-relaxed">
-								I make cool stuff for a living. Building innovative solutions and bringing ideas to life through code.
+								Transforming complex challenges into elegant solutions. Specializing in full-stack development, 
+								3D graphics, and scalable system architecture. 8+ years of experience building products that make a difference.
 							</p>
 						</div>
 
@@ -136,8 +142,14 @@ function LandingPage() {
 				</div>
 			</section>
 
+			{/* Stats Section */}
+			<StatsSection />
+
 			{/* Services Section */}
 			<ServicesSection />
+
+			{/* Skills Section */}
+			<SkillsSection />
 
 			{/* Portfolio Section */}
 			{featuredPages.length > 0 && (
@@ -220,6 +232,9 @@ function LandingPage() {
 					</div>
 				</section>
 			)}
+
+			{/* Call to Action Section */}
+			<CTASection />
 		</div>
 	)
 }

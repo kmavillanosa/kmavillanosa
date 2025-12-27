@@ -22,6 +22,8 @@ export interface PageFrontMatter {
 	date: string
 	description?: string
 	slug: string
+	tags?: string[]
+	technologies?: string[]
 }
 
 export interface Page extends PageFrontMatter {
