@@ -47,7 +47,7 @@ function Header() {
 					</Link>
 					<ThemeToggle />
 					<a 
-						href="/app/cms/admin/index.html" 
+						href="/kmavillanosa/cms/admin/index.html" 
 						target="_blank"
 						rel="noopener noreferrer"
 						className={`px-2 py-1 text-sm transition-colors ${

@@ -35,12 +35,12 @@
 			var hash = l.hash;
 			
 			// If we're already on index.html with a redirect query, don't redirect again
-			if (path === '/app/' && search && search[1] === '/') {
+			if (path === '/kmavillanosa/' && search && search[1] === '/') {
 				return;
 			}
 			
 			// Remove base path from pathname
-			var basePath = '/app';
+			var basePath = '/kmavillanosa';
 			var relativePath = path.startsWith(basePath) ? path.slice(basePath.length) : path;
 			
 			// Build the redirect path

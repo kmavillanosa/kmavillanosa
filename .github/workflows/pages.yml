@@ -1,15 +1,14 @@
 name: Deploy to GitHub Pages
 
 # Deployment Structure:
-# - App is built with base path '/app/' (configured in vite.config.ts)
-# - Repository MUST be named 'kmavillanosa.github.io' (special GitHub Pages repo name)
-#   This allows serving at the root domain instead of /repository-name/
-# - CMS files are copied to dist/cms/ and accessible at /app/cms/
+# - App is built with base path '/kmavillanosa/' (configured in vite.config.ts)
+# - Repository name: kmavillanosa (served at /kmavillanosa/)
+# - CMS files are copied to dist/cms/ and accessible at /kmavillanosa/cms/
 # - Final URLs:
-#   - App: https://kmavillanosa.github.io/app/
-#   - CMS Admin: https://kmavillanosa.github.io/app/cms/admin/
-#   - CMS Media: https://kmavillanosa.github.io/app/cms/media/
-#   - Root: https://kmavillanosa.github.io/ (serves index.html from root)
+#   - App: https://kmavillanosa.github.io/kmavillanosa/
+#   - CMS Admin: https://kmavillanosa.github.io/kmavillanosa/cms/admin/
+#   - CMS Media: https://kmavillanosa.github.io/kmavillanosa/cms/media/
+#   - Root: https://kmavillanosa.github.io/kmavillanosa/ (serves index.html)
 
 on:
   push:
@@ -76,14 +75,12 @@ jobs:
       - name: Copy CMS content and 404.html to dist
         run: |
           # Copy CMS files (admin, content, media) to dist/cms
-          # These will be accessible at /app/cms/... when repo is named 'kmavillanosa.github.io'
+          # These will be accessible at /kmavillanosa/cms/...
           cp -r cms dist/cms || true
           # Ensure Jekyll processing is disabled (required for SPA routing)
           cp .nojekyll dist/ || touch dist/.nojekyll || true
-          # Copy 404.html for SPA routing (handles /app base path redirects)
+          # Copy 404.html for SPA routing (handles /kmavillanosa base path redirects)
           cp app/public/404.html dist/404.html || true
-          # Copy root index.html for landing page at kmavillanosa.github.io/
-          cp index.html dist/index.html || true
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
