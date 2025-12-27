@@ -7,11 +7,6 @@ import { useTheme } from '@/contexts/ThemeContext'
 export function useThemeColors() {
 	const { primaryColor, secondaryColor, accentColor } = useTheme()
 
-	// Helper to get class name for a color and shade
-	const getClass = (color: string, shade: number, prefix: string = '') => {
-		return prefix ? `${prefix}-${color}-${shade}` : `${color}-${shade}`
-	}
-
 	return {
 		primaryColor,
 		secondaryColor,
