@@ -25,9 +25,8 @@
 					var decoded = l.search.slice(1).split('&').map(function(s) { 
 						return s.replace(/~and~/g, '&')
 					}).join('?');
-					var basePath = '/kmavillanosa';
 					window.history.replaceState(null, null,
-						basePath + decoded + l.hash
+						decoded + l.hash
 					);
 				}
 			}(window.location))
