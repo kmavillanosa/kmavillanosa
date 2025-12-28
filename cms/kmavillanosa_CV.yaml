@@ -1,0 +1,154 @@
+cv:
+  name: Kim Cyriel S. Avillanosa
+  location: Puerto Princesa City, Palawan, Philippines
+  email: careers.kmavillanosa@gmail.com
+  phone:
+  website: https://kmavillanosa.github.io/kmavillanosa
+  social_networks:
+    - network: LinkedIn
+      username: kmavillanosa
+    - network: GitHub
+      username: kmavillanosa
+
+  sections:
+    about_me:
+      - Software developer with experience in web, desktop, and 3D applications.
+      - Strong background in frontend engineering, system design, and maintainable architectures.
+      - Enjoys collaborating with teams and continuously improving products.
+
+    experience:
+      - company: Cabinets by Computer
+        position: Front-End Developer (3D / WebGL)
+        start_date: 2024-11
+        end_date: 2025-11
+        location: Connewarre, Victoria, Australia
+        summary:
+        highlights:
+          - Specialized in 3D graphics development (Three.js / WebGL)
+          - Delivered production-ready visual implementations
+          - Built internal automation and tooling
+          - Mentored other developers
+
+      - company: Amihan Solutions / Medgate Switzerland
+        position: Senior Software Developer (Frontend)
+        start_date: 2023-11
+        end_date: 2024-10
+        location: Rafz, Zurich, Switzerland
+        summary:
+        highlights:
+          - Assigned under Medgate Switzerland
+          - Developed frontend features and internal tools
+          - Conducted investigations, code reviews, and refactors
+          - Prepared technical presentations for stakeholders
+
+      - company: Palawan Group of Companies
+        position: Software Engineering Consultant
+        start_date: 2023-06
+        end_date: 2024-04
+        location: Puerto Princesa, Philippines
+        summary:
+        highlights:
+          - Researched and modernized legacy systems
+          - Provided architectural and technical guidance
+          - Performed code reviews and optimizations
+
+      - company: Yondu, Inc. / Morphsys Inc & Applus+
+        position: Lead Senior Software Engineer (Full Stack)
+        start_date: 2022-03
+        end_date: 2023-08
+        location: Taguig, Philippines / Barcelona, Spain
+        summary:
+        highlights:
+          - Led multinational development teams
+          - Designed scalable system architectures
+          - Implemented CI/CD and Git workflows
+          - Managed data migrations and deployments
+          - Authored documentation and user manuals
+          - Mentored engineers and optimized processes
+
+      - company: Palawan Express Pera Padala
+        position: Software Engineer
+        start_date: 2018-03
+        end_date: 2022-03
+        location: Puerto Princesa City, Philippines
+        summary:
+        highlights:
+          - Developed web services using Clean Architecture
+          - Built integrations for desktop and web apps
+          - Wrote documentation, unit tests, and deployment guides
+          - Supervised tasks and optimized workflows
+
+      - company: International Payments Processing, Inc.
+        position: Programmer
+        start_date: 2016-05
+        end_date: 2018-02
+        location: Puerto Princesa City, Philippines
+        summary:
+        highlights:
+          - Built data extraction and reporting tools
+          - Developed automation for email workflows
+          - Created inventory and reconciliation tools
+
+      - company: City Government of Puerto Princesa
+        position: Tech Support
+        start_date: 2015-10
+        end_date: 2016-03
+        location: Puerto Princesa City, Philippines
+        summary:
+        highlights:
+          - Maintained hardware and network infrastructure
+          - Installed cabling, access points, and printers
+
+    education:
+      - institution: Palawan State University
+        area: Information Technology
+        degree: Bachelors
+        start_date: 2011-06
+        end_date: 2016-04
+        location: Puerto Princesa City, Philippines
+        summary:
+        highlights: []
+
+    certifications:
+      - title: Systems and Service Architecture
+        issuer: NobleProg
+        label : NobleProg - Systems and Service Architecture
+        details : Systems and Service Architecture
+        date: 2018-05
+        summary: Microservices Architecture
+        highlights:
+          - Credential ID: 551751
+          - https://cert.nobleprog.com/certificate/551751/4a693
+
+    skills:
+      - label: Web
+        details: TypeScript, JavaScript, Next.js, React, Tailwind, Material UI, Kendo, Bootstrap, CSS, Sass
+      - label: State Management
+        details: Redux, Zustand
+      - label: 3D / Visualization
+        details: Three.js, D3, GraphQL
+      - label: Desktop
+        details: C#, .NET Framework, .NET Core, WPF, WinForms, MVVM, IoC, Observer, Facade, Factory
+      - label: Mobile
+        details: React Native, Ionic React (basic)
+      - label: Backend
+        details: C#, ASP.NET Core, Node.js, Express, NestJS, Dapper, EF Core
+      - label: Identity & Access
+        details: Auth0, Keycloak, Azure AD
+      - label: DevOps
+        details: Azure, Netlify, Vercel, Docker, Docker Compose, Jenkins, GitHub Workflows
+      - label: Database
+        details: MySQL, MSSQL
+
+  sort_entries: none
+
+design:
+  theme: engineeringresumes
+
+locale:
+  language: english
+
+rendercv_settings:
+  date: '2025-10-28'
+  bold_keywords: []
+  sort_entries: none
