@@ -21,8 +21,8 @@ function Header() {
 					<img
 						src="/kmavillanosa/cms/media/logo.png"
 						alt="Kim Avillanosa"
-						className="h-16 md:h-20 w-auto object-contain"
-						style={{ maxHeight: '80px' }}
+						className="h-12 md:h-14 w-auto object-contain"
+						style={{ maxHeight: '56px' }}
 						onError={(e) => {
 							;(e.target as HTMLImageElement).style.display = 'none'
 						}}
