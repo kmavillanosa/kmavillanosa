@@ -48,6 +48,16 @@ function Header() {
 					>
 						Portfolio
 					</Link>
+					<Link 
+						to="/slides" 
+						className={`px-3 py-2 transition-colors ${
+							isLandingPage
+								? 'text-gray-800 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white'
+								: 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
+						}`}
+					>
+						Slides
+					</Link>
 					<ThemeToggle />
 					<a 
 						href="/kmavillanosa/cms/admin/index.html" 
