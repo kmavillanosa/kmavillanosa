@@ -73,13 +73,11 @@ function CTASection() {
 					</Button>
 				</div>
 
-				{siteSettings?.cta?.availability && (
-					<div className="mt-12 pt-8 border-t border-green-500/30">
-						<p className="text-green-100 dark:text-green-200 text-sm">
-							📍 {siteSettings.cta.availability}
-						</p>
-					</div>
-				)}
+				<div className="mt-12 pt-8 border-t border-green-500/30">
+					<p className="text-green-100 dark:text-green-200 text-sm">
+						📍 Available for remote work • Contract opportunities
+					</p>
+				</div>
 			</div>
 		</section>
 	)
