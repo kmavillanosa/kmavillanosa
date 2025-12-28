@@ -27,24 +27,40 @@ try {
 	process.chdir(CMS_DIR)
 	
 	// Run RenderCV render command
-	// Use quiet mode to suppress output (since we're capturing it)
-	const command = `rendercv render "kmavillanosa_CV.yaml"`
+	// Try 'rendercv' first, fallback to 'python -m rendercv' if not found
+	const commands = [
+		`rendercv render "kmavillanosa_CV.yaml"`,
+		`python -m rendercv render "kmavillanosa_CV.yaml"`,
+		`python3 -m rendercv render "kmavillanosa_CV.yaml"`
+	]
 	
-	console.log(`   Running: ${command}`)
+	let commandExecuted = false
+	let lastError = null
 	
-	try {
-		execSync(command, {
-			cwd: CMS_DIR,
-			stdio: 'pipe', // Suppress output to avoid encoding issues
-			encoding: 'utf-8',
-		})
-		console.log('   ✅ CV generated successfully')
-	} catch (error) {
-		// RenderCV may exit with non-zero code due to Windows console encoding issues
-		// but it still generates the files, so check if files exist
+	for (const command of commands) {
+		try {
+			console.log(`   Trying: ${command}`)
+			execSync(command, {
+				cwd: CMS_DIR,
+				stdio: 'pipe', // Suppress output to avoid encoding issues
+				encoding: 'utf-8',
+				env: { ...process.env, PYTHONUNBUFFERED: '1' },
+			})
+			console.log('   ✅ CV generated successfully')
+			commandExecuted = true
+			break
+		} catch (error) {
+			lastError = error
+			// Try next command
+			continue
+		}
+	}
+	
+	if (!commandExecuted) {
+		// Check if files were generated despite the error (sometimes RenderCV exits with non-zero but still generates files)
 		const pdfExists = existsSync(join(RENDERCV_OUTPUT_DIR, 'kmavillanosa_CV.pdf'))
 		if (!pdfExists) {
-			throw new Error('RenderCV failed to generate PDF. Please ensure RenderCV is installed and the YAML file is valid.')
+			throw new Error(`RenderCV failed to generate PDF. Tried commands: ${commands.join(', ')}. Error: ${lastError?.message || 'Unknown error'}`)
 		}
 		console.log('   ✅ CV generated successfully (with warnings)')
 	}
