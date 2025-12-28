@@ -5,6 +5,7 @@ import LandingPage from './pages/LandingPage'
 import PortfolioPage from './pages/PortfolioPage'
 import OcrRedirect from './pages/OcrRedirect'
 import ContactPage from './pages/ContactPage'
+import SlidesPage from './pages/SlidesPage'
 import PageView from './pages/PageView'
 import ExperienceView from './pages/ExperienceView'
 import NotFound from './pages/NotFound'
@@ -20,6 +21,7 @@ function App() {
 					<Route path="/portfolio/:slug" element={<PageView />} />
 					<Route path="/experience/:slug" element={<ExperienceView />} />
 					<Route path="/contact" element={<ContactPage />} />
+					<Route path="/slides" element={<SlidesPage />} />
 					<Route path="*" element={<NotFound />} />
 				</Routes>
 			</Layout>
