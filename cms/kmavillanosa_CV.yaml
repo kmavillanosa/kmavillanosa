@@ -117,7 +117,6 @@ cv:
         date: 2018-05
         summary: Microservices Architecture
         highlights:
-          - Credential ID: 551751
           - https://cert.nobleprog.com/certificate/551751/4a693
 
     skills:
@@ -141,12 +140,6 @@ cv:
         details: MySQL, MSSQL
 
   sort_entries: none
-
-design:
-  theme: engineeringresumes
-
-locale:
-  language: english
 
 rendercv_settings:
   date: '2025-10-28'
