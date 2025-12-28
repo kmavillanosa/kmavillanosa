@@ -24,7 +24,7 @@ function StatsSection() {
 
 	if (loading) {
 		return (
-			<section className="py-20 px-4 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
+			<section id="stats-section" className="py-20 px-4 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
 				<div className="max-w-7xl mx-auto">
 					<div className="flex justify-center items-center min-h-[400px]">
 						<Spinner size="xl" />
@@ -41,7 +41,7 @@ function StatsSection() {
 	const stats = statsData.stats
 
 	return (
-		<section className="py-20 px-4 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
+		<section id="stats-section" className="py-20 px-4 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
 			<div className="max-w-7xl mx-auto">
 				<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 					{stats.map((stat, index) => (

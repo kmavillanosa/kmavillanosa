@@ -9,12 +9,28 @@ import ServicesSection from '@/components/services/ServicesSection'
 import SkillsSection from '@/components/skills/SkillsSection'
 import StatsSection from '@/components/stats/StatsSection'
 import CTASection from '@/components/cta/CTASection'
+import ScrollMinimap from '@/components/layout/ScrollMinimap'
 
 function LandingPage() {
 	const { data: pages, loading: pagesLoading } = usePages()
 	const { data: experiences, loading: experiencesLoading } = useExperiences()
 	const { data: siteSettings } = useSiteSettings()
 	const featuredPages = pages.slice(0, 6) // Show up to 6 featured projects
+
+	const sections = [
+		{ id: 'hero-section', label: 'Home' },
+		{ id: 'services-section', label: 'Services' },
+		{ id: 'stats-section', label: 'Stats' },
+		{ id: 'skills-section', label: 'Skills' },
+		{ id: 'portfolio-section', label: 'Portfolio' },
+		{ id: 'experience-section', label: 'Experience' },
+		{ id: 'cta-section', label: 'Contact' },
+	].filter((section) => {
+		// Filter sections based on content availability
+		if (section.id === 'portfolio-section' && featuredPages.length === 0) return false
+		if (section.id === 'experience-section' && experiences.length === 0) return false
+		return true
+	})
 
 	const handleDownloadResume = () => {
 		const resumeUrl = siteSettings?.resumeUrl || 'http://88.222.245.88/resume/'
@@ -27,9 +43,11 @@ function LandingPage() {
 	}
 
 	return (
-		<div className="min-h-screen">
+		<div className="min-h-screen relative">
+			<ScrollMinimap sections={sections} />
+
 			{/* Hero Section */}
-			<section className="relative flex items-center justify-center min-h-[calc(100vh-200px)] px-4 pt-24 pb-20 overflow-hidden">
+			<section id="hero-section" className="relative flex items-center justify-center min-h-[calc(100vh-200px)] px-4 pt-24 pb-20 overflow-hidden">
 				{/* Background timelapse GIF */}
 				<div className="absolute inset-0 overflow-hidden pointer-events-none">
 					<img

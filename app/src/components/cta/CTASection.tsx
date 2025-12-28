@@ -11,7 +11,7 @@ function CTASection() {
 	}
 
 	return (
-		<section className="py-20 px-4 bg-gradient-to-br from-green-600 via-emerald-600 to-green-700 dark:from-green-800 dark:via-emerald-800 dark:to-green-900 relative overflow-hidden">
+		<section id="cta-section" className="py-20 px-4 bg-gradient-to-br from-green-600 via-emerald-600 to-green-700 dark:from-green-800 dark:via-emerald-800 dark:to-green-900 relative overflow-hidden">
 			{/* Decorative background elements */}
 			<div className="absolute inset-0 opacity-10">
 				<div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
