@@ -19,9 +19,9 @@ function Header() {
 					className="flex items-center transition-opacity hover:opacity-80"
 				>
 					<img
-						src="/kmavillanosa/cms/media/logo.jpg"
+						src="/kmavillanosa/cms/media/Logo.svg"
 						alt="Kim Avillanosa"
-						className="h-10 w-10 rounded-lg object-cover border border-gray-200 dark:border-gray-700"
+						className="h-12 w-12 object-contain"
 						onError={(e) => {
 							;(e.target as HTMLImageElement).style.display = 'none'
 						}}
