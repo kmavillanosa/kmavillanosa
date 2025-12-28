@@ -23,6 +23,15 @@ body {
 	touch-action: manipulation; /* Improve touch responsiveness */
 }
 
+/* Ensure mobile menu sidebar is fully opaque */
+.dark .mobile-menu-sidebar {
+	background-color: rgb(17 24 39) !important; /* gray-900 */
+}
+
+.mobile-menu-sidebar {
+	background-color: rgb(255 255 255) !important; /* white */
+}
+
 #root {
 	width: 100%;
 	min-height: 100vh;

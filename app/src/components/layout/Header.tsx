@@ -138,13 +138,13 @@ function Header() {
 				{isMenuOpen && (
 					<>
 						<div 
-							className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 md:hidden"
+							className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[60] md:hidden"
 							onClick={() => setIsMenuOpen(false)}
 						/>
-						<div className={`fixed top-0 right-0 bottom-0 w-64 z-50 bg-white dark:bg-gray-900 shadow-xl transform transition-transform duration-300 md:hidden ${
+						<div className={`mobile-menu-sidebar fixed top-0 right-0 bottom-0 w-64 z-[70] bg-white dark:bg-gray-900 shadow-2xl transform transition-transform duration-300 md:hidden border-l border-gray-200 dark:border-gray-700 ${
 							isMenuOpen ? 'translate-x-0' : 'translate-x-full'
 						}`}>
-							<div className="flex flex-col h-full pt-20 px-4">
+							<div className="flex flex-col h-full pt-20 px-4 overflow-y-auto">
 								<Link 
 									to="/" 
 									className={`px-4 py-3 text-lg font-medium transition-colors rounded-lg mb-2 ${
