@@ -6,6 +6,7 @@ import ThemeToggle from '@/components/theme/ThemeToggle'
 function Header() {
 	const location = useLocation()
 	const isLandingPage = location.pathname === '/'
+	const isResourcesPage = location.pathname === '/portfolio' || location.pathname === '/slides'
 	const [isMenuOpen, setIsMenuOpen] = useState(false)
 
 	// Close menu when route changes
@@ -44,21 +45,49 @@ function Header() {
 			}`}
 		>
 			<div className="max-w-7xl mx-auto flex items-center justify-between">
-				<Link 
-					to="/" 
-					className="flex items-center transition-opacity hover:opacity-80 gap-2 z-10"
-					onClick={() => setIsMenuOpen(false)}
-				>
-					<img
-						src="/kmavillanosa/cms/media/logo.png"
-						alt="Kim Avillanosa"
-						className="h-10 md:h-12 lg:h-14 w-auto object-contain"
-						style={{ maxHeight: '56px' }}
-						onError={(e) => {
-							;(e.target as HTMLImageElement).style.display = 'none'
+				{isLandingPage ? (
+					<button
+						onClick={(e) => {
+							e.preventDefault()
+							setIsMenuOpen(false)
+							window.scrollTo({ top: 0, behavior: 'smooth' })
 						}}
-					/>
-				</Link>
+						className="flex items-center transition-opacity hover:opacity-80 gap-2 z-10 cursor-pointer"
+						aria-label="Scroll to top"
+					>
+						<img
+							src="/kmavillanosa/cms/media/logo.png"
+							alt="Kim Avillanosa"
+							className="h-10 md:h-12 lg:h-14 w-auto object-contain"
+							style={{ maxHeight: '56px' }}
+							onError={(e) => {
+								;(e.target as HTMLImageElement).style.display = 'none'
+							}}
+						/>
+					</button>
+				) : (
+					<Link 
+						to="/" 
+						className="flex items-center transition-opacity hover:opacity-80 gap-2 z-10"
+						onClick={() => {
+							setIsMenuOpen(false)
+							// Ensure we scroll to top when navigating to landing page
+							setTimeout(() => {
+								window.scrollTo({ top: 0, behavior: 'smooth' })
+							}, 100)
+						}}
+					>
+						<img
+							src="/kmavillanosa/cms/media/logo.png"
+							alt="Kim Avillanosa"
+							className="h-10 md:h-12 lg:h-14 w-auto object-contain"
+							style={{ maxHeight: '56px' }}
+							onError={(e) => {
+								;(e.target as HTMLImageElement).style.display = 'none'
+							}}
+						/>
+					</Link>
+				)}
 
 				{/* Desktop Navigation */}
 				<div className="hidden md:flex items-center space-x-4">
@@ -72,26 +101,44 @@ function Header() {
 					>
 						Home
 					</Link>
-					<Link 
-						to="/portfolio" 
-						className={`px-3 py-2 transition-colors rounded-lg ${
-							isLandingPage
-								? 'text-gray-800 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white'
-								: 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
-						}`}
-					>
-						Portfolio
-					</Link>
-					<Link 
-						to="/slides" 
-						className={`px-3 py-2 transition-colors rounded-lg ${
-							isLandingPage
-								? 'text-gray-800 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white'
-								: 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
-						}`}
-					>
-						Slides
-					</Link>
+					<div className="relative group">
+						<button
+							className={`px-3 py-2 transition-colors rounded-lg flex items-center gap-1 ${
+								isResourcesPage
+									? 'text-green-600 dark:text-green-400 font-semibold'
+									: isLandingPage
+										? 'text-gray-800 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white'
+										: 'text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
+							}`}
+						>
+							Resources
+							<svg className="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+							</svg>
+						</button>
+						<div className="absolute top-full left-0 mt-1 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+							<Link 
+								to="/portfolio" 
+								className={`block px-4 py-2 rounded-t-lg transition-colors ${
+									location.pathname === '/portfolio'
+										? 'bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 font-medium'
+										: 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+								}`}
+							>
+								Portfolio
+							</Link>
+							<Link 
+								to="/slides" 
+								className={`block px-4 py-2 rounded-b-lg transition-colors ${
+									location.pathname === '/slides'
+										? 'bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 font-medium'
+										: 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+								}`}
+							>
+								Slides
+							</Link>
+						</div>
+					</div>
 					<ThemeToggle />
 					<a 
 						href="/kmavillanosa/cms/admin/index.html" 
@@ -161,20 +208,27 @@ function Header() {
 								>
 									Home
 								</Link>
-								<Link 
-									to="/portfolio" 
-									className="px-4 py-3 text-lg font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors rounded-lg mb-2"
-									onClick={() => setIsMenuOpen(false)}
-								>
-									Portfolio
-								</Link>
-								<Link 
-									to="/slides" 
-									className="px-4 py-3 text-lg font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors rounded-lg mb-2"
-									onClick={() => setIsMenuOpen(false)}
-								>
-									Slides
-								</Link>
+								<div className="mb-2">
+									<div className="px-4 py-3 text-lg font-medium text-gray-700 dark:text-gray-300">
+										Resources
+									</div>
+									<div className="pl-4 space-y-1">
+										<Link 
+											to="/portfolio" 
+											className="block px-4 py-2 text-base font-normal text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors rounded-lg"
+											onClick={() => setIsMenuOpen(false)}
+										>
+											Portfolio
+										</Link>
+										<Link 
+											to="/slides" 
+											className="block px-4 py-2 text-base font-normal text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors rounded-lg"
+											onClick={() => setIsMenuOpen(false)}
+										>
+											Slides
+										</Link>
+									</div>
+								</div>
 								<a 
 									href="/kmavillanosa/cms/admin/index.html" 
 									target="_blank"
