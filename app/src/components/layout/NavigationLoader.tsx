@@ -40,9 +40,9 @@ function NavigationLoader() {
 				{/* Simplified single spinner with better contrast */}
 				<div className="relative w-16 h-16">
 					{/* Outer ring - static background */}
-					<div className="absolute inset-0 border-4 border-green-200 dark:border-green-900/50 rounded-full"></div>
-					{/* Animated ring - better visibility in dark mode */}
-					<div className="absolute inset-0 border-4 border-green-600 dark:border-green-400 border-t-transparent rounded-full animate-spin"></div>
+					<div className="absolute inset-0 border-4 border-green-200 dark:border-green-800/60 rounded-full"></div>
+					{/* Animated ring - visible in both light and dark mode */}
+					<div className="absolute inset-0 border-4 border-green-600 dark:!border-green-400 border-t-transparent rounded-full animate-spin"></div>
 				</div>
 
 				{/* Simple loading text */}
