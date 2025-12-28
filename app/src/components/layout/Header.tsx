@@ -38,7 +38,7 @@ function Header() {
 		<nav 
 			className={`fixed top-0 left-0 right-0 z-50 px-4 py-3 md:py-4 transition-all duration-300 ${
 				isLandingPage 
-					? 'bg-white/10 dark:bg-gray-900/10 backdrop-blur-md border-b border-gray-200/20 dark:border-gray-700/30' 
+					? 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200/50 dark:border-gray-700/50 md:bg-white/10 md:dark:bg-gray-900/10 md:border-b md:border-gray-200/20 md:dark:border-gray-700/30' 
 					: 'bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 shadow-sm'
 			}`}
 		>
@@ -114,9 +114,9 @@ function Header() {
 							e.stopPropagation()
 							setIsMenuOpen(!isMenuOpen)
 						}}
-						className={`p-2 rounded-lg transition-colors ${
+						className={`p-2.5 rounded-lg transition-colors touch-manipulation min-w-[44px] min-h-[44px] flex items-center justify-center ${
 							isLandingPage
-								? 'text-gray-800 dark:text-gray-200 hover:bg-white/20 dark:hover:bg-gray-800/20'
+								? 'text-gray-800 dark:text-gray-200 hover:bg-gray-100/80 dark:hover:bg-gray-800/80 bg-white/50 dark:bg-gray-800/50'
 								: 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
 						}`}
 						aria-label="Toggle menu"
