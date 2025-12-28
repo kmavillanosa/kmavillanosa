@@ -24,18 +24,18 @@ function PortfolioPage() {
 	}
 
 	return (
-		<div className="max-w-7xl mx-auto px-4 py-8 pt-4">
-			<header className="text-center mb-12">
-				<h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">My Work</h1>
-				<p className="text-xl text-gray-600 dark:text-gray-400">A collection of projects and work I've done</p>
+		<div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8 pt-4">
+			<header className="text-center mb-10 sm:mb-12">
+				<h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">My Work</h1>
+				<p className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 px-4">A collection of projects and work I've done</p>
 			</header>
 
 			{pages.length === 0 ? (
 				<div className="text-center py-12">
-					<p className="text-gray-600 dark:text-gray-400 text-lg">No portfolio items yet. Check back soon!</p>
+					<p className="text-gray-600 dark:text-gray-400 text-base sm:text-lg">No portfolio items yet. Check back soon!</p>
 				</div>
 			) : (
-				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+				<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
 					{pages.map((page) => (
 						<div key={page.slug} className="h-full">
 							<PortfolioCard page={page} />

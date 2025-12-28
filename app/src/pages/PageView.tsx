@@ -60,25 +60,25 @@ function PageView() {
 	}
 
 	return (
-		<article className="max-w-4xl mx-auto px-4 py-8 pt-4">
+		<article className="max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-8 pt-4">
 			<Button 
 				as={Link} 
 				to="/portfolio" 
 				outline
 				color="success"
-				className="mb-6"
+				className="mb-6 text-sm sm:text-base"
 			>
 				← Back to Portfolio
 			</Button>
 			
-			<header className="mb-8">
-				<h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">{page.title}</h1>
+			<header className="mb-6 sm:mb-8">
+				<h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">{page.title}</h1>
 				{page.description && (
-					<p className="text-xl text-gray-600 dark:text-gray-400">{page.description}</p>
+					<p className="text-lg sm:text-xl text-gray-600 dark:text-gray-400">{page.description}</p>
 				)}
 			</header>
 
-			<div className="prose prose-lg dark:prose-invert max-w-none">
+			<div className="prose prose-sm sm:prose-base md:prose-lg dark:prose-invert max-w-none">
 				{page.body ? (
 					<ReactMarkdown 
 						remarkPlugins={[remarkGfm]}

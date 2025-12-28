@@ -2,13 +2,13 @@ import { Card } from 'flowbite-react'
 
 function ContactPage() {
 	return (
-		<div className="max-w-5xl mx-auto px-4 py-12 pt-4">
-			<header className="text-center mb-16">
+		<div className="max-w-5xl mx-auto px-4 sm:px-6 py-8 sm:py-12 pt-4">
+			<header className="text-center mb-12 sm:mb-16">
 				<div className="inline-block mb-4">
 					<span className="text-green-600 dark:text-green-400 font-semibold text-sm uppercase tracking-wider">Get In Touch</span>
 				</div>
-				<h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6">Contact Me</h1>
-				<p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
+				<h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">Contact Me</h1>
+				<p className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed px-4">
 					Let's connect and discuss opportunities. I'm always open to new projects and collaborations.
 				</p>
 			</header>

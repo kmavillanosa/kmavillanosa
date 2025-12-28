@@ -11,28 +11,28 @@ function CTASection() {
 	}
 
 	return (
-		<section id="cta-section" className="py-20 px-4 bg-gradient-to-br from-green-600 via-emerald-600 to-green-700 dark:from-green-800 dark:via-emerald-800 dark:to-green-900 relative overflow-hidden">
+		<section id="cta-section" className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-gradient-to-br from-green-600 via-emerald-600 to-green-700 dark:from-green-800 dark:via-emerald-800 dark:to-green-900 relative overflow-hidden">
 			{/* Decorative background elements */}
 			<div className="absolute inset-0 opacity-10">
 				<div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
 				<div className="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
 			</div>
 
-			<div className="max-w-4xl mx-auto text-center relative z-10">
+			<div className="max-w-4xl mx-auto text-center relative z-10 px-4">
 				<div className="mb-8">
-					<h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
+					<h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 md:mb-6">
 						{siteSettings?.cta?.title || "Ready to Build Something Amazing?"}
 					</h2>
-					<p className="text-xl md:text-2xl text-green-50 dark:text-green-100 mb-8 leading-relaxed">
+					<p className="text-lg sm:text-xl md:text-2xl text-green-50 dark:text-green-100 mb-6 md:mb-8 leading-relaxed">
 						{siteSettings?.cta?.description || "I'm actively seeking new opportunities to create impactful solutions. Let's discuss how I can contribute to your team's success."}
 					</p>
 				</div>
 
-				<div className="flex flex-wrap gap-4 justify-center">
+				<div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center">
 					<Button
 						onClick={handleDownloadResume}
 						size="xl"
-						className="px-8 py-4 bg-white text-green-600 font-semibold text-lg transition-all duration-200 hover:bg-gray-50 hover:shadow-lg active:scale-95"
+						className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 bg-white text-green-600 font-semibold text-base sm:text-lg transition-all duration-200 hover:bg-gray-50 hover:shadow-lg active:scale-95"
 					>
 						<span className="flex items-center gap-2.5">
 							<svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -46,9 +46,9 @@ function CTASection() {
 						to="/contact"
 						outline
 						size="xl"
-						className="px-8 py-4 border-2 border-white text-white font-semibold text-lg transition-all duration-200 hover:!bg-white hover:!text-green-600 hover:!border-white active:scale-95"
+						className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 border-2 border-white text-white font-semibold text-base sm:text-lg transition-all duration-200 hover:!bg-white hover:!text-green-600 hover:!border-white active:scale-95"
 					>
-						<span className="flex items-center gap-2.5">
+						<span className="flex items-center justify-center gap-2.5">
 							<svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 								<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
 							</svg>
@@ -62,7 +62,7 @@ function CTASection() {
 						outline
 						size="xl"
 						as="a"
-						className="px-8 py-4 border-2 border-white text-white font-semibold text-lg transition-all duration-200 hover:!bg-white hover:!text-green-600 hover:!border-white active:scale-95"
+						className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 border-2 border-white text-white font-semibold text-base sm:text-lg transition-all duration-200 hover:!bg-white hover:!text-green-600 hover:!border-white active:scale-95"
 					>
 						<span className="flex items-center gap-2.5">
 							<svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">

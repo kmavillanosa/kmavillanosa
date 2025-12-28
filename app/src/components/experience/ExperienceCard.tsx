@@ -15,11 +15,11 @@ function ExperienceCard({ experience }: ExperienceCardProps) {
 			className="block h-full group"
 		>
 			<Card className="h-full flex flex-col bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden cursor-pointer">
-			<div className="p-6 flex flex-col h-full">
+			<div className="p-4 sm:p-6 flex flex-col h-full">
 				{/* Header Section */}
-				<div className="flex items-start gap-4 mb-5">
+				<div className="flex items-start gap-3 sm:gap-4 mb-4 sm:mb-5">
 					{experience.companyLogo && experience.companyLogo.trim() && (
-						<div className="flex-shrink-0 w-14 h-14 rounded-xl bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-800 flex items-center justify-center overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700">
+						<div className="flex-shrink-0 w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-800 flex items-center justify-center overflow-hidden shadow-sm border border-gray-200 dark:border-gray-700">
 							<img
 								src={experience.companyLogo}
 								alt={experience.company}

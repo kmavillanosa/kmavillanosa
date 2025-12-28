@@ -41,9 +41,9 @@ function StatsSection() {
 	const stats = statsData.stats
 
 	return (
-		<section id="stats-section" className="py-20 px-4 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
+		<section id="stats-section" className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
 			<div className="max-w-7xl mx-auto">
-				<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
 					{stats.map((stat, index) => (
 						<div
 							key={index}

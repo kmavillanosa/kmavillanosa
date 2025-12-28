@@ -60,12 +60,12 @@ function PortfolioCard({ page }: PortfolioCardProps) {
 						</div>
 					)}
 				</div>
-				<div className="p-5 flex-1 flex flex-col">
-					<h5 className="text-xl font-bold tracking-tight text-gray-900 dark:text-white group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors mb-2 line-clamp-2">
+				<div className="p-4 sm:p-5 flex-1 flex flex-col">
+					<h5 className="text-lg sm:text-xl font-bold tracking-tight text-gray-900 dark:text-white group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors mb-2 line-clamp-2">
 						{page.title}
 					</h5>
 					{page.description && (
-						<p className="font-normal text-gray-600 dark:text-gray-400 line-clamp-3 mb-3 flex-1 text-sm">
+						<p className="font-normal text-gray-600 dark:text-gray-400 line-clamp-3 mb-3 flex-1 text-sm leading-relaxed">
 							{page.description}
 						</p>
 					)}

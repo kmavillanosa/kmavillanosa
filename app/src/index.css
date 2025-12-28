@@ -20,6 +20,7 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	@apply bg-white dark:bg-gray-900 text-gray-900 dark:text-white;
+	touch-action: manipulation; /* Improve touch responsiveness */
 }
 
 #root {
