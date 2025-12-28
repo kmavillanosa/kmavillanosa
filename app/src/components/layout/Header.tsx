@@ -1,5 +1,6 @@
 import { Link, useLocation } from 'react-router-dom'
 import { useState, useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import ThemeToggle from '@/components/theme/ThemeToggle'
 
 function Header() {
@@ -134,16 +135,20 @@ function Header() {
 					</button>
 				</div>
 
-				{/* Mobile Menu Overlay */}
-				{isMenuOpen && (
+				{/* Mobile Menu Overlay - rendered via portal to ensure it's above all content */}
+				{isMenuOpen && typeof document !== 'undefined' && createPortal(
 					<>
 						<div 
-							className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[60] md:hidden"
+							className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[9998] md:hidden"
 							onClick={() => setIsMenuOpen(false)}
+							style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0 }}
 						/>
-						<div className={`mobile-menu-sidebar fixed top-0 right-0 bottom-0 w-64 z-[70] bg-white dark:bg-gray-900 shadow-2xl transform transition-transform duration-300 md:hidden border-l border-gray-200 dark:border-gray-700 ${
-							isMenuOpen ? 'translate-x-0' : 'translate-x-full'
-						}`}>
+						<div 
+							className={`mobile-menu-sidebar fixed top-0 right-0 bottom-0 w-64 z-[9999] bg-white dark:bg-gray-900 shadow-2xl transform transition-transform duration-300 md:hidden border-l border-gray-200 dark:border-gray-700 ${
+								isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+							}`}
+							style={{ position: 'fixed', top: 0, right: 0, bottom: 0 }}
+						>
 							<div className="flex flex-col h-full pt-20 px-4 overflow-y-auto">
 								<Link 
 									to="/" 
@@ -181,7 +186,8 @@ function Header() {
 								</a>
 							</div>
 						</div>
-					</>
+					</>,
+					document.body
 				)}
 			</div>
 		</nav>

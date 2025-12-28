@@ -43,7 +43,7 @@ function LandingPage() {
 	}
 
 	return (
-		<div className="min-h-screen relative">
+		<div className="min-h-screen relative" style={{ isolation: 'isolate' }}>
 			<ScrollMinimap sections={sections} />
 
 			{/* Hero Section */}
