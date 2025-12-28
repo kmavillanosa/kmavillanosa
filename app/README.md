@@ -8,6 +8,9 @@ This is a Vite + React + TypeScript application that consumes content from Decap
 # Install dependencies
 npm install
 
+# Install RenderCV (required for CV generation)
+pip install "rendercv[full]"
+
 # Start development server
 npm run dev
 
