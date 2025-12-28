@@ -1,10 +1,6 @@
 {
 	"skills": [
 		{
-			"name": "React",
-			"category": "Frontend"
-		},
-		{
 			"name": "TypeScript",
 			"category": "Frontend"
 		},
@@ -17,12 +13,148 @@
 			"category": "Frontend"
 		},
 		{
-			"name": "Redux",
+			"name": "Create-React-App",
+			"category": "Frontend"
+		},
+		{
+			"name": "Vite React",
+			"category": "Frontend"
+		},
+		{
+			"name": "CSS",
+			"category": "Frontend"
+		},
+		{
+			"name": "Sass",
+			"category": "Frontend"
+		},
+		{
+			"name": "Bootstrap",
+			"category": "Frontend"
+		},
+		{
+			"name": "Material UI",
+			"category": "Frontend"
+		},
+		{
+			"name": "Kendo React",
+			"category": "Frontend"
+		},
+		{
+			"name": "Tailwind CSS",
+			"category": "Frontend"
+		},
+		{
+			"name": "React Redux",
 			"category": "Frontend"
 		},
 		{
 			"name": "Zustand",
 			"category": "Frontend"
+		},
+		{
+			"name": "GraphQL",
+			"category": "Frontend"
+		},
+		{
+			"name": "D3",
+			"category": "Frontend"
+		},
+		{
+			"name": "Three.JS",
+			"category": "Frontend"
+		},
+		{
+			"name": "C#",
+			"category": "Desktop"
+		},
+		{
+			"name": ".NET Framework",
+			"category": "Desktop"
+		},
+		{
+			"name": ".NET Core",
+			"category": "Desktop"
+		},
+		{
+			"name": "WPF",
+			"category": "Desktop"
+		},
+		{
+			"name": "WinForms",
+			"category": "Desktop"
+		},
+		{
+			"name": "MVVM",
+			"category": "Desktop"
+		},
+		{
+			"name": "IOC",
+			"category": "Desktop"
+		},
+		{
+			"name": "Observer Pattern",
+			"category": "Desktop"
+		},
+		{
+			"name": "Facade Pattern",
+			"category": "Desktop"
+		},
+		{
+			"name": "Factory Pattern",
+			"category": "Desktop"
+		},
+		{
+			"name": "Ionic React",
+			"category": "Mobile"
+		},
+		{
+			"name": "React Native",
+			"category": "Mobile"
+		},
+		{
+			"name": "OutSystems",
+			"category": "Low-Code"
+		},
+		{
+			"name": "ASP.NET Core",
+			"category": "Backend"
+		},
+		{
+			"name": "ASP.NET Framework",
+			"category": "Backend"
+		},
+		{
+			"name": "Dapper",
+			"category": "Backend"
+		},
+		{
+			"name": "EF Core",
+			"category": "Backend"
+		},
+		{
+			"name": "DDD",
+			"category": "Backend"
+		},
+		{
+			"name": "Clean Architecture",
+			"category": "Backend"
+		},
+		{
+			"name": "Vertical Slice",
+			"category": "Backend"
+		},
+		{
+			"name": "Swagger",
+			"category": "Backend"
+		},
+		{
+			"name": "XUnit",
+			"category": "Backend"
+		},
+		{
+			"name": "MVC",
+			"category": "Backend"
 		},
 		{
 			"name": "Express.js",
@@ -33,64 +165,136 @@
 			"category": "Backend"
 		},
 		{
-			"name": "C#",
+			"name": "Jest",
 			"category": "Backend"
 		},
 		{
-			"name": ".NET",
+			"name": "TypeORM",
 			"category": "Backend"
 		},
 		{
-			"name": "SQL",
-			"category": "Database"
+			"name": "Knex.JS",
+			"category": "Backend"
 		},
 		{
-			"name": "Entity Framework",
-			"category": "Database"
+			"name": "Auth0",
+			"category": "Backend"
 		},
 		{
-			"name": "Git",
-			"category": "Tools"
+			"name": "Keycloak",
+			"category": "Backend"
 		},
 		{
-			"name": "Docker",
-			"category": "Tools"
-		},
-		{
-			"name": "Docker Compose",
-			"category": "Tools"
-		},
-		{
-			"name": "Jenkins",
-			"category": "Tools"
+			"name": "Azure AD",
+			"category": "Backend"
 		},
 		{
 			"name": "Azure",
+			"category": "PaaS"
+		},
+		{
+			"name": "Netlify",
+			"category": "PaaS"
+		},
+		{
+			"name": "Vercel",
+			"category": "PaaS"
+		},
+		{
+			"name": "Docker",
+			"category": "DevOps"
+		},
+		{
+			"name": "Docker Compose",
+			"category": "DevOps"
+		},
+		{
+			"name": "Jenkins",
+			"category": "DevOps"
+		},
+		{
+			"name": "Azure Pipeline",
+			"category": "DevOps"
+		},
+		{
+			"name": "Azure DevOps",
+			"category": "DevOps"
+		},
+		{
+			"name": "GitHub Workflows",
+			"category": "DevOps"
+		},
+		{
+			"name": "Git",
+			"category": "DevOps"
+		},
+		{
+			"name": "GitLab",
+			"category": "DevOps"
+		},
+		{
+			"name": "GitHub",
+			"category": "DevOps"
+		},
+		{
+			"name": "Camunda Modeler",
 			"category": "Tools"
 		},
 		{
-			"name": "Web Scraping",
+			"name": "XMind",
 			"category": "Tools"
 		},
 		{
-			"name": "WPF",
-			"category": "Specialized"
+			"name": "draw.io",
+			"category": "Tools"
 		},
 		{
-			"name": "MVVM",
-			"category": "Specialized"
+			"name": "MySQL",
+			"category": "Database"
 		},
 		{
-			"name": "OutSystems",
-			"category": "Specialized"
+			"name": "MSSQL",
+			"category": "Database"
+		},
+		{
+			"name": "Slack",
+			"category": "Tools"
+		},
+		{
+			"name": "MS Teams",
+			"category": "Tools"
+		},
+		{
+			"name": "OpenProject",
+			"category": "Tools"
+		},
+		{
+			"name": "Trello",
+			"category": "Tools"
+		},
+		{
+			"name": "Jira",
+			"category": "Tools"
+		},
+		{
+			"name": "Agile Scrum",
+			"category": "Methodology"
+		},
+		{
+			"name": "Kanban",
+			"category": "Methodology"
 		}
 	],
 	"categoryColors": {
 		"Frontend": "from-blue-100 to-blue-50 dark:from-blue-900/40 dark:to-blue-800/40 text-blue-700 dark:text-blue-300",
+		"Desktop": "from-purple-100 to-purple-50 dark:from-purple-900/40 dark:to-purple-800/40 text-purple-700 dark:text-purple-300",
+		"Mobile": "from-pink-100 to-pink-50 dark:from-pink-900/40 dark:to-pink-800/40 text-pink-700 dark:text-pink-300",
+		"Low-Code": "from-cyan-100 to-cyan-50 dark:from-cyan-900/40 dark:to-cyan-800/40 text-cyan-700 dark:text-cyan-300",
 		"Backend": "from-green-100 to-green-50 dark:from-green-900/40 dark:to-green-800/40 text-green-700 dark:text-green-300",
-		"Database": "from-purple-100 to-purple-50 dark:from-purple-900/40 dark:to-purple-800/40 text-purple-700 dark:text-purple-300",
-		"Tools": "from-orange-100 to-orange-50 dark:from-orange-900/40 dark:to-orange-800/40 text-orange-700 dark:text-orange-300",
-		"Specialized": "from-teal-100 to-teal-50 dark:from-teal-900/40 dark:to-teal-800/40 text-teal-700 dark:text-teal-300"
+		"PaaS": "from-indigo-100 to-indigo-50 dark:from-indigo-900/40 dark:to-indigo-800/40 text-indigo-700 dark:text-indigo-300",
+		"DevOps": "from-orange-100 to-orange-50 dark:from-orange-900/40 dark:to-orange-800/40 text-orange-700 dark:text-orange-300",
+		"Database": "from-yellow-100 to-yellow-50 dark:from-yellow-900/40 dark:to-yellow-800/40 text-yellow-700 dark:text-yellow-300",
+		"Tools": "from-teal-100 to-teal-50 dark:from-teal-900/40 dark:to-teal-800/40 text-teal-700 dark:text-teal-300",
+		"Methodology": "from-rose-100 to-rose-50 dark:from-rose-900/40 dark:to-rose-800/40 text-rose-700 dark:text-rose-300"
 	}
 }
-
