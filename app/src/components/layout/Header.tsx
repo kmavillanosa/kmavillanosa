@@ -2,12 +2,14 @@ import { Link, useLocation } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import ThemeToggle from '@/components/theme/ThemeToggle'
+import { useSiteSettings } from '@/hooks/useSiteSettings'
 
 function Header() {
 	const location = useLocation()
 	const isLandingPage = location.pathname === '/'
 	const isResourcesPage = location.pathname === '/portfolio' || location.pathname === '/slides'
 	const [isMenuOpen, setIsMenuOpen] = useState(false)
+	const { data: siteSettings } = useSiteSettings()
 
 	// Close menu when route changes
 	useEffect(() => {
@@ -119,7 +121,7 @@ function Header() {
 						<div className="absolute top-full left-0 mt-1 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
 							<Link 
 								to="/portfolio" 
-								className={`block px-4 py-2 rounded-t-lg transition-colors ${
+								className={`block px-4 py-2 transition-colors ${
 									location.pathname === '/portfolio'
 										? 'bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 font-medium'
 										: 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
@@ -129,7 +131,7 @@ function Header() {
 							</Link>
 							<Link 
 								to="/slides" 
-								className={`block px-4 py-2 rounded-b-lg transition-colors ${
+								className={`block px-4 py-2 transition-colors ${
 									location.pathname === '/slides'
 										? 'bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 font-medium'
 										: 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
@@ -137,6 +139,15 @@ function Header() {
 							>
 								Slides
 							</Link>
+							<div className="border-t border-gray-200 dark:border-gray-700 my-1"></div>
+							<a
+								href={siteSettings?.resumeUrl || 'http://88.222.245.88/resume/'}
+								target="_blank"
+								rel="noopener noreferrer"
+								className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-b-lg transition-colors"
+							>
+								CV
+							</a>
 						</div>
 					</div>
 					<ThemeToggle />
@@ -227,6 +238,15 @@ function Header() {
 										>
 											Slides
 										</Link>
+										<a
+											href={siteSettings?.resumeUrl || 'http://88.222.245.88/resume/'}
+											target="_blank"
+											rel="noopener noreferrer"
+											className="block px-4 py-2 text-base font-normal text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors rounded-lg"
+											onClick={() => setIsMenuOpen(false)}
+										>
+											CV
+										</a>
 									</div>
 								</div>
 								<a 
