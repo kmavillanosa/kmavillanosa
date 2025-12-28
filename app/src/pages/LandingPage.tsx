@@ -75,6 +75,16 @@ function LandingPage() {
 							Kim Avillanosa
 						</h1>
 						
+						{/* Availability Text */}
+						<p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 flex items-center gap-2 flex-wrap justify-center px-4">
+							<span className="flex items-center gap-1.5">
+								<span>📍</span>
+								<span>Available for remote work</span>
+							</span>
+							<span className="hidden sm:inline">•</span>
+							<span>Contract opportunities</span>
+						</p>
+						
 						<div className="space-y-3 md:space-y-4 px-4">
 							<p className="text-xl sm:text-2xl md:text-3xl font-semibold text-gray-800 dark:text-gray-200">
 								{siteSettings?.hero?.subtitle || 'Full Stack Software Engineer'}
