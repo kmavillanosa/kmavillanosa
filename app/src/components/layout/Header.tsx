@@ -16,12 +16,13 @@ function Header() {
 			<div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between">
 				<Link 
 					to="/" 
-					className="flex items-center transition-opacity hover:opacity-80"
+					className="flex items-center transition-opacity hover:opacity-80 gap-2"
 				>
 					<img
-						src="/kmavillanosa/cms/media/Logo.svg"
+						src="/kmavillanosa/cms/media/logo.png"
 						alt="Kim Avillanosa"
-						className="h-12 w-12 object-contain"
+						className="h-16 md:h-20 w-auto object-contain"
+						style={{ maxHeight: '80px' }}
 						onError={(e) => {
 							;(e.target as HTMLImageElement).style.display = 'none'
 						}}
