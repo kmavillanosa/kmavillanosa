@@ -88,16 +88,15 @@
 					var decoded = l.search.slice(1).split('&').map(function(s) { 
 						return s.replace(/~and~/g, '&')
 					}).join('?');
-					// Ensure the decoded path starts with / and includes base path
+					// Ensure the decoded path starts with /
 					var basePath = '/kmavillanosa';
 					var path = decoded.startsWith('/') ? decoded : '/' + decoded;
 					// Ensure path includes base path
 					if (!path.startsWith(basePath)) {
 						path = basePath + path;
 					}
-					window.history.replaceState(null, null,
-						path + l.hash
-					);
+					// Use replaceState to update the URL without reloading
+					window.history.replaceState(null, null, path + l.hash);
 				}
 			}(window.location))
 		</script>
