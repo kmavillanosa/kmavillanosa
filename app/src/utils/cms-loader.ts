@@ -72,7 +72,7 @@ export async function loadServices(): Promise<Services> {
 				'Desktop Applications Development',
 				'Web Scraping and other automation',
 				'Mobile Development',
-				'Workflow Automations',
+				'Consultancy Work',
 			],
 		}
 	}

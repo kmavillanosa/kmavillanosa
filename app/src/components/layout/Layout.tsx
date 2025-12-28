@@ -2,6 +2,7 @@ import { ReactNode } from 'react'
 import Header from './Header'
 import Footer from './Footer'
 import NavigationLoader from './NavigationLoader'
+import ScrollToTop from './ScrollToTop'
 import ClarityAnalytics from '../analytics/ClarityAnalytics'
 
 interface LayoutProps {
@@ -16,6 +17,7 @@ function Layout({ children }: LayoutProps) {
 			<Header />
 			<main className="flex-1 pt-16 sm:pt-20">{children}</main>
 			<Footer />
+			<ScrollToTop />
 		</div>
 	)
 }
