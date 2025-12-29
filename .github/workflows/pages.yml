@@ -66,6 +66,11 @@ jobs:
         with:
           python-version: '3.x'
       
+      - name: Install LaTeX (required for PDF generation)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y texlive-latex-base texlive-fonts-recommended texlive-extra-utils texlive-latex-extra
+      
       - name: Install RenderCV
         run: pip install "rendercv[full]"
       
