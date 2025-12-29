@@ -5,4 +5,4 @@ description: This is an invoice generator
 ---
 This is an invoice generator
 
-![Tracker](/kmavillanosa/cms/media/bill-tracker.png "Bill tracker")
+![Tracker](/kmavillanosa/cms/media/bill-tracker.png)
