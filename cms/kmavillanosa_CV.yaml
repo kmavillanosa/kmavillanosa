@@ -120,28 +120,42 @@ cv:
           - https://cert.nobleprog.com/certificate/551751/4a693
 
     skills:
-      - label: Web
-        details: TypeScript, JavaScript, Next.js, React, Tailwind, Material UI, Kendo, Bootstrap, CSS, Sass
-      - label: State Management
-        details: Redux, Zustand
-      - label: 3D / Visualization
-        details: Three.js, D3, GraphQL
-      - label: Desktop
-        details: C#, .NET Framework, .NET Core, WPF, WinForms, MVVM, IoC, Observer, Facade, Factory
-      - label: Mobile
-        details: React Native, Ionic React (basic)
-      - label: Backend
-        details: C#, ASP.NET Core, Node.js, Express, NestJS, Dapper, EF Core
-      - label: Identity & Access
+      - label: Frontend Development
+        details: |
+          Web Development - Codebase: TypeScript, JavaScript | Tools/Framework: Next.js, Create-React-App, Vite React | Styling: CSS, Sass, Bootstrap, Material UI, Kendo React, Tailwind CSS | State Management: React Redux, Zustand | GraphQL | D3, Three.js
+          Desktop App Development - Codebase: C# | Runtime: .NET Framework, .NET Core | Tools/Framework: WPF, WinForms | Patterns: MVVM, IoC, Observer, Facade, Factory
+          Mobile Development - Ionic React, React Native
+          Low-Code Development - OutSystems Platform (Knowledge of fundamentals and basic implementation, acquired through self-study)
+      - label: Backend Development
+        details: |
+          .NET Runtime - Codebase: C# | Framework: ASP.NET (Core, Framework) | ORM: Dapper, EF Core | Practices: DDD, Clean Architecture, Vertical Slice | Documentation: Swagger | Unit Tests: xUnit | Common Patterns: MVC, IoC, Observer, Facade, Factory
+          Node Runtime - Codebase: TypeScript, JavaScript | Frameworks: Express.js, NestJS | Unit Tests: Jest | ORM: TypeORM, Knex.js
+      - label: Identity & Access Management
         details: Auth0, Keycloak, Azure AD
-      - label: DevOps
-        details: Azure, Netlify, Vercel, Docker, Docker Compose, Jenkins, GitHub Workflows
+      - label: Tooling and Practices
+        details: |
+          PaaS (Platform as a Service): Azure, Netlify, Vercel
+          DevOps: Containerization tools - Docker, Docker Compose | CI/CD - Jenkins, Azure Pipeline (via Azure DevOps), GitHub Workflows | Git - GitLab, GitHub
+          Diagrams: Camunda Modeler (for Business Process Model and Notation), XMind (for mindmaps), draw.io (for comprehensive diagrams, ERD, etc.)
       - label: Database
         details: MySQL, MSSQL
+      - label: Utility
+        details: |
+          Communications: Slack, MS Teams
+          Tasks: OpenProject, Trello, Jira
+          Methodologies: Agile Scrum, Kanban (exposure)
 
   sort_entries: none
+
+design:
+  theme: engineeringresumes
+
+
 
 rendercv_settings:
-  date: '2025-10-28'
+  render_command:
+    dont_generate_markdown: true
+    dont_generate_html: true
+    dont_generate_pdf: false
+    dont_generate_png: true
   bold_keywords: []
-  sort_entries: none

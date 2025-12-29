@@ -17,3 +17,6 @@ build/
 .DS_Store
 Thumbs.db
 
+# RenderCV output directory
+rendercv_output/
+
