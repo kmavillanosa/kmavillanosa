@@ -79,8 +79,7 @@ jobs:
         run: npm install
       
       - name: Generate CV
-        working-directory: ./cms
-        run: python -m rendercv render "kmavillanosa_CV.yaml"
+        run: rendercv render "cms/kmavillanosa_CV.yaml"
       
       - name: Build app
         working-directory: ./app

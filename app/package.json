@@ -5,8 +5,7 @@
 	"type": "module",
 	"scripts": {
 		"dev": "vite",
-		"generate-cv": "node scripts/generate-cv.js",
-		"build": "npm run generate-cv && node scripts/generate-content-manifest.js && tsc && vite build",
+		"build": "node scripts/generate-content-manifest.js && tsc && vite build",
 		"preview": "vite preview",
 		"lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
 	},
