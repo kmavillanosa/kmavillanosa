@@ -6,7 +6,7 @@ function CTASection() {
 	const { data: siteSettings } = useSiteSettings()
 
 	const handleDownloadResume = () => {
-		const resumeUrl = siteSettings?.resumeUrl || 'http://88.222.245.88/resume/'
+		const resumeUrl = siteSettings?.resumeUrl || 'https://kmavillanosa.github.io/kmavillanosa/cv/Kim_Cyriel_S._Avillanosa_CV.pdf'
 		window.open(resumeUrl, '_blank')
 	}
 
