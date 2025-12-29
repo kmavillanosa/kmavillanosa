@@ -287,6 +287,14 @@
 		{
 			"name": "Kanban",
 			"category": "Methodology"
+		},
+		{
+			"name": "Selenium",
+			"category": "Automation"
+		},
+		{
+			"name": "noVNC",
+			"category": "Automation"
 		}
 	],
 	"categoryColors": {

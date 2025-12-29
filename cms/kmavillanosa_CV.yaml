@@ -112,38 +112,80 @@ cv:
     certifications:
       - title: Systems and Service Architecture
         issuer: NobleProg
-        label : NobleProg - Systems and Service Architecture
-        details : Systems and Service Architecture
+        label: NobleProg - Systems and Service Architecture
+        details: Systems and Service Architecture
         date: 2018-05
         summary: Microservices Architecture
         highlights:
           - https://cert.nobleprog.com/certificate/551751/4a693
 
     skills:
+      - label: Programming Languages
+        details: TypeScript, JavaScript, C#
+
       - label: Frontend Development
         details: |
-          Web Development - Codebase: TypeScript, JavaScript | Tools/Framework: Next.js, Create-React-App, Vite React | Styling: CSS, Sass, Bootstrap, Material UI, Kendo React, Tailwind CSS | State Management: React Redux, Zustand | GraphQL | D3, Three.js
-          Desktop App Development - Codebase: C# | Runtime: .NET Framework, .NET Core | Tools/Framework: WPF, WinForms | Patterns: MVVM, IoC, Observer, Facade, Factory
-          Mobile Development - Ionic React, React Native
-          Low-Code Development - OutSystems Platform (Knowledge of fundamentals and basic implementation, acquired through self-study)
+          Frameworks & Libraries: React, Next.js, Create-React-App, Vite React
+          Styling: CSS, Sass, Bootstrap, Material UI, Kendo React, Tailwind CSS
+          State Management: React Redux, Zustand
+          Data Visualization: D3.js, Three.js
+          API: GraphQL, Rest
+          UI Testing: storybook
+
+      - label: Desktop Development
+        details: |
+          Runtime: .NET Framework, .NET Core
+          Frameworks: WPF, WinForms
+          Design Patterns: MVVM, IoC, Observer, Facade, Factory
+
+      - label: Mobile Development
+        details: Ionic React, React Native
+
+      - label: Low-Code Development
+        details: OutSystems Platform (Knowledge of fundamentals and basic implementation, acquired through self-study)
+
       - label: Backend Development
         details: |
-          .NET Runtime - Codebase: C# | Framework: ASP.NET (Core, Framework) | ORM: Dapper, EF Core | Practices: DDD, Clean Architecture, Vertical Slice | Documentation: Swagger | Unit Tests: xUnit | Common Patterns: MVC, IoC, Observer, Facade, Factory
-          Node Runtime - Codebase: TypeScript, JavaScript | Frameworks: Express.js, NestJS | Unit Tests: Jest | ORM: TypeORM, Knex.js
+          .NET Runtime: C#, ASP.NET Core, ASP.NET Framework
+          Node.js Runtime: TypeScript, JavaScript, Express.js, NestJS
+          ORM: Dapper, Entity Framework Core, TypeORM, Knex.js
+          Documentation: Swagger
+          Testing: xUnit, Jest
+
       - label: Identity & Access Management
         details: Auth0, Keycloak, Azure AD
-      - label: Tooling and Practices
-        details: |
-          PaaS (Platform as a Service): Azure, Netlify, Vercel
-          DevOps: Containerization tools - Docker, Docker Compose | CI/CD - Jenkins, Azure Pipeline (via Azure DevOps), GitHub Workflows | Git - GitLab, GitHub
-          Diagrams: Camunda Modeler (for Business Process Model and Notation), XMind (for mindmaps), draw.io (for comprehensive diagrams, ERD, etc.)
+
       - label: Database
         details: MySQL, MSSQL
-      - label: Utility
+
+      - label: Cloud & Platform Services
         details: |
-          Communications: Slack, MS Teams
-          Tasks: OpenProject, Trello, Jira
-          Methodologies: Agile Scrum, Kanban (exposure)
+          PaaS: Azure, Netlify, Vercel
+          Cloud Services: Azure AD, Azure DevOps, Azure Pipeline
+
+      - label: DevOps
+        details: |
+          Containerization: Docker, Docker Compose
+          CI/CD: Jenkins, Azure Pipeline, Azure DevOps, GitHub Workflows
+          Version Control: Git, GitLab, GitHub
+
+      - label: Automation
+        details: |
+          Testing: Selenium, Selenium Grid
+          Remote Access: noVNC
+
+      - label: Development Practices
+        details: |
+          Architecture Patterns: Domain-Driven Design (DDD), Clean Architecture, Vertical Slice Architecture
+          Design Patterns: MVC, IoC, Observer, Facade, Factory, MVVM
+          Methodologies: Agile Scrum, Kanban
+
+      - label: Development Tools
+        details: |
+          API Documentation: Swagger
+          Diagramming: Camunda Modeler (BPMN), XMind (mindmaps), draw.io (ERD, comprehensive diagrams)
+          Communication: Slack, MS Teams
+          Project Management: OpenProject, Trello, Jira
 
   sort_entries: none
 
@@ -151,7 +193,7 @@ design:
   theme: classic
 
   page:
-    size: us-letter 
+    size: us-letter
     top_margin: 0.7in
     bottom_margin: 0.7in
     left_margin: 0.7in
@@ -163,24 +205,19 @@ design:
     section_titles: rgb(0, 79, 144)
     links: rgb(0, 79, 144)
 
-
   links:
     underline: false
 
   header:
-    alignment: center 
+    alignment: center
     photo_width: 3.5cm
- 
 
   section_titles:
     line_thickness: 0.5pt
 
-
   entries:
     date_and_location_width: 4.15cm
     short_second_row: true
-
-
 
 rendercv_settings:
   render_command:
