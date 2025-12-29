@@ -1,0 +1,21 @@
+# robots.txt for kmavillanosa.github.io
+User-agent: *
+Allow: /
+
+# Allow all search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# Disallow admin and private areas
+Disallow: /cms/admin/
+Disallow: /admin/
+
+# Sitemap location
+Sitemap: https://kmavillanosa.github.io/kmavillanosa/sitemap.xml
+

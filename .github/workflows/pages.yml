@@ -98,7 +98,7 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v4
       
-      - name: Copy CMS content and 404.html to dist
+      - name: Copy CMS content, robots.txt, and 404.html to dist
         run: |
           # Copy CMS files (admin, content, media) to dist/cms
           # These will be accessible at /kmavillanosa/cms/...
@@ -107,6 +107,9 @@ jobs:
           cp .nojekyll dist/ || touch dist/.nojekyll || true
           # Copy 404.html for SPA routing (handles /kmavillanosa base path redirects)
           cp app/public/404.html dist/404.html || true
+          # Copy robots.txt and sitemap.xml for SEO
+          cp app/public/robots.txt dist/robots.txt || true
+          cp app/public/sitemap.xml dist/sitemap.xml || true
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

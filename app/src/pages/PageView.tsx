@@ -6,6 +6,7 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import rehypeRaw from 'rehype-raw'
 import { Spinner, Alert, Button } from 'flowbite-react'
+import SEOHead from '@/components/seo/SEOHead'
 
 function PageView() {
 	const { slug } = useParams<{ slug: string }>()
@@ -61,6 +62,11 @@ function PageView() {
 
 	return (
 		<article className="max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-8 pt-4">
+			<SEOHead
+				title={page.title}
+				description={page.description || `Portfolio project: ${page.title}`}
+				keywords={page.tags?.join(', ') || page.technologies?.join(', ')}
+			/>
 			<Button 
 				as={Link} 
 				to="/portfolio" 

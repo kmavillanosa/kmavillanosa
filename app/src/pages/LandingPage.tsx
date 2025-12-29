@@ -10,6 +10,7 @@ import SkillsSection from '@/components/skills/SkillsSection'
 import StatsSection from '@/components/stats/StatsSection'
 import CTASection from '@/components/cta/CTASection'
 import ScrollMinimap from '@/components/layout/ScrollMinimap'
+import SEOHead from '@/components/seo/SEOHead'
 
 function LandingPage() {
 	const { data: pages, loading: pagesLoading } = usePages()
@@ -44,6 +45,11 @@ function LandingPage() {
 
 	return (
 		<div className="min-h-screen relative" style={{ isolation: 'isolate' }}>
+			<SEOHead
+				title="Full Stack Software Engineer"
+				description="Software developer with 8+ years of experience in web, desktop, and 3D applications. Strong background in frontend engineering, system design, and maintainable architectures."
+				keywords="Full Stack Developer, React Developer, TypeScript, Node.js, 3D Graphics, WebGL, System Architecture, Remote Developer, Philippines"
+			/>
 			<ScrollMinimap sections={sections} />
 
 			{/* Hero Section */}
