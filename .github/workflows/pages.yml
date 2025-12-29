@@ -61,15 +61,10 @@ jobs:
         with:
           node-version: '20'
       
-      - name: Setup Python (for RenderCV)
+      - name: Setup Python and Install RenderCV
         uses: actions/setup-python@v5
         with:
           python-version: '3.x'
-      
-      - name: Install LaTeX (required for PDF generation)
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y texlive-latex-base texlive-fonts-recommended texlive-extra-utils texlive-latex-extra
       
       - name: Install RenderCV
         run: pip install "rendercv[full]"
@@ -80,6 +75,26 @@ jobs:
       
       - name: Generate CV
         run: rendercv render "cms/kmavillanosa_CV.yaml"
+      
+      - name: Copy CV files to public directory
+        run: |
+          mkdir -p app/public/cv
+          # Copy PDF, HTML, and Markdown files from rendercv_output to public/cv
+          # RenderCV generates files with format: Kim_Cyriel_S._Avillanosa_CV.*
+          # We rename them to kmavillanosa_CV.* for the app
+          if [ -f "cms/rendercv_output/Kim_Cyriel_S._Avillanosa_CV.pdf" ]; then
+            cp "cms/rendercv_output/Kim_Cyriel_S._Avillanosa_CV.pdf" "app/public/cv/kmavillanosa_CV.pdf"
+            cp "cms/rendercv_output/Kim_Cyriel_S._Avillanosa_CV.html" "app/public/cv/kmavillanosa_CV.html" 2>/dev/null || true
+            cp "cms/rendercv_output/Kim_Cyriel_S._Avillanosa_CV.md" "app/public/cv/kmavillanosa_CV.md" 2>/dev/null || true
+          elif [ -f "cms/rendercv_output/Kim Cyriel S. Avillanosa.pdf" ]; then
+            cp "cms/rendercv_output/Kim Cyriel S. Avillanosa.pdf" "app/public/cv/kmavillanosa_CV.pdf"
+            cp "cms/rendercv_output/Kim Cyriel S. Avillanosa.html" "app/public/cv/kmavillanosa_CV.html" 2>/dev/null || true
+            cp "cms/rendercv_output/Kim Cyriel S. Avillanosa.md" "app/public/cv/kmavillanosa_CV.md" 2>/dev/null || true
+          elif [ -f "cms/rendercv_output/kmavillanosa_CV.pdf" ]; then
+            cp "cms/rendercv_output/kmavillanosa_CV.pdf" "app/public/cv/kmavillanosa_CV.pdf"
+            cp "cms/rendercv_output/kmavillanosa_CV.html" "app/public/cv/kmavillanosa_CV.html" 2>/dev/null || true
+            cp "cms/rendercv_output/kmavillanosa_CV.md" "app/public/cv/kmavillanosa_CV.md" 2>/dev/null || true
+          fi
       
       - name: Build app
         working-directory: ./app
