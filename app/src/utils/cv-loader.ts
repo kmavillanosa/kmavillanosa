@@ -1,8 +1,8 @@
 import { marked } from 'marked'
 
-const CV_HTML_PATH = '/kmavillanosa/cv/kmavillanosa_CV.html'
-const CV_MARKDOWN_PATH = '/kmavillanosa/cv/kmavillanosa_CV.md'
-const CV_PDF_PATH = '/kmavillanosa/cv/kmavillanosa_CV.pdf'
+const CV_HTML_PATH = '/kmavillanosa/cv/Kim_Cyriel_S._Avillanosa_CV.html'
+const CV_MARKDOWN_PATH = '/kmavillanosa/cv/Kim_Cyriel_S._Avillanosa_CV.md'
+const CV_PDF_PATH = '/kmavillanosa/cv/Kim_Cyriel_S._Avillanosa_CV.pdf'
 
 // Configure marked for better OCR-friendly HTML output (fallback)
 marked.setOptions({

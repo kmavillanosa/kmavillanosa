@@ -110,7 +110,7 @@ function CvOcrPage() {
 			{/* Print button - hidden when printing */}
 			<div className="no-print mb-4 flex justify-end gap-2">
 				<a
-					href="/kmavillanosa/cv/kmavillanosa_CV.pdf"
+					href="/kmavillanosa/cv/Kim_Cyriel_S._Avillanosa_CV.pdf"
 					target="_blank"
 					rel="noopener noreferrer"
 					className="px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700 transition-colors"
