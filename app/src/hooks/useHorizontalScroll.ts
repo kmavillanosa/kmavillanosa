@@ -38,10 +38,24 @@ export function useHorizontalScroll({
 
 		if (!container || !section) return
 
-		const scrollableWidth = container.scrollWidth - container.clientWidth
+		// Calculate scrollable width - use a function to recalculate when needed
+		const getScrollableWidth = () => {
+			return Math.max(0, container.scrollWidth - container.clientWidth)
+		}
+
+		let scrollableWidth = getScrollableWidth()
 
 		// If there's nothing to scroll horizontally, don't lock
-		if (scrollableWidth <= 0) return
+		if (scrollableWidth <= 0) {
+			// Recheck after a short delay in case content loads asynchronously
+			setTimeout(() => {
+				const newWidth = getScrollableWidth()
+				if (newWidth > 0) {
+					scrollableWidth = newWidth
+				}
+			}, 100)
+			return
+		}
 
 		const checkSectionPosition = () => {
 			const sectionRect = section.getBoundingClientRect()
@@ -55,31 +69,44 @@ export function useHorizontalScroll({
 			// Check if we've scrolled past the section
 			const isPastSection = sectionBottom <= 0
 
+			// Recalculate scrollable width
+			const currentScrollableWidth = getScrollableWidth()
+			
 			// Check if horizontal scroll is complete
-			const isHorizontalComplete = container.scrollLeft >= scrollableWidth - 1
+			const isHorizontalComplete = currentScrollableWidth <= 0 || container.scrollLeft >= currentScrollableWidth - 1
 
-			if (isInViewport && !isPastSection) {
-				// Section is in viewport - lock vertical scroll if not already locked
-				if (!isLockedRef.current) {
-					lockedScrollYRef.current = window.scrollY
-					isLockedRef.current = true
-				}
-
-				// If horizontal scroll is complete, unlock
-				if (isHorizontalComplete && isLockedRef.current) {
-					isLockedRef.current = false
-					lockedScrollYRef.current = null
-				}
-			} else if (isPastSection || !isInViewport) {
-				// Section is not in viewport - unlock if locked
+			// If horizontal scroll is complete or section is past, always unlock
+			if (isHorizontalComplete || isPastSection || !isInViewport) {
 				if (isLockedRef.current) {
 					isLockedRef.current = false
 					lockedScrollYRef.current = null
+				}
+				return
+			}
+
+			// Section is in viewport and horizontal scroll is not complete
+			// Only lock if not already locked (to avoid resetting scroll position)
+			if (isInViewport && !isPastSection && !isHorizontalComplete) {
+				if (!isLockedRef.current) {
+					lockedScrollYRef.current = window.scrollY
+					isLockedRef.current = true
 				}
 			}
 		}
 
 		const handleWheel = (e: WheelEvent) => {
+			// Recalculate scrollable width in case it changed
+			const currentScrollableWidth = getScrollableWidth()
+			
+			// If there's nothing to scroll, don't interfere
+			if (currentScrollableWidth <= 0) {
+				if (isLockedRef.current) {
+					isLockedRef.current = false
+					lockedScrollYRef.current = null
+				}
+				return
+			}
+
 			const sectionRect = section.getBoundingClientRect()
 			const windowHeight = window.innerHeight
 			const isInViewport = sectionRect.top < windowHeight && sectionRect.bottom > 0
@@ -94,7 +121,7 @@ export function useHorizontalScroll({
 			}
 
 			// Check if horizontal scroll is complete
-			const isHorizontalComplete = container.scrollLeft >= scrollableWidth - 1
+			const isHorizontalComplete = container.scrollLeft >= currentScrollableWidth - 1
 
 			// If horizontal scroll is complete, allow normal vertical scrolling
 			if (isHorizontalComplete) {
@@ -102,6 +129,11 @@ export function useHorizontalScroll({
 					isLockedRef.current = false
 					lockedScrollYRef.current = null
 				}
+				return
+			}
+
+			// Only handle vertical scroll (deltaY), ignore horizontal scroll (deltaX)
+			if (Math.abs(e.deltaY) === 0) {
 				return
 			}
 
@@ -116,11 +148,13 @@ export function useHorizontalScroll({
 			}
 
 			// Convert vertical scroll to horizontal
+			// Scroll down (deltaY > 0) → scroll right to left (decrease scrollLeft)
+			// Scroll up (deltaY < 0) → scroll left to right (increase scrollLeft)
 			const scrollDelta = e.deltaY
 			const currentScrollLeft = container.scrollLeft
 			const newScrollLeft = Math.max(
 				0,
-				Math.min(scrollableWidth, currentScrollLeft + scrollDelta)
+				Math.min(currentScrollableWidth, currentScrollLeft - scrollDelta)
 			)
 
 			container.scrollTo({
@@ -128,12 +162,10 @@ export function useHorizontalScroll({
 				behavior: 'auto',
 			})
 
-			// If we've reached the end, unlock
-			if (newScrollLeft >= scrollableWidth - 1) {
-				setTimeout(() => {
-					isLockedRef.current = false
-					lockedScrollYRef.current = null
-				}, 50)
+			// If we've reached the end, unlock immediately
+			if (newScrollLeft >= currentScrollableWidth - 1) {
+				isLockedRef.current = false
+				lockedScrollYRef.current = null
 			}
 		}
 
@@ -141,12 +173,21 @@ export function useHorizontalScroll({
 			checkSectionPosition()
 
 			// If locked, restore the locked scroll position
+			// Only restore if scroll actually changed (avoid infinite loops)
 			if (isLockedRef.current && lockedScrollYRef.current !== null) {
 				const currentScrollY = window.scrollY
-				if (Math.abs(currentScrollY - lockedScrollYRef.current) > 1) {
-					window.scrollTo({
-						top: lockedScrollYRef.current,
-						behavior: 'auto',
+				const diff = Math.abs(currentScrollY - lockedScrollYRef.current)
+				
+				// Only restore if scroll moved significantly (more than 5px)
+				if (diff > 5) {
+					// Use requestAnimationFrame to avoid scroll conflicts
+					requestAnimationFrame(() => {
+						if (isLockedRef.current && lockedScrollYRef.current !== null) {
+							window.scrollTo({
+								top: lockedScrollYRef.current,
+								behavior: 'auto',
+							})
+						}
 					})
 				}
 			}
