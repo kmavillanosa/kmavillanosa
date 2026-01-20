@@ -109,3 +109,25 @@ body {
 	animation: progress 1.5s ease-in-out infinite;
 }
 
+<<<<<<< HEAD
+=======
+/* Hide scrollbars for horizontal scroll containers */
+.horizontal-scroll-container {
+	scrollbar-width: none; /* Firefox */
+	-ms-overflow-style: none; /* IE and Edge */
+	/* Improve touch scrolling on mobile */
+	touch-action: pan-x;
+	-webkit-overflow-scrolling: touch;
+}
+
+.horizontal-scroll-container::-webkit-scrollbar {
+	display: none; /* Chrome, Safari, Opera */
+}
+
+/* Snap scrolling for better mobile experience */
+@supports (scroll-snap-type: x mandatory) {
+	.horizontal-scroll-container {
+		scroll-snap-type: x mandatory;
+	}
+}
+>>>>>>> parent of 708c780 (revise scrolling)
