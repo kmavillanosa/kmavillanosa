@@ -114,8 +114,11 @@ body {
 	scrollbar-width: none; /* Firefox */
 	-ms-overflow-style: none; /* IE and Edge */
 	/* Improve touch scrolling on mobile */
-	touch-action: pan-x;
+	touch-action: pan-x pan-y; /* Allow both horizontal and vertical panning */
 	-webkit-overflow-scrolling: touch;
+	/* Ensure container can scroll */
+	overflow-x: auto !important;
+	overflow-y: hidden !important;
 }
 
 .horizontal-scroll-container::-webkit-scrollbar {

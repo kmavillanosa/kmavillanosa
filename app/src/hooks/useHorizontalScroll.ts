@@ -90,12 +90,35 @@ export function useHorizontalScroll({
 		}
 
 		const handleWheel = (e: WheelEvent) => {
-			// Only activate if hovering over the container
-			if (!isHoveringRef.current) {
-				if (isLockedRef.current) {
-					isLockedRef.current = false
-					lockedScrollYRef.current = null
-				}
+			// Check if mouse is over the container (if coordinates available)
+			const containerRect = container.getBoundingClientRect()
+			const sectionRect = section.getBoundingClientRect()
+			const windowHeight = window.innerHeight
+			const isSectionInViewport = sectionRect.top < windowHeight && sectionRect.bottom > 0
+			
+			let isOverContainer = false
+			if (e.clientX !== undefined && e.clientY !== undefined) {
+				const mouseX = e.clientX
+				const mouseY = e.clientY
+				isOverContainer = 
+					mouseX >= containerRect.left &&
+					mouseX <= containerRect.right &&
+					mouseY >= containerRect.top &&
+					mouseY <= containerRect.bottom
+			} else {
+				// Fallback: if section is in viewport and we're hovering (from mouseenter), consider it active
+				isOverContainer = isSectionInViewport && isHoveringRef.current
+			}
+
+			// Only activate if hovering over the container OR if already locked
+			if (!isOverContainer && !isLockedRef.current) {
+				return
+			}
+
+			// If mouse left container and we're locked, unlock
+			if (!isOverContainer && isLockedRef.current && e.clientX !== undefined && e.clientY !== undefined) {
+				isLockedRef.current = false
+				lockedScrollYRef.current = null
 				return
 			}
 
@@ -152,15 +175,14 @@ export function useHorizontalScroll({
 			// Scroll down (deltaY > 0) → scroll right to left (decrease scrollLeft)
 			// Scroll up (deltaY < 0) → scroll left to right (increase scrollLeft)
 			const scrollDelta = e.deltaY
+			const scrollSpeed = 1.2 // Adjust scroll speed
 			const newScrollLeft = Math.max(
 				0,
-				Math.min(currentScrollableWidth, currentScrollLeft - scrollDelta)
+				Math.min(currentScrollableWidth, currentScrollLeft - (scrollDelta * scrollSpeed))
 			)
 
-			container.scrollTo({
-				left: newScrollLeft,
-				behavior: 'auto',
-			})
+			// Directly set scrollLeft for immediate response
+			container.scrollLeft = newScrollLeft
 
 			// If we've reached the end, unlock immediately
 			if (newScrollLeft >= currentScrollableWidth - 1) {
@@ -172,13 +194,13 @@ export function useHorizontalScroll({
 		const handleScroll = () => {
 			checkSectionPosition()
 
-			// Only restore scroll if actively hovering and locked
-			// This prevents aggressive scroll locking when not interacting
+			// Only restore scroll if locked and hovering
+			// This prevents aggressive scroll locking when not hovering
 			if (isLockedRef.current && lockedScrollYRef.current !== null && isHoveringRef.current) {
 				const currentScrollY = window.scrollY
 				const diff = Math.abs(currentScrollY - lockedScrollYRef.current)
 				
-				// Only restore if scroll moved significantly (more than 20px) to be much less aggressive
+				// Only restore if scroll moved significantly (more than 20px) to be less aggressive
 				if (diff > 20) {
 					// Use requestAnimationFrame to avoid scroll conflicts
 					requestAnimationFrame(() => {
