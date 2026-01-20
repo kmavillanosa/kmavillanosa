@@ -29,6 +29,7 @@ export function useHorizontalScroll({
 	const rafIdRef = useRef<number | null>(null)
 	const touchStartYRef = useRef<number | null>(null)
 	const touchStartXRef = useRef<number | null>(null)
+	const isHoveringRef = useRef(false)
 
 	useEffect(() => {
 		if (!enabled) return
@@ -84,17 +85,20 @@ export function useHorizontalScroll({
 				return
 			}
 
-			// Section is in viewport and horizontal scroll is not complete
-			// Only lock if not already locked (to avoid resetting scroll position)
-			if (isInViewport && !isPastSection && !isHorizontalComplete) {
-				if (!isLockedRef.current) {
-					lockedScrollYRef.current = window.scrollY
-					isLockedRef.current = true
-				}
-			}
+			// Don't auto-lock - only lock when user actually interacts via wheel/touch
+			// This allows normal scrolling until user tries to scroll within the section
 		}
 
 		const handleWheel = (e: WheelEvent) => {
+			// Only activate if hovering over the container
+			if (!isHoveringRef.current) {
+				if (isLockedRef.current) {
+					isLockedRef.current = false
+					lockedScrollYRef.current = null
+				}
+				return
+			}
+
 			// Recalculate scrollable width in case it changed
 			const currentScrollableWidth = getScrollableWidth()
 			
@@ -107,12 +111,12 @@ export function useHorizontalScroll({
 				return
 			}
 
-			const sectionRect = section.getBoundingClientRect()
-			const windowHeight = window.innerHeight
-			const isInViewport = sectionRect.top < windowHeight && sectionRect.bottom > 0
+			const currentScrollLeft = container.scrollLeft
+			const isHorizontalComplete = currentScrollLeft >= currentScrollableWidth - 1
+			const isAtStart = currentScrollLeft <= 1
 
-			if (!isInViewport) {
-				// Not in viewport, unlock if locked
+			// If horizontal scroll is complete and user scrolls down, allow normal scroll
+			if (isHorizontalComplete && e.deltaY > 0) {
 				if (isLockedRef.current) {
 					isLockedRef.current = false
 					lockedScrollYRef.current = null
@@ -120,11 +124,8 @@ export function useHorizontalScroll({
 				return
 			}
 
-			// Check if horizontal scroll is complete
-			const isHorizontalComplete = container.scrollLeft >= currentScrollableWidth - 1
-
-			// If horizontal scroll is complete, allow normal vertical scrolling
-			if (isHorizontalComplete) {
+			// If at start and user scrolls up, allow normal scroll
+			if (isAtStart && e.deltaY < 0) {
 				if (isLockedRef.current) {
 					isLockedRef.current = false
 					lockedScrollYRef.current = null
@@ -151,7 +152,6 @@ export function useHorizontalScroll({
 			// Scroll down (deltaY > 0) → scroll right to left (decrease scrollLeft)
 			// Scroll up (deltaY < 0) → scroll left to right (increase scrollLeft)
 			const scrollDelta = e.deltaY
-			const currentScrollLeft = container.scrollLeft
 			const newScrollLeft = Math.max(
 				0,
 				Math.min(currentScrollableWidth, currentScrollLeft - scrollDelta)
@@ -172,17 +172,17 @@ export function useHorizontalScroll({
 		const handleScroll = () => {
 			checkSectionPosition()
 
-			// If locked, restore the locked scroll position
-			// Only restore if scroll actually changed (avoid infinite loops)
-			if (isLockedRef.current && lockedScrollYRef.current !== null) {
+			// Only restore scroll if actively hovering and locked
+			// This prevents aggressive scroll locking when not interacting
+			if (isLockedRef.current && lockedScrollYRef.current !== null && isHoveringRef.current) {
 				const currentScrollY = window.scrollY
 				const diff = Math.abs(currentScrollY - lockedScrollYRef.current)
 				
-				// Only restore if scroll moved significantly (more than 5px)
-				if (diff > 5) {
+				// Only restore if scroll moved significantly (more than 20px) to be much less aggressive
+				if (diff > 20) {
 					// Use requestAnimationFrame to avoid scroll conflicts
 					requestAnimationFrame(() => {
-						if (isLockedRef.current && lockedScrollYRef.current !== null) {
+						if (isLockedRef.current && lockedScrollYRef.current !== null && isHoveringRef.current) {
 							window.scrollTo({
 								top: lockedScrollYRef.current,
 								behavior: 'auto',
@@ -190,6 +190,10 @@ export function useHorizontalScroll({
 						}
 					})
 				}
+			} else if (!isHoveringRef.current && isLockedRef.current) {
+				// Unlock if not hovering
+				isLockedRef.current = false
+				lockedScrollYRef.current = null
 			}
 		}
 
@@ -213,7 +217,11 @@ export function useHorizontalScroll({
 
 			if (!isInViewport) return
 
-			const isHorizontalComplete = container.scrollLeft >= scrollableWidth - 1
+			// Set hovering state for touch
+			isHoveringRef.current = true
+
+			const currentScrollableWidth = getScrollableWidth()
+			const isHorizontalComplete = currentScrollableWidth <= 0 || container.scrollLeft >= currentScrollableWidth - 1
 			if (isHorizontalComplete) {
 				isLockedRef.current = false
 				lockedScrollYRef.current = null
@@ -284,6 +292,14 @@ export function useHorizontalScroll({
 		const handleContainerTouchEnd = () => {
 			touchStartYRef.current = null
 			touchStartXRef.current = null
+			// Keep hovering state for a short time after touch ends to allow scroll conversion
+			setTimeout(() => {
+				isHoveringRef.current = false
+				if (isLockedRef.current) {
+					isLockedRef.current = false
+					lockedScrollYRef.current = null
+				}
+			}, 300)
 		}
 
 		// Handle window-level touch events for vertical scroll prevention
@@ -323,9 +339,26 @@ export function useHorizontalScroll({
 			}
 		}
 
+		// Track hover state - only activate when hovering over container
+		const handleMouseEnter = () => {
+			isHoveringRef.current = true
+		}
+
+		const handleMouseLeave = () => {
+			isHoveringRef.current = false
+			if (isLockedRef.current) {
+				isLockedRef.current = false
+				lockedScrollYRef.current = null
+			}
+		}
+
 		window.addEventListener('wheel', handleWheel, { passive: false, capture: true })
 		window.addEventListener('scroll', throttledHandleScroll, { passive: true })
 		window.addEventListener('touchmove', handleWindowTouchMove, { passive: false })
+		
+		// Attach hover events to container
+		container.addEventListener('mouseenter', handleMouseEnter)
+		container.addEventListener('mouseleave', handleMouseLeave)
 		
 		// Attach touch events to container for better mobile control
 		container.addEventListener('touchstart', handleContainerTouchStart, { passive: true })
@@ -339,6 +372,8 @@ export function useHorizontalScroll({
 			window.removeEventListener('scroll', throttledHandleScroll)
 			window.removeEventListener('wheel', handleWheel)
 			window.removeEventListener('touchmove', handleWindowTouchMove)
+			container.removeEventListener('mouseenter', handleMouseEnter)
+			container.removeEventListener('mouseleave', handleMouseLeave)
 			container.removeEventListener('touchstart', handleContainerTouchStart)
 			container.removeEventListener('touchmove', handleContainerTouchMove)
 			container.removeEventListener('touchend', handleContainerTouchEnd)
@@ -348,6 +383,7 @@ export function useHorizontalScroll({
 			// Unlock on cleanup
 			isLockedRef.current = false
 			lockedScrollYRef.current = null
+			isHoveringRef.current = false
 		}
 	}, [containerRef, sectionRef, enabled])
 }
