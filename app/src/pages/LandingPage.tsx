@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom'
 import { Button, Spinner } from 'flowbite-react'
+import { useRef } from 'react'
 import { usePages } from '@/hooks/usePages'
 import { useExperiences } from '@/hooks/useExperiences'
 import { useSiteSettings } from '@/hooks/useSiteSettings'
+import { useHorizontalScroll } from '@/hooks/useHorizontalScroll'
 import PortfolioCard from '@/components/portfolio/PortfolioCard'
 import ExperienceCard from '@/components/experience/ExperienceCard'
 import ServicesSection from '@/components/services/ServicesSection'
@@ -17,6 +19,26 @@ function LandingPage() {
 	const { data: experiences, loading: experiencesLoading } = useExperiences()
 	const { data: siteSettings } = useSiteSettings()
 	const featuredPages = pages.slice(0, 6) // Show up to 6 featured projects
+
+	// Refs for horizontal scrolling sections
+	const portfolioSectionRef = useRef<HTMLElement>(null)
+	const portfolioContainerRef = useRef<HTMLDivElement>(null)
+	const experienceSectionRef = useRef<HTMLElement>(null)
+	const experienceContainerRef = useRef<HTMLDivElement>(null)
+
+	// Enable horizontal scrolling for Featured Work section
+	useHorizontalScroll({
+		containerRef: portfolioContainerRef,
+		sectionRef: portfolioSectionRef,
+		enabled: featuredPages.length > 0,
+	})
+
+	// Enable horizontal scrolling for Professional Journey section
+	useHorizontalScroll({
+		containerRef: experienceContainerRef,
+		sectionRef: experienceSectionRef,
+		enabled: experiences.length > 0,
+	})
 
 	const sections = [
 		{ id: 'hero-section', label: 'Home' },
@@ -180,9 +202,18 @@ function LandingPage() {
 
 			{/* Portfolio Section */}
 			{featuredPages.length > 0 && (
-				<section id="portfolio-section" className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900">
-					<div className="max-w-7xl mx-auto">
-						<div className="text-center mb-12 sm:mb-16">
+				<section 
+					ref={portfolioSectionRef}
+					id="portfolio-section" 
+					className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900"
+					style={{ 
+						height: typeof window !== 'undefined' && window.innerWidth < 640 
+							? '120vh' 
+							: '150vh' 
+					}}
+				>
+					<div className="max-w-7xl mx-auto h-full flex flex-col">
+						<div className="text-center mb-12 sm:mb-16 flex-shrink-0">
 							<div className="inline-block mb-4">
 								<span className="text-green-600 dark:text-green-400 font-semibold text-sm uppercase tracking-wider">Portfolio</span>
 							</div>
@@ -195,33 +226,44 @@ function LandingPage() {
 						</div>
 
 						{pagesLoading ? (
-							<div className="flex justify-center items-center min-h-[400px]">
+							<div className="flex justify-center items-center min-h-[400px] flex-1">
 								<Spinner size="xl" />
 							</div>
 						) : (
-							<>
-								<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8">
+							<div className="flex-1 flex items-center">
+								<div 
+									ref={portfolioContainerRef}
+									className="horizontal-scroll-container overflow-x-auto overflow-y-hidden w-full flex gap-4 sm:gap-6 pb-4 snap-x snap-mandatory"
+									style={{ 
+										scrollBehavior: 'smooth',
+										WebkitOverflowScrolling: 'touch',
+										scrollSnapType: 'x mandatory',
+									}}
+								>
 									{featuredPages.map((page) => (
-										<div key={page.slug} className="h-full">
+										<div 
+											key={page.slug} 
+											className="flex-shrink-0 w-[85vw] sm:w-[45vw] lg:w-[30vw] max-w-sm snap-center"
+										>
 											<PortfolioCard page={page} />
 										</div>
 									))}
 								</div>
+							</div>
+						)}
 
-								{pages.length > featuredPages.length && (
-									<div className="text-center mt-8">
-										<Button
-											as={Link}
-											to="/portfolio"
-											color="success"
-											size="xl"
-											className="transition-transform hover:scale-105"
-										>
-											View All Projects ({pages.length})
-										</Button>
-									</div>
-								)}
-							</>
+						{pages.length > featuredPages.length && (
+							<div className="text-center mt-8 flex-shrink-0">
+								<Button
+									as={Link}
+									to="/portfolio"
+									color="success"
+									size="xl"
+									className="transition-transform hover:scale-105"
+								>
+									View All Projects ({pages.length})
+								</Button>
+							</div>
 						)}
 					</div>
 				</section>
@@ -229,9 +271,18 @@ function LandingPage() {
 
 			{/* Experience Section */}
 			{experiences.length > 0 && (
-				<section id="experience-section" className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900">
-					<div className="max-w-7xl mx-auto">
-						<div className="text-center mb-12 sm:mb-16">
+				<section 
+					ref={experienceSectionRef}
+					id="experience-section" 
+					className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900"
+					style={{ 
+						height: typeof window !== 'undefined' && window.innerWidth < 640 
+							? '120vh' 
+							: '150vh' 
+					}}
+				>
+					<div className="max-w-7xl mx-auto h-full flex flex-col">
+						<div className="text-center mb-12 sm:mb-16 flex-shrink-0">
 							<div className="inline-block mb-4">
 								<span className="text-green-600 dark:text-green-400 font-semibold text-sm uppercase tracking-wider">Experience</span>
 							</div>
@@ -244,16 +295,29 @@ function LandingPage() {
 						</div>
 
 						{experiencesLoading ? (
-							<div className="flex justify-center items-center min-h-[400px]">
+							<div className="flex justify-center items-center min-h-[400px] flex-1">
 								<Spinner size="xl" />
 							</div>
 						) : (
-							<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-								{experiences.map((experience) => (
-									<div key={experience.slug} className="h-full">
-										<ExperienceCard experience={experience} />
-									</div>
-								))}
+							<div className="flex-1 flex items-center">
+								<div 
+									ref={experienceContainerRef}
+									className="horizontal-scroll-container overflow-x-auto overflow-y-hidden w-full flex gap-4 sm:gap-6 pb-4 snap-x snap-mandatory"
+									style={{ 
+										scrollBehavior: 'smooth',
+										WebkitOverflowScrolling: 'touch',
+										scrollSnapType: 'x mandatory',
+									}}
+								>
+									{experiences.map((experience) => (
+										<div 
+											key={experience.slug} 
+											className="flex-shrink-0 w-[85vw] sm:w-[45vw] lg:w-[30vw] max-w-sm snap-center"
+										>
+											<ExperienceCard experience={experience} />
+										</div>
+									))}
+								</div>
 							</div>
 						)}
 					</div>
