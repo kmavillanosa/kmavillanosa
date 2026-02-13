@@ -84,14 +84,13 @@ function LandingPage() {
 							{siteSettings?.hero?.subtitle || 'Full Stack Software Engineer'}
 						</p>
 						<p className="text-sm sm:text-base text-stone-600 dark:text-gray-400 max-w-xl mx-auto leading-relaxed">
-								{replaceYearsPlaceholder(
-									siteSettings?.hero?.description ||
-										siteSettings?.description ||
-										'I make cool stuff for a living',
-									siteSettings?.experienceSince
-								)}
-							</p>
-						</div>
+							{replaceYearsPlaceholder(
+								siteSettings?.hero?.description ||
+									siteSettings?.description ||
+									'I make cool stuff for a living',
+								siteSettings?.experienceSince
+							)}
+						</p>
 
 						<div className="flex flex-wrap justify-center gap-2 mt-4">
 							<Button
