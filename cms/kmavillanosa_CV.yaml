@@ -132,10 +132,11 @@ cv:
           API: GraphQL, Rest
           UI Testing: storybook
 
-      - label: Desktop Development
+      - label: Desktop
         details: |
           Runtime: .NET Framework, .NET Core
           Frameworks: WPF, WinForms
+          Design Patterns: MVVM, IoC, Observer, Facade, Factory
 
       - label: Mobile Development
         details: Ionic React, React Native
@@ -173,8 +174,10 @@ cv:
           Testing: Selenium, Selenium Grid
           Remote Access: noVNC
 
-      - label: Development Practices
+      - label: Ways of working
         details: |
+          Architecture Patterns: Domain-Driven Design (DDD), Clean Architecture, Vertical Slice Architecture
+          Design Patterns: MVC, IoC, Observer, Facade, Factory, MVVM
           Methodologies: Agile Scrum, Kanban
 
       - label: Development Tools
