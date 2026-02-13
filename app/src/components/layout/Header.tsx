@@ -41,8 +41,8 @@ function Header() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 px-4 py-3 md:py-4 transition-all duration-300 ${
         isLandingPage
-          ? "bg-ivory-50/90 dark:bg-gray-900/80 backdrop-blur-md border-b border-stone-200/60 dark:border-gray-700/50 md:bg-ivory-50/70 md:dark:bg-gray-900/10 md:border-b md:border-stone-200/30 md:dark:border-gray-700/30"
-          : "bg-ivory-50 dark:bg-gray-900 border-b border-stone-200 dark:border-gray-700 shadow-sm"
+          ? "bg-ivory-50 dark:bg-gray-900 border-b border-stone-200 dark:border-gray-700"
+          : "bg-ivory-50 dark:bg-gray-900 border-b border-stone-200 dark:border-gray-700"
       }`}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">

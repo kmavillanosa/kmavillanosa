@@ -11,31 +11,24 @@ function CTASection() {
 	}
 
 	return (
-		<section id="cta-section" className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-gradient-to-br from-green-600 via-emerald-600 to-green-700 dark:from-green-800 dark:via-emerald-800 dark:to-green-900 relative overflow-hidden">
-			{/* Decorative background elements */}
-			<div className="absolute inset-0 opacity-10">
-				<div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
-				<div className="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
-			</div>
-
-			<div className="max-w-4xl mx-auto text-center relative z-10 px-4">
-				<div className="mb-8">
-					<h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 md:mb-6">
-						{siteSettings?.cta?.title || "Ready to Build Something Amazing?"}
+		<section id="cta-section" className="py-10 sm:py-12 px-4 sm:px-6 bg-green-700 dark:bg-green-800">
+			<div className="max-w-2xl mx-auto text-center">
+				<div className="mb-6">
+					<h2 className="text-xl sm:text-2xl font-bold text-white mb-2">
+						{siteSettings?.cta?.title || "Ready to work together?"}
 					</h2>
-					<p className="text-lg sm:text-xl md:text-2xl text-green-50 dark:text-green-100 mb-6 md:mb-8 leading-relaxed">
-						{siteSettings?.cta?.description || "I'm actively seeking new opportunities to create impactful solutions. Let's discuss how I can contribute to your team's success."}
+					<p className="text-sm text-green-100 dark:text-green-200 mb-4">
+						{siteSettings?.cta?.description || "Open to new opportunities. Let's talk."}
 					</p>
 				</div>
 
-				<div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center">
+				<div className="flex flex-col sm:flex-row flex-wrap gap-2 sm:gap-3 justify-center">
 					<Button
 						onClick={handleDownloadResume}
-						size="xl"
-						className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 bg-white text-green-600 font-semibold text-base sm:text-lg transition-all duration-200 hover:bg-gray-50 hover:shadow-lg active:scale-95"
+						className="w-full sm:w-auto px-4 py-2.5 bg-white text-green-700 font-medium text-sm rounded-md border-0 hover:bg-green-50 transition-colors"
 					>
-						<span className="flex items-center gap-2.5">
-							<svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<span className="flex items-center gap-2">
+							<svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 								<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
 							</svg>
 							Download CV
@@ -44,12 +37,10 @@ function CTASection() {
 					<Button
 						as={Link}
 						to="/contact"
-						outline
-						size="xl"
-						className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 border-2 border-white text-white font-semibold text-base sm:text-lg transition-all duration-200 hover:!bg-white hover:!text-green-600 hover:!border-white active:scale-95"
+						className="w-full sm:w-auto px-4 py-2.5 bg-transparent border border-white text-white font-medium text-sm rounded-md hover:bg-white hover:text-green-700 transition-colors"
 					>
-						<span className="flex items-center justify-center gap-2.5">
-							<svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<span className="flex items-center justify-center gap-2">
+							<svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 								<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
 							</svg>
 							Get In Touch
@@ -59,25 +50,21 @@ function CTASection() {
 						href="https://linkedin.com/in/kmavillanosa"
 						target="_blank"
 						rel="noopener noreferrer"
-						outline
-						size="xl"
 						as="a"
-						className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 border-2 border-white text-white font-semibold text-base sm:text-lg transition-all duration-200 hover:!bg-white hover:!text-green-600 hover:!border-white active:scale-95"
+						className="w-full sm:w-auto px-4 py-2.5 bg-transparent border border-white text-white font-medium text-sm rounded-md hover:bg-white hover:text-green-700 transition-colors"
 					>
-						<span className="flex items-center gap-2.5">
-							<svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+						<span className="flex items-center gap-2">
+							<svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
 								<path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
 							</svg>
-							Connect on LinkedIn
+							LinkedIn
 						</span>
 					</Button>
 				</div>
 
-				<div className="mt-12 pt-8 border-t border-green-500/30">
-					<p className="text-green-100 dark:text-green-200 text-sm">
-						📍 Available for remote work • Contract opportunities
-					</p>
-				</div>
+				<p className="mt-6 text-green-100 dark:text-green-200 text-xs">
+					Available for remote work • Contract opportunities
+				</p>
 			</div>
 		</section>
 	)

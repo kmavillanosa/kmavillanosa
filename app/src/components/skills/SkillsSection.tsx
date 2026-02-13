@@ -16,11 +16,7 @@ function SkillCard({
 
 	return (
 		<div
-			className="
-				group flex items-center gap-2 sm:gap-3 rounded-lg border border-stone-200 dark:border-gray-600/60
-				bg-white dark:bg-gray-800/80 px-3 py-2 sm:px-4 sm:py-2.5
-				transition-all duration-200 hover:shadow-md hover:border-green-200 dark:hover:border-green-700/60 hover:-translate-y-0.5
-			"
+			className="flex items-center gap-2 sm:gap-3 rounded-lg border border-stone-200 dark:border-gray-600 bg-white dark:bg-gray-800 px-3 py-2 sm:px-3 sm:py-2"
 		>
 			<div className="flex-shrink-0 w-8 h-8 sm:w-9 sm:h-9 rounded-md bg-stone-100 dark:bg-gray-700/80 flex items-center justify-center ring-1 ring-stone-200/50 dark:ring-gray-600/50">
 				{techStackIconName ? (
@@ -56,7 +52,7 @@ function SkillsSection() {
 		return (
 			<section
 				id="skills-section"
-				className="py-12 px-4 bg-ivory-50 dark:from-gray-800 dark:to-gray-900"
+				className="py-12 px-4 bg-ivory-50 dark:bg-gray-900"
 			>
 				<div className="max-w-7xl mx-auto flex justify-center items-center min-h-[200px]">
 					<Spinner size="xl" />
@@ -75,31 +71,28 @@ function SkillsSection() {
 	return (
 		<section
 			id="skills-section"
-			className="py-8 sm:py-10 px-4 sm:px-6 bg-gradient-to-b from-ivory-50 to-ivory-100 dark:from-gray-800 dark:to-gray-900"
+			className="py-10 sm:py-12 px-4 sm:px-6 bg-ivory-50 dark:bg-gray-900"
 		>
-			<div className="max-w-7xl mx-auto">
-				<div className="text-center mb-6 sm:mb-8">
-					<span className="text-green-600 dark:text-green-400 font-semibold text-xs uppercase tracking-wider">
+			<div className="max-w-5xl mx-auto">
+				<div className="text-center mb-6">
+					<h2 className="text-xl sm:text-2xl font-bold text-stone-900 dark:text-white mb-1">
 						Skills & Technologies
-					</span>
-					<h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-stone-900 dark:text-white mt-2 mb-2">
-						Technical Expertise
 					</h2>
-					<p className="text-sm sm:text-base text-stone-600 dark:text-gray-400 max-w-xl mx-auto">
-						Technologies and frameworks I use to build solutions.
+					<p className="text-sm text-stone-600 dark:text-gray-400 max-w-xl mx-auto">
+						Technologies and frameworks I work with.
 					</p>
 				</div>
 
-				<div className="space-y-5 sm:space-y-6">
+				<div className="space-y-4">
 					{categories.map((category) => {
 						const categorySkills = skills.filter((s) => s.category === category)
 						return (
 							<div key={category}>
-								<h3 className="text-sm font-semibold text-stone-700 dark:text-gray-300 mb-2 flex items-center gap-2">
-									<span className="w-0.5 h-4 bg-gradient-to-b from-green-500 to-emerald-500 rounded-full" />
+								<h3 className="text-sm font-semibold text-stone-700 dark:text-gray-300 mb-1.5 flex items-center gap-2">
+									<span className="w-0.5 h-3.5 bg-stone-400 dark:bg-gray-500 rounded-full" />
 									{category}
 								</h3>
-								<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 sm:gap-2.5">
+								<div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2">
 									{categorySkills.map((skill) => (
 										<SkillCard key={skill.name} skill={skill} />
 									))}

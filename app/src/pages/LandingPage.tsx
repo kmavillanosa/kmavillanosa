@@ -53,7 +53,7 @@ function LandingPage() {
 			<ScrollMinimap sections={sections} />
 
 			{/* Hero Section */}
-			<section id="hero-section" className="relative flex items-center justify-center min-h-[calc(100vh-180px)] sm:min-h-[calc(100vh-200px)] px-4 pt-20 sm:pt-24 pb-12 sm:pb-20 overflow-hidden">
+			<section id="hero-section" className="relative flex items-center justify-center min-h-[calc(100vh-140px)] sm:min-h-[calc(100vh-160px)] px-4 pt-20 sm:pt-24 pb-10 sm:pb-14 overflow-hidden">
 				{/* Background timelapse GIF */}
 				<div className="absolute inset-0 overflow-hidden pointer-events-none">
 					<img
@@ -64,28 +64,26 @@ function LandingPage() {
 					/>
 				</div>
 				
-				{/* Overlay for better text readability */}
-				<div className="absolute inset-0 bg-ivory-50/70 dark:bg-gray-900/60 backdrop-blur-[2px]"></div>
+				{/* Solid overlay for readability — no blur */}
+				<div className="absolute inset-0 bg-ivory-50/85 dark:bg-gray-900/70"></div>
 
-				<div className="text-center max-w-5xl w-full relative z-10 backdrop-blur-0">
-					<div className="flex flex-col items-center gap-8 animate-fade-in">
+				<div className="text-center max-w-3xl w-full relative z-10">
+					<div className="flex flex-col items-center gap-6 animate-fade-in">
 						{/* Badge */}
-						<div className="inline-flex items-center gap-2.5 px-5 py-2.5 bg-white/90 dark:bg-green-900/30 border border-stone-200 dark:border-green-800 rounded-full text-sm text-stone-700 dark:text-green-300 font-medium shadow-sm">
+						<div className="inline-flex items-center gap-2 px-4 py-2 bg-ivory-100 dark:bg-green-900/30 border border-stone-300 dark:border-green-800 rounded-md text-sm text-stone-700 dark:text-green-300 font-medium">
 							<svg className="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
 								<path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
 							</svg>
 							<span className="whitespace-nowrap">📍 Available for remote work • Contract opportunities</span>
 						</div>
 
-						<h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold bg-gradient-to-r from-green-600 via-emerald-500 to-green-600 dark:from-green-400 dark:via-emerald-400 dark:to-green-400 bg-clip-text text-transparent animate-gradient leading-tight px-4">
+						<h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-stone-900 dark:text-white tracking-tight leading-tight">
 							Kim Avillanosa
 						</h1>
-						
-						<div className="space-y-3 md:space-y-4 px-4">
-							<p className="text-xl sm:text-2xl md:text-3xl font-semibold text-stone-800 dark:text-gray-200">
-								{siteSettings?.hero?.subtitle || 'Full Stack Software Engineer'}
-							</p>
-							<p className="text-base sm:text-lg md:text-xl text-stone-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
+						<p className="text-lg sm:text-xl font-semibold text-green-700 dark:text-green-400">
+							{siteSettings?.hero?.subtitle || 'Full Stack Software Engineer'}
+						</p>
+						<p className="text-sm sm:text-base text-stone-600 dark:text-gray-400 max-w-xl mx-auto leading-relaxed">
 								{replaceYearsPlaceholder(
 									siteSettings?.hero?.description ||
 										siteSettings?.description ||
@@ -95,78 +93,47 @@ function LandingPage() {
 							</p>
 						</div>
 
-						<div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center mt-6 md:mt-8 px-4">
-							<Button 
+						<div className="flex flex-wrap justify-center gap-2 mt-4">
+							<Button
 								onClick={handleDownloadResume}
-								color="success"
-								size="xl"
-								className="w-full sm:w-auto px-6 py-3.5 font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl group text-base"
+								className="bg-green-600 hover:bg-green-700 text-white border-0 px-4 py-2.5 text-sm font-medium rounded-md transition-colors"
 							>
-								<span className="flex items-center gap-2.5">
-									<svg className="w-5 h-5 group-hover:animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-										<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-									</svg>
-									<span>Download CV</span>
-								</span>
+								Download CV
 							</Button>
-							<Button 
-								href="https://linkedin.com/in/kmavillanosa" 
+							<Button
+								href="https://linkedin.com/in/kmavillanosa"
 								target="_blank"
 								rel="noopener noreferrer"
-								outline
-								color="success"
-								size="xl"
 								as="a"
-								className="w-full sm:w-auto px-6 py-3.5 font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl text-base"
+								className="bg-transparent border border-stone-400 text-stone-700 hover:border-stone-600 hover:bg-stone-50 dark:border-stone-500 dark:text-stone-300 dark:hover:bg-stone-800 px-4 py-2.5 text-sm font-medium rounded-md transition-colors"
 							>
-								<span className="flex items-center justify-center gap-2.5">
-									<svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-										<path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-									</svg>
-									<span>LinkedIn</span>
-								</span>
+								LinkedIn
 							</Button>
-							<Button 
-								href="https://github.com/kmavillanosa" 
+							<Button
+								href="https://github.com/kmavillanosa"
 								target="_blank"
 								rel="noopener noreferrer"
-								outline
-								color="success"
-								size="xl"
 								as="a"
-								className="w-full sm:w-auto px-6 py-3.5 font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl text-base"
+								className="bg-transparent border border-stone-400 text-stone-700 hover:border-stone-600 hover:bg-stone-50 dark:border-stone-500 dark:text-stone-300 dark:hover:bg-stone-800 px-4 py-2.5 text-sm font-medium rounded-md transition-colors"
 							>
-								<span className="flex items-center justify-center gap-2.5">
-									<svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-										<path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
-									</svg>
-									<span>GitHub</span>
-								</span>
+								GitHub
 							</Button>
-							<Button 
+							<Button
 								as={Link}
 								to="/contact"
-								outline
-								color="success"
-								size="xl"
-								className="w-full sm:w-auto px-6 py-3.5 font-semibold transition-all duration-300 hover:scale-105 hover:shadow-xl text-base"
+								className="bg-transparent border border-stone-400 text-stone-700 hover:border-stone-600 hover:bg-stone-50 dark:border-stone-500 dark:text-stone-300 dark:hover:bg-stone-800 px-4 py-2.5 text-sm font-medium rounded-md transition-colors"
 							>
-								<span className="flex items-center gap-2.5">
-									<svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-										<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-									</svg>
-									<span>Contact Me</span>
-								</span>
+								Contact
 							</Button>
 						</div>
 
 						<button
 							onClick={scrollToServices}
-							className="mt-8 sm:mt-12 flex flex-col items-center gap-2 text-stone-500 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 transition-colors group touch-manipulation"
-							aria-label="Scroll to services section"
+							className="mt-6 flex flex-col items-center gap-1 text-stone-500 dark:text-gray-400 hover:text-stone-700 dark:hover:text-gray-300 transition-colors text-xs font-medium"
+							aria-label="Scroll to services"
 						>
-							<span className="text-sm font-medium">What I Offer</span>
-							<svg className="w-6 h-6 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<span>Scroll</span>
+							<svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 								<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
 							</svg>
 						</button>
@@ -185,17 +152,14 @@ function LandingPage() {
 
 			{/* Portfolio Section */}
 			{featuredPages.length > 0 && (
-				<section id="portfolio-section" className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-gradient-to-b from-ivory-100 to-ivory-50 dark:from-gray-800 dark:to-gray-900">
-					<div className="max-w-7xl mx-auto">
-						<div className="text-center mb-12 sm:mb-16">
-							<div className="inline-block mb-4">
-								<span className="text-green-600 dark:text-green-400 font-semibold text-sm uppercase tracking-wider">Portfolio</span>
-							</div>
-							<h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-stone-900 dark:text-white mb-4 sm:mb-6">
+				<section id="portfolio-section" className="py-10 sm:py-12 px-4 sm:px-6 bg-ivory-100 dark:bg-gray-800">
+					<div className="max-w-5xl mx-auto">
+						<div className="text-center mb-8">
+							<h2 className="text-xl sm:text-2xl font-bold text-stone-900 dark:text-white mb-1">
 								Featured Work
 							</h2>
-							<p className="text-lg sm:text-xl text-stone-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed px-4">
-								Explore some of my recent projects and contributions. Each project represents a unique challenge and creative solution.
+							<p className="text-sm text-stone-600 dark:text-gray-400 max-w-xl mx-auto">
+								Recent projects and contributions.
 							</p>
 						</div>
 
@@ -205,7 +169,7 @@ function LandingPage() {
 							</div>
 						) : (
 							<>
-								<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8">
+								<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mb-6">
 									{featuredPages.map((page) => (
 										<div key={page.slug} className="h-full">
 											<PortfolioCard page={page} />
@@ -234,17 +198,14 @@ function LandingPage() {
 
 			{/* Experience Section */}
 			{experiences.length > 0 && (
-				<section id="experience-section" className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-gradient-to-b from-ivory-50 to-ivory-100 dark:from-gray-800 dark:to-gray-900">
-					<div className="max-w-7xl mx-auto">
-						<div className="text-center mb-12 sm:mb-16">
-							<div className="inline-block mb-4">
-								<span className="text-green-600 dark:text-green-400 font-semibold text-sm uppercase tracking-wider">Experience</span>
-							</div>
-							<h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-stone-900 dark:text-white mb-4 sm:mb-6">
-								Professional Journey
+				<section id="experience-section" className="py-10 sm:py-12 px-4 sm:px-6 bg-ivory-50 dark:bg-gray-800">
+					<div className="max-w-5xl mx-auto">
+						<div className="text-center mb-8">
+							<h2 className="text-xl sm:text-2xl font-bold text-stone-900 dark:text-white mb-1">
+								Experience
 							</h2>
-							<p className="text-lg sm:text-xl text-stone-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed px-4">
-								My career path and the companies I've had the privilege to work with.
+							<p className="text-sm text-stone-600 dark:text-gray-400 max-w-xl mx-auto">
+								Career path and companies I've worked with.
 							</p>
 						</div>
 
@@ -253,7 +214,7 @@ function LandingPage() {
 								<Spinner size="xl" />
 							</div>
 						) : (
-							<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+							<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
 								{experiences.map((experience) => (
 									<div key={experience.slug} className="h-full">
 										<ExperienceCard experience={experience} />

@@ -58,37 +58,33 @@ function ServicesSection() {
 	}
 
 	return (
-		<section id="services-section" className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-gradient-to-b from-ivory-50 to-ivory-100 dark:from-gray-900 dark:to-gray-800">
-			<div className="max-w-7xl mx-auto">
-				<div className="text-center mb-12 sm:mb-16">
-					<div className="inline-block mb-4">
-						<span className="text-green-600 dark:text-green-400 font-semibold text-sm uppercase tracking-wider">Services</span>
-					</div>
-					<h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-stone-900 dark:text-white mb-4 sm:mb-6">
+		<section id="services-section" className="py-10 sm:py-12 px-4 sm:px-6 bg-ivory-50 dark:bg-gray-900">
+			<div className="max-w-5xl mx-auto">
+				<div className="text-center mb-8">
+					<h2 className="text-xl sm:text-2xl font-bold text-stone-900 dark:text-white mb-1">
 						What I Offer
 					</h2>
-					<p className="text-lg sm:text-xl text-stone-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed px-4">
-						Comprehensive development services to bring your ideas to life across multiple platforms and technologies.
+					<p className="text-sm text-stone-600 dark:text-gray-400 max-w-xl mx-auto">
+						Development services across web, desktop, and automation.
 					</p>
 				</div>
 
-				<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+				<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
 					{services.services.map((service, index) => (
 						<div
 							key={index}
-							className="group relative bg-white dark:bg-gray-800 rounded-xl p-6 border border-stone-200 dark:border-gray-700 hover:border-green-300 dark:hover:border-green-700 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5"
+							className="bg-white dark:bg-gray-800 rounded-lg p-4 border border-stone-200 dark:border-gray-700"
 						>
-							<div className="flex items-start gap-4">
-								<div className="flex-shrink-0 w-14 h-14 rounded-lg bg-gradient-to-br from-green-100 to-green-50 dark:from-green-900/40 dark:to-green-800/40 flex items-center justify-center text-green-600 dark:text-green-400 group-hover:scale-110 transition-transform duration-300">
+							<div className="flex items-start gap-3">
+								<div className="flex-shrink-0 w-10 h-10 rounded-md bg-ivory-100 dark:bg-gray-700 flex items-center justify-center text-stone-600 dark:text-gray-300">
 									{getServiceIcon(service)}
 								</div>
 								<div className="flex-1 min-w-0">
-									<h3 className="text-lg font-semibold text-stone-900 dark:text-white mb-2 group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors">
+									<h3 className="text-sm font-semibold text-stone-900 dark:text-white">
 										{service}
 									</h3>
 								</div>
 							</div>
-							<div className="absolute inset-0 rounded-xl bg-gradient-to-br from-green-50/0 to-green-50/0 dark:from-green-900/0 dark:to-green-900/0 group-hover:from-green-50/50 group-hover:to-green-50/30 dark:group-hover:from-green-900/20 dark:group-hover:to-green-900/10 transition-all duration-300 pointer-events-none"></div>
 						</div>
 					))}
 				</div>

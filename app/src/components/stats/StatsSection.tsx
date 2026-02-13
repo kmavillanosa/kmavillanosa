@@ -53,31 +53,28 @@ function StatsSection() {
 	})
 
 	return (
-		<section id="stats-section" className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-gradient-to-b from-ivory-100 to-ivory-50 dark:from-gray-900 dark:to-gray-800">
-			<div className="max-w-7xl mx-auto">
-				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
+		<section id="stats-section" className="py-10 sm:py-12 px-4 sm:px-6 bg-ivory-100 dark:bg-gray-800">
+			<div className="max-w-5xl mx-auto">
+				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
 					{stats.map((stat, index) => (
 						<div
 							key={index}
-							className="group relative bg-white dark:bg-gray-800 rounded-xl p-6 border border-stone-200 dark:border-gray-700 hover:border-green-300 dark:hover:border-green-700 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5 text-center"
+							className="bg-white dark:bg-gray-800 rounded-lg p-4 border border-stone-200 dark:border-gray-700 text-center"
 						>
-							<div className="flex justify-center mb-4">
-								<div className="w-16 h-16 rounded-full bg-gradient-to-br from-green-100 to-green-50 dark:from-green-900/40 dark:to-green-800/40 flex items-center justify-center text-green-600 dark:text-green-400 group-hover:scale-110 transition-transform duration-300">
+							<div className="flex justify-center mb-2">
+								<div className="w-10 h-10 rounded-md bg-ivory-100 dark:bg-gray-700 flex items-center justify-center text-stone-600 dark:text-gray-300">
 									{statIcons[stat.label] || statIcons['Specialization']}
 								</div>
 							</div>
-							<div className="mb-2">
-<div className="text-4xl md:text-5xl font-bold text-stone-900 dark:text-white mb-1">
+							<div className="text-2xl sm:text-3xl font-bold text-stone-900 dark:text-white">
 								{stat.value}
-								</div>
-								<div className="text-lg font-semibold text-stone-900 dark:text-white">
-									{stat.label}
-								</div>
 							</div>
-							<p className="text-sm text-stone-600 dark:text-gray-400">
+							<div className="text-sm font-semibold text-stone-800 dark:text-gray-200">
+								{stat.label}
+							</div>
+							<p className="text-xs text-stone-600 dark:text-gray-400 mt-0.5">
 								{stat.description}
 							</p>
-							<div className="absolute inset-0 rounded-xl bg-gradient-to-br from-green-50/0 to-green-50/0 dark:from-green-900/0 dark:to-green-900/0 group-hover:from-green-50/50 group-hover:to-green-50/30 dark:group-hover:from-green-900/20 dark:group-hover:to-green-900/10 transition-all duration-300 pointer-events-none"></div>
 						</div>
 					))}
 				</div>
