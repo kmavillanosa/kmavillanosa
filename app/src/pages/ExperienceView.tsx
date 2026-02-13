@@ -55,90 +55,84 @@ function ExperienceView() {
 	}
 
 	return (
-		<article className="max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-8 pt-4">
-			<Button 
-				as={Link} 
-				to="/" 
-				outline
-				color="success"
-				className="mb-6 text-sm sm:text-base"
+		<article className="max-w-2xl mx-auto px-4 sm:px-6 py-6 pt-4">
+			<Link
+				to="/"
+				className="inline-flex items-center gap-1 text-sm text-stone-600 dark:text-gray-400 hover:text-stone-900 dark:hover:text-white mb-6 transition-colors"
 			>
-				← Back to Home
-			</Button>
-			
-			<div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 p-4 sm:p-6 md:p-8">
-				{/* Header Section */}
-				<div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6 mb-6 sm:mb-8 pb-6 sm:pb-8 border-b border-gray-200 dark:border-gray-700">
+				<svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+				</svg>
+				Back
+			</Link>
+
+			<div className="bg-white dark:bg-gray-800 rounded-lg border border-stone-200 dark:border-gray-700 p-4 sm:p-5">
+				{/* Header */}
+				<div className="flex gap-3 sm:gap-4 mb-4 pb-4 border-b border-stone-200 dark:border-gray-700">
 					{experience.companyLogo && experience.companyLogo.trim() && (
-						<div className="flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-xl bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-800 flex items-center justify-center overflow-hidden shadow-md border border-gray-200 dark:border-gray-700">
+						<div className="flex-shrink-0 w-12 h-12 rounded-lg bg-stone-100 dark:bg-gray-700 flex items-center justify-center overflow-hidden border border-stone-200 dark:border-gray-600">
 							<img
 								src={experience.companyLogo}
 								alt={experience.company}
-								className="w-full h-full object-contain p-3"
+								className="w-full h-full object-contain p-2"
 								onError={(e) => {
 									;(e.target as HTMLImageElement).style.display = 'none'
 								}}
 							/>
 						</div>
 					)}
-					<div className="flex-1 min-w-0 w-full">
-						<div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 sm:gap-4 mb-3">
-							<h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
+					<div className="flex-1 min-w-0">
+						<div className="flex flex-wrap items-start justify-between gap-2">
+							<h1 className="text-xl sm:text-2xl font-bold text-stone-900 dark:text-white">
 								{experience.company}
 							</h1>
-							<span className="px-3 py-1.5 text-xs sm:text-sm font-semibold bg-gradient-to-r from-green-100 to-green-50 dark:from-green-900/40 dark:to-green-800/40 text-green-700 dark:text-green-300 rounded-lg whitespace-nowrap flex-shrink-0 shadow-sm self-start">
+							<span className="text-xs font-medium text-stone-500 dark:text-gray-400 uppercase tracking-wide">
 								{experience.type}
 							</span>
 						</div>
-						<p className="text-lg sm:text-xl font-semibold text-gray-800 dark:text-gray-200 mb-3">
+						<p className="text-sm font-semibold text-stone-700 dark:text-gray-300 mt-0.5">
 							{experience.position}
 						</p>
-						<div className="flex flex-wrap items-center gap-3 sm:gap-4 text-xs sm:text-sm text-gray-600 dark:text-gray-400">
-							<div className="flex items-center gap-1.5">
-								<svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-									<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-								</svg>
-								<span>{experience.period}</span>
-							</div>
-							<div className="flex items-center gap-1.5">
-								<svg className="w-4 h-4 flex-shrink-0 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-									<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-									<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-								</svg>
-								<span>{experience.companyLocation}</span>
-							</div>
+						<div className="flex flex-wrap items-center gap-x-3 gap-y-0.5 mt-1 text-xs text-stone-500 dark:text-gray-400">
+							<span>{experience.period}</span>
+							{experience.companyLocation && (
+								<>
+									<span className="text-stone-300 dark:text-gray-600">·</span>
+									<span>{experience.companyLocation}</span>
+								</>
+							)}
 						</div>
 					</div>
 				</div>
 
-				{/* Company About */}
-				<div className="mb-6 sm:mb-8">
-					<h2 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-3">About the Company</h2>
-					<p className="text-base sm:text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-						{experience.companyAbout}
-					</p>
-				</div>
+				{experience.companyAbout && (
+					<div className="mb-4">
+						<h2 className="text-xs font-semibold text-stone-500 dark:text-gray-400 uppercase tracking-wider mb-1.5">
+							About
+						</h2>
+						<p className="text-sm text-stone-600 dark:text-gray-400 leading-relaxed">
+							{experience.companyAbout}
+						</p>
+					</div>
+				)}
 
-				{/* Responsibilities */}
-				<div>
-					<h2 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">Key Responsibilities</h2>
-					<ul className="space-y-3">
-						{Array.isArray(experience.responsibilities) && experience.responsibilities.length > 0 ? (
-							experience.responsibilities.map((responsibility, index) => (
-								<li key={index} className="flex items-start gap-3">
-									<div className="flex-shrink-0 mt-1.5">
-										<div className="w-2 h-2 rounded-full bg-green-600 dark:bg-green-400"></div>
-									</div>
-									<span className="text-gray-700 dark:text-gray-300 leading-relaxed flex-1">
-										{responsibility}
+				{Array.isArray(experience.responsibilities) && experience.responsibilities.length > 0 && (
+					<div>
+						<h2 className="text-xs font-semibold text-stone-500 dark:text-gray-400 uppercase tracking-wider mb-2">
+							Responsibilities
+						</h2>
+						<ul className="space-y-2">
+							{experience.responsibilities.map((item, i) => (
+								<li key={i} className="flex items-start gap-2">
+									<span className="text-stone-400 dark:text-gray-500 mt-0.5 flex-shrink-0">•</span>
+									<span className="text-sm text-stone-600 dark:text-gray-400 leading-relaxed">
+										{item}
 									</span>
 								</li>
-							))
-						) : (
-							<li className="text-gray-500 dark:text-gray-400 italic">No responsibilities listed.</li>
-						)}
-					</ul>
-				</div>
+							))}
+						</ul>
+					</div>
+				)}
 			</div>
 		</article>
 	)
