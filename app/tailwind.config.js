@@ -10,6 +10,14 @@ export default {
 			fontFamily: {
 				sans: ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'sans-serif'],
 			},
+			colors: {
+				ivory: {
+					50: '#FAF9F6',
+					100: '#F5F3EF',
+					200: '#EBE8E2',
+					300: '#DDD9D1',
+				},
+			},
 		},
 	},
 	plugins: [

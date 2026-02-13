@@ -41,8 +41,8 @@ function Header() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 px-4 py-3 md:py-4 transition-all duration-300 ${
         isLandingPage
-          ? "bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200/50 dark:border-gray-700/50 md:bg-white/10 md:dark:bg-gray-900/10 md:border-b md:border-gray-200/20 md:dark:border-gray-700/30"
-          : "bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 shadow-sm"
+          ? "bg-ivory-50/90 dark:bg-gray-900/80 backdrop-blur-md border-b border-stone-200/60 dark:border-gray-700/50 md:bg-ivory-50/70 md:dark:bg-gray-900/10 md:border-b md:border-stone-200/30 md:dark:border-gray-700/30"
+          : "bg-ivory-50 dark:bg-gray-900 border-b border-stone-200 dark:border-gray-700 shadow-sm"
       }`}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -96,8 +96,8 @@ function Header() {
             to="/"
             className={`px-3 py-2 transition-colors rounded-lg ${
               isLandingPage
-                ? "text-gray-800 dark:text-gray-200 hover:text-gray-900 dark:hover:text-white"
-                : "text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+                ? "text-stone-800 dark:text-gray-200 hover:text-stone-900 dark:hover:text-white"
+                : "text-stone-700 dark:text-gray-300 hover:text-stone-900 dark:hover:text-white"
             }`}
           >
             Home
@@ -247,7 +247,7 @@ function Header() {
                 }}
               />
               <div
-                className={`mobile-menu-sidebar fixed top-0 right-0 bottom-0 w-64 z-[9999] bg-white dark:bg-gray-900 shadow-2xl transform transition-transform duration-300 md:hidden border-l border-gray-200 dark:border-gray-700 ${
+                className={`mobile-menu-sidebar fixed top-0 right-0 bottom-0 w-64 z-[9999] dark:bg-gray-900 shadow-2xl transform transition-transform duration-300 md:hidden border-l border-stone-200 dark:border-gray-700 ${
                   isMenuOpen ? "translate-x-0" : "translate-x-full"
                 }`}
                 style={{ position: "fixed", top: 0, right: 0, bottom: 0 }}

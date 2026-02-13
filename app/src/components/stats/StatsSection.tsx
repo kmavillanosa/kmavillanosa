@@ -28,7 +28,7 @@ function StatsSection() {
 
 	if (loading) {
 		return (
-			<section id="stats-section" className="py-20 px-4 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
+			<section id="stats-section" className="py-20 px-4 bg-ivory-50 dark:bg-gray-900">
 				<div className="max-w-7xl mx-auto">
 					<div className="flex justify-center items-center min-h-[400px]">
 						<Spinner size="xl" />
@@ -53,13 +53,13 @@ function StatsSection() {
 	})
 
 	return (
-		<section id="stats-section" className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
+		<section id="stats-section" className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-gradient-to-b from-ivory-100 to-ivory-50 dark:from-gray-900 dark:to-gray-800">
 			<div className="max-w-7xl mx-auto">
 				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
 					{stats.map((stat, index) => (
 						<div
 							key={index}
-							className="group relative bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 hover:border-green-300 dark:hover:border-green-700 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 text-center"
+							className="group relative bg-white dark:bg-gray-800 rounded-xl p-6 border border-stone-200 dark:border-gray-700 hover:border-green-300 dark:hover:border-green-700 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5 text-center"
 						>
 							<div className="flex justify-center mb-4">
 								<div className="w-16 h-16 rounded-full bg-gradient-to-br from-green-100 to-green-50 dark:from-green-900/40 dark:to-green-800/40 flex items-center justify-center text-green-600 dark:text-green-400 group-hover:scale-110 transition-transform duration-300">
@@ -67,14 +67,14 @@ function StatsSection() {
 								</div>
 							</div>
 							<div className="mb-2">
-								<div className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-1">
-									{stat.value}
+<div className="text-4xl md:text-5xl font-bold text-stone-900 dark:text-white mb-1">
+								{stat.value}
 								</div>
-								<div className="text-lg font-semibold text-gray-900 dark:text-white">
+								<div className="text-lg font-semibold text-stone-900 dark:text-white">
 									{stat.label}
 								</div>
 							</div>
-							<p className="text-sm text-gray-600 dark:text-gray-400">
+							<p className="text-sm text-stone-600 dark:text-gray-400">
 								{stat.description}
 							</p>
 							<div className="absolute inset-0 rounded-xl bg-gradient-to-br from-green-50/0 to-green-50/0 dark:from-green-900/0 dark:to-green-900/0 group-hover:from-green-50/50 group-hover:to-green-50/30 dark:group-hover:from-green-900/20 dark:group-hover:to-green-900/10 transition-all duration-300 pointer-events-none"></div>

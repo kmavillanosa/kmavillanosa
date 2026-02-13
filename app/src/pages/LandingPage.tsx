@@ -65,12 +65,12 @@ function LandingPage() {
 				</div>
 				
 				{/* Overlay for better text readability */}
-				<div className="absolute inset-0 bg-white/40 dark:bg-gray-900/60 backdrop-blur-[2px]"></div>
+				<div className="absolute inset-0 bg-ivory-50/70 dark:bg-gray-900/60 backdrop-blur-[2px]"></div>
 
 				<div className="text-center max-w-5xl w-full relative z-10 backdrop-blur-0">
 					<div className="flex flex-col items-center gap-8 animate-fade-in">
 						{/* Badge */}
-						<div className="inline-flex items-center gap-2.5 px-5 py-2.5 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 rounded-full text-sm text-green-700 dark:text-green-300 font-medium shadow-sm">
+						<div className="inline-flex items-center gap-2.5 px-5 py-2.5 bg-white/90 dark:bg-green-900/30 border border-stone-200 dark:border-green-800 rounded-full text-sm text-stone-700 dark:text-green-300 font-medium shadow-sm">
 							<svg className="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
 								<path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
 							</svg>
@@ -82,10 +82,10 @@ function LandingPage() {
 						</h1>
 						
 						<div className="space-y-3 md:space-y-4 px-4">
-							<p className="text-xl sm:text-2xl md:text-3xl font-semibold text-gray-800 dark:text-gray-200">
+							<p className="text-xl sm:text-2xl md:text-3xl font-semibold text-stone-800 dark:text-gray-200">
 								{siteSettings?.hero?.subtitle || 'Full Stack Software Engineer'}
 							</p>
-							<p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
+							<p className="text-base sm:text-lg md:text-xl text-stone-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
 								{replaceYearsPlaceholder(
 									siteSettings?.hero?.description ||
 										siteSettings?.description ||
@@ -162,7 +162,7 @@ function LandingPage() {
 
 						<button
 							onClick={scrollToServices}
-							className="mt-8 sm:mt-12 flex flex-col items-center gap-2 text-gray-500 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 transition-colors group touch-manipulation"
+							className="mt-8 sm:mt-12 flex flex-col items-center gap-2 text-stone-500 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 transition-colors group touch-manipulation"
 							aria-label="Scroll to services section"
 						>
 							<span className="text-sm font-medium">What I Offer</span>
@@ -185,16 +185,16 @@ function LandingPage() {
 
 			{/* Portfolio Section */}
 			{featuredPages.length > 0 && (
-				<section id="portfolio-section" className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900">
+				<section id="portfolio-section" className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-gradient-to-b from-ivory-100 to-ivory-50 dark:from-gray-800 dark:to-gray-900">
 					<div className="max-w-7xl mx-auto">
 						<div className="text-center mb-12 sm:mb-16">
 							<div className="inline-block mb-4">
 								<span className="text-green-600 dark:text-green-400 font-semibold text-sm uppercase tracking-wider">Portfolio</span>
 							</div>
-							<h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
+							<h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-stone-900 dark:text-white mb-4 sm:mb-6">
 								Featured Work
 							</h2>
-							<p className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed px-4">
+							<p className="text-lg sm:text-xl text-stone-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed px-4">
 								Explore some of my recent projects and contributions. Each project represents a unique challenge and creative solution.
 							</p>
 						</div>
@@ -234,16 +234,16 @@ function LandingPage() {
 
 			{/* Experience Section */}
 			{experiences.length > 0 && (
-				<section id="experience-section" className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900">
+				<section id="experience-section" className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-gradient-to-b from-ivory-50 to-ivory-100 dark:from-gray-800 dark:to-gray-900">
 					<div className="max-w-7xl mx-auto">
 						<div className="text-center mb-12 sm:mb-16">
 							<div className="inline-block mb-4">
 								<span className="text-green-600 dark:text-green-400 font-semibold text-sm uppercase tracking-wider">Experience</span>
 							</div>
-							<h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
+							<h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-stone-900 dark:text-white mb-4 sm:mb-6">
 								Professional Journey
 							</h2>
-							<p className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed px-4">
+							<p className="text-lg sm:text-xl text-stone-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed px-4">
 								My career path and the companies I've had the privilege to work with.
 							</p>
 						</div>

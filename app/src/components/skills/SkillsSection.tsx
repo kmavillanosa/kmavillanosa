@@ -17,12 +17,12 @@ function SkillCard({
 	return (
 		<div
 			className="
-				group flex items-center gap-2 sm:gap-3 rounded-lg border border-gray-200/80 dark:border-gray-600/60
+				group flex items-center gap-2 sm:gap-3 rounded-lg border border-stone-200 dark:border-gray-600/60
 				bg-white dark:bg-gray-800/80 px-3 py-2 sm:px-4 sm:py-2.5
 				transition-all duration-200 hover:shadow-md hover:border-green-200 dark:hover:border-green-700/60 hover:-translate-y-0.5
 			"
 		>
-			<div className="flex-shrink-0 w-8 h-8 sm:w-9 sm:h-9 rounded-md bg-gray-100 dark:bg-gray-700/80 flex items-center justify-center ring-1 ring-gray-200/50 dark:ring-gray-600/50">
+			<div className="flex-shrink-0 w-8 h-8 sm:w-9 sm:h-9 rounded-md bg-stone-100 dark:bg-gray-700/80 flex items-center justify-center ring-1 ring-stone-200/50 dark:ring-gray-600/50">
 				{techStackIconName ? (
 					<StackIcon
 						name={techStackIconName}
@@ -37,12 +37,12 @@ function SkillCard({
 						loading="lazy"
 					/>
 				) : (
-					<span className="text-sm font-bold text-gray-400 dark:text-gray-500 select-none">
+					<span className="text-sm font-bold text-stone-400 dark:text-gray-500 select-none">
 						{skill.name.charAt(0)}
 					</span>
 				)}
 			</div>
-			<span className="font-medium text-gray-800 dark:text-gray-200 text-sm truncate">
+			<span className="font-medium text-stone-800 dark:text-gray-200 text-sm truncate">
 				{skill.name}
 			</span>
 		</div>
@@ -56,7 +56,7 @@ function SkillsSection() {
 		return (
 			<section
 				id="skills-section"
-				className="py-12 px-4 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900"
+				className="py-12 px-4 bg-ivory-50 dark:from-gray-800 dark:to-gray-900"
 			>
 				<div className="max-w-7xl mx-auto flex justify-center items-center min-h-[200px]">
 					<Spinner size="xl" />
@@ -75,17 +75,17 @@ function SkillsSection() {
 	return (
 		<section
 			id="skills-section"
-			className="py-8 sm:py-10 px-4 sm:px-6 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900"
+			className="py-8 sm:py-10 px-4 sm:px-6 bg-gradient-to-b from-ivory-50 to-ivory-100 dark:from-gray-800 dark:to-gray-900"
 		>
 			<div className="max-w-7xl mx-auto">
 				<div className="text-center mb-6 sm:mb-8">
 					<span className="text-green-600 dark:text-green-400 font-semibold text-xs uppercase tracking-wider">
 						Skills & Technologies
 					</span>
-					<h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mt-2 mb-2">
+					<h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-stone-900 dark:text-white mt-2 mb-2">
 						Technical Expertise
 					</h2>
-					<p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 max-w-xl mx-auto">
+					<p className="text-sm sm:text-base text-stone-600 dark:text-gray-400 max-w-xl mx-auto">
 						Technologies and frameworks I use to build solutions.
 					</p>
 				</div>
@@ -95,7 +95,7 @@ function SkillsSection() {
 						const categorySkills = skills.filter((s) => s.category === category)
 						return (
 							<div key={category}>
-								<h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 flex items-center gap-2">
+								<h3 className="text-sm font-semibold text-stone-700 dark:text-gray-300 mb-2 flex items-center gap-2">
 									<span className="w-0.5 h-4 bg-gradient-to-b from-green-500 to-emerald-500 rounded-full" />
 									{category}
 								</h3>
