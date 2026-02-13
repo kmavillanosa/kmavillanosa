@@ -7,7 +7,7 @@ description: >+
 ---
 ![src](/kmavillanosa/cms/media/lettercraft-professional-cover-letter-generator-02-13-2026_09_06_am.png "image ")
 
-**LetterCraft** is a professional cover letter generator that helps you create polished, personalized cover letters quickly and easily. https://kmavillanosa.github.io/lettercraft
+**LetterCraft** is a professional cover letter generator that helps you create polished, personalized cover letters quickly and easily. <https://kmavillanosa.github.io/lettercraft>
 
 Features:
 
