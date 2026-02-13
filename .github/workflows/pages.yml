@@ -1,14 +1,10 @@
 name: Deploy to GitHub Pages
 
 # Deployment Structure:
-# - App is built with base path '/kmavillanosa/' (configured in vite.config.ts)
-# - Repository name: kmavillanosa (served at /kmavillanosa/)
-# - CMS files are copied to dist/cms/ and accessible at /kmavillanosa/cms/
-# - Final URLs:
-#   - App: https://kmavillanosa.github.io/kmavillanosa/
-#   - CMS Admin: https://kmavillanosa.github.io/kmavillanosa/cms/admin/
-#   - CMS Media: https://kmavillanosa.github.io/kmavillanosa/cms/media/
-#   - Root: https://kmavillanosa.github.io/kmavillanosa/ (serves index.html)
+# - App is built with base path '/kmavillanosa/' (vite.config.ts)
+# - Repository name: kmavillanosa (served at https://kmavillanosa.github.io/kmavillanosa/)
+# - robots.txt and sitemap.xml are copied to dist root → .../kmavillanosa/robots.txt, .../kmavillanosa/sitemap.xml
+# - CMS files are copied to dist/cms/
 
 on:
   push:

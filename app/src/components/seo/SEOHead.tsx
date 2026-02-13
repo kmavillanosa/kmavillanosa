@@ -30,11 +30,11 @@ function SEOHead({
 	const fullDescription =
 		description ||
 		siteSettings?.description ||
-		'Full Stack Software Engineer with 8+ years of experience. Specializing in React, TypeScript, Node.js, 3D graphics, and scalable system architecture. Available for opportunities.'
+		'Full Stack Developer · React, TypeScript, Node.js, WebGL. 10+ years. Remote from Philippines. Available for hire.'
 
 	const fullKeywords =
 		keywords ||
-		'Software Engineer, Full Stack Developer, React Developer, TypeScript, Node.js, Web Developer, Frontend Developer, Backend Developer, 3D Graphics, System Architecture, Philippines, Remote Developer'
+		'Full Stack Developer, React Developer, TypeScript, Node.js, 3D Graphics, WebGL, System Architecture, Remote Developer, Philippines'
 
 	const canonicalUrl = `${BASE_URL}${location.pathname}`
 

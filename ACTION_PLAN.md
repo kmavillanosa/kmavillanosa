@@ -38,7 +38,7 @@ Copy this template and post it:
 I've updated my portfolio with my latest work and experience:
 🔗 https://kmavillanosa.github.io/kmavillanosa/
 
-I'm a Full Stack Software Engineer with 8+ years of experience specializing in:
+I'm a Full Stack Software Engineer with 10+ years of experience specializing in:
 • React, TypeScript, Node.js
 • 3D Graphics (Three.js, WebGL)
 • System Architecture & Design
