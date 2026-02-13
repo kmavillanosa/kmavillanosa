@@ -27,6 +27,21 @@ export interface SiteSettings {
 		availability: string
 	}
 	resumeUrl?: string
+	/** Shown to hirers: open to full-time, contract, etc. */
+	availability?: {
+		openTo: string[]
+		timezone?: string
+	}
+	/** Short value props / "what I bring" for hirers (3–5 bullets). */
+	valueProps?: string[]
+	/** Certifications (image URL, title, optional issuer/year). */
+	certifications?: {
+		title: string
+		issuer?: string
+		url: string
+		year?: string
+		credentialId?: string
+	}[]
 }
 
 export interface PageFrontMatter {

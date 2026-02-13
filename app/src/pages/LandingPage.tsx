@@ -21,8 +21,11 @@ function LandingPage() {
 
 	const sections = [
 		{ id: 'hero-section', label: 'Home' },
+		{ id: 'availability-section', label: 'Availability' },
 		{ id: 'services-section', label: 'Services' },
 		{ id: 'stats-section', label: 'Stats' },
+		{ id: 'value-props-section', label: 'What I bring' },
+		{ id: 'certifications-section', label: 'Certifications' },
 		{ id: 'skills-section', label: 'Skills' },
 		{ id: 'portfolio-section', label: 'Portfolio' },
 		{ id: 'experience-section', label: 'Experience' },
@@ -31,6 +34,9 @@ function LandingPage() {
 		// Filter sections based on content availability
 		if (section.id === 'portfolio-section' && featuredPages.length === 0) return false
 		if (section.id === 'experience-section' && experiences.length === 0) return false
+		if (section.id === 'availability-section' && !siteSettings?.availability?.openTo?.length && !siteSettings?.availability?.timezone) return false
+		if (section.id === 'value-props-section' && (siteSettings?.valueProps ?? []).length === 0) return false
+		if (section.id === 'certifications-section' && (siteSettings?.certifications ?? []).length === 0) return false
 		return true
 	})
 
@@ -140,11 +146,110 @@ function LandingPage() {
 				</div>
 			</section>
 
+			{/* Availability — open to / timezone (hirer-focused) */}
+			{(siteSettings?.availability?.openTo?.length || siteSettings?.availability?.timezone) && (
+				<section id="availability-section" className="py-6 px-4 sm:px-6 bg-theme-surface border-y border-theme">
+					<div className="max-w-5xl mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-center gap-4 sm:gap-8 text-center sm:text-left">
+						{siteSettings.availability.openTo?.length > 0 && (
+							<div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
+								<span className="text-xs font-semibold text-theme-text-muted uppercase tracking-wider">Open to</span>
+								{siteSettings.availability.openTo.map((item) => (
+									<span key={item} className="px-2.5 py-1 text-sm font-medium rounded bg-theme-elevated text-theme-text-secondary border border-theme-muted">
+										{item}
+									</span>
+								))}
+							</div>
+						)}
+						{siteSettings.availability.timezone && (
+							<div className="flex items-center justify-center sm:justify-start gap-1.5 text-sm text-theme-text-muted">
+								<svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+									<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+								</svg>
+								<span>{siteSettings.availability.timezone}</span>
+							</div>
+						)}
+					</div>
+				</section>
+			)}
+
 			{/* Services Section */}
 			<ServicesSection />
 
 			{/* Stats Section */}
 			<StatsSection />
+
+			{/* What I bring — value props for hirers */}
+			{(siteSettings?.valueProps ?? []).length > 0 && (
+				<section id="value-props-section" className="py-10 sm:py-12 px-4 sm:px-6 bg-theme-page">
+					<div className="max-w-5xl mx-auto">
+						<div className="text-center mb-8">
+							<h2 className="text-xl sm:text-2xl font-bold text-theme-text-primary mb-1">
+								What I bring
+							</h2>
+							<p className="text-sm text-theme-text-secondary max-w-xl mx-auto">
+								Why I'm a strong fit for remote and contract roles.
+							</p>
+						</div>
+						<ul className="space-y-4">
+							{(siteSettings?.valueProps ?? []).map((text, i) => (
+								<li key={i} className="flex items-start gap-3 p-3 rounded-lg bg-theme-surface border border-theme">
+									<span className="flex-shrink-0 w-6 h-6 rounded-full bg-theme-accent text-theme-accent-foreground flex items-center justify-center text-xs font-bold">
+										{i + 1}
+									</span>
+									<span className="text-sm text-theme-text-secondary leading-relaxed pt-0.5">
+										{text}
+									</span>
+								</li>
+							))}
+						</ul>
+					</div>
+				</section>
+			)}
+
+			{/* Certifications */}
+			{(siteSettings?.certifications ?? []).length > 0 && (
+				<section id="certifications-section" className="py-10 sm:py-12 px-4 sm:px-6 bg-theme-surface">
+					<div className="max-w-5xl mx-auto">
+						<div className="text-center mb-8">
+							<h2 className="text-xl sm:text-2xl font-bold text-theme-text-primary mb-1">
+								Certifications
+							</h2>
+							<p className="text-sm text-theme-text-secondary max-w-xl mx-auto">
+								Credentials and professional certifications.
+							</p>
+						</div>
+						<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+							{(siteSettings?.certifications ?? []).map((cert, i) => (
+								<a
+									key={i}
+									href={cert.url}
+									target="_blank"
+									rel="noopener noreferrer"
+									className="block rounded-lg border border-theme bg-theme-elevated overflow-hidden hover:border-theme-muted transition-colors focus:outline-none focus:ring-2 focus:ring-theme-accent focus:ring-offset-2 focus:ring-offset-theme-page"
+								>
+									<div className="aspect-[4/3] bg-theme-page overflow-hidden">
+										<img
+											src={cert.url}
+											alt={cert.title}
+											className="w-full h-full object-contain"
+										/>
+									</div>
+									<div className="p-3">
+										<p className="text-sm font-semibold text-theme-text-primary">
+											{cert.title}
+										</p>
+										{(cert.issuer || cert.year || cert.credentialId) && (
+											<p className="text-xs text-theme-text-muted mt-0.5">
+												{[cert.issuer, cert.year, cert.credentialId && `Credential ID ${cert.credentialId}`].filter(Boolean).join(' · ')}
+											</p>
+										)}
+									</div>
+								</a>
+							))}
+						</div>
+					</div>
+				</section>
+			)}
 
 			{/* Skills Section */}
 			<SkillsSection />
