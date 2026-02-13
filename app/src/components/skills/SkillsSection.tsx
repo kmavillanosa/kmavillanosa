@@ -4,10 +4,7 @@ import StackIcon from 'tech-stack-icons'
 import { useThemeStore } from '@/stores/themeStore'
 import { getTechStackIconName, getSkillLogoUrl } from './skill-logos'
 
-const HEX_COLS = 8
-const ROW_CLASS = 'flex flex-wrap justify-center gap-[4px] mb-[-2px]'
-
-function SkillHex({
+function SkillCard({
 	skill,
 }: {
 	skill: { name: string; category: string; icon?: string }
@@ -19,42 +16,37 @@ function SkillHex({
 
 	return (
 		<div
-			className="skill-hex w-14 h-16 sm:w-16 sm:h-[74px] flex flex-col items-center justify-center bg-white dark:bg-gray-800/90 border border-gray-200/80 dark:border-gray-600/60 transition-all duration-200 hover:border-green-400 dark:hover:border-green-500 hover:shadow-md hover:scale-105 hover:z-10"
-			title={skill.name}
+			className="
+				group flex items-center gap-2 sm:gap-3 rounded-lg border border-gray-200/80 dark:border-gray-600/60
+				bg-white dark:bg-gray-800/80 px-3 py-2 sm:px-4 sm:py-2.5
+				transition-all duration-200 hover:shadow-md hover:border-green-200 dark:hover:border-green-700/60 hover:-translate-y-0.5
+			"
 		>
-			<div className="flex-shrink-0 w-6 h-6 sm:w-7 sm:h-7 flex items-center justify-center [&_svg]:w-full [&_svg]:h-full [&_svg]:object-contain">
+			<div className="flex-shrink-0 w-8 h-8 sm:w-9 sm:h-9 rounded-md bg-gray-100 dark:bg-gray-700/80 flex items-center justify-center ring-1 ring-gray-200/50 dark:ring-gray-600/50">
 				{techStackIconName ? (
 					<StackIcon
 						name={techStackIconName}
 						variant={variant}
-						className="w-full h-full [&_svg]:w-full [&_svg]:h-full [&_svg]:object-contain"
+						className="w-5 h-5 sm:w-6 sm:h-6 [&_svg]:w-full [&_svg]:h-full [&_svg]:object-contain"
 					/>
 				) : logoUrl ? (
 					<img
 						src={logoUrl}
 						alt=""
-						className="w-full h-full object-contain"
+						className="w-5 h-5 sm:w-6 sm:h-6 object-contain"
 						loading="lazy"
 					/>
 				) : (
-					<span className="text-xs sm:text-sm font-bold text-gray-400 dark:text-gray-500 select-none">
+					<span className="text-sm font-bold text-gray-400 dark:text-gray-500 select-none">
 						{skill.name.charAt(0)}
 					</span>
 				)}
 			</div>
-			<span className="text-[10px] sm:text-xs font-medium text-gray-700 dark:text-gray-300 truncate w-full text-center px-0.5 mt-0.5 leading-tight">
-				{skill.name.length > 10 ? skill.name.slice(0, 9) + '…' : skill.name}
+			<span className="font-medium text-gray-800 dark:text-gray-200 text-sm truncate">
+				{skill.name}
 			</span>
 		</div>
 	)
-}
-
-function chunk<T>(arr: T[], size: number): T[][] {
-	const out: T[][] = []
-	for (let i = 0; i < arr.length; i += size) {
-		out.push(arr.slice(i, i + size))
-	}
-	return out
 }
 
 function SkillsSection() {
@@ -64,12 +56,10 @@ function SkillsSection() {
 		return (
 			<section
 				id="skills-section"
-				className="py-20 px-4 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900"
+				className="py-12 px-4 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900"
 			>
-				<div className="max-w-7xl mx-auto">
-					<div className="flex justify-center items-center min-h-[400px]">
-						<Spinner size="xl" />
-					</div>
+				<div className="max-w-7xl mx-auto flex justify-center items-center min-h-[200px]">
+					<Spinner size="xl" />
 				</div>
 			</section>
 		)
@@ -85,44 +75,33 @@ function SkillsSection() {
 	return (
 		<section
 			id="skills-section"
-			className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900"
+			className="py-8 sm:py-10 px-4 sm:px-6 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900"
 		>
 			<div className="max-w-7xl mx-auto">
-				<div className="text-center mb-10 sm:mb-12">
-					<div className="inline-block mb-4">
-						<span className="text-green-600 dark:text-green-400 font-semibold text-sm uppercase tracking-wider">
-							Skills & Technologies
-						</span>
-					</div>
-					<h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
+				<div className="text-center mb-6 sm:mb-8">
+					<span className="text-green-600 dark:text-green-400 font-semibold text-xs uppercase tracking-wider">
+						Skills & Technologies
+					</span>
+					<h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mt-2 mb-2">
 						Technical Expertise
 					</h2>
-					<p className="text-lg sm:text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed px-4">
-						A comprehensive toolkit of modern technologies and frameworks I use to
-						build exceptional solutions.
+					<p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 max-w-xl mx-auto">
+						Technologies and frameworks I use to build solutions.
 					</p>
 				</div>
 
-				<div className="space-y-8 sm:space-y-10">
+				<div className="space-y-5 sm:space-y-6">
 					{categories.map((category) => {
 						const categorySkills = skills.filter((s) => s.category === category)
-						const rows = chunk(categorySkills, HEX_COLS)
 						return (
 							<div key={category}>
-								<h3 className="text-base sm:text-lg font-semibold text-gray-700 dark:text-gray-300 mb-3 flex items-center gap-2">
-									<span className="w-1 h-5 sm:h-6 bg-gradient-to-b from-green-500 to-emerald-500 rounded-full" />
+								<h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 flex items-center gap-2">
+									<span className="w-0.5 h-4 bg-gradient-to-b from-green-500 to-emerald-500 rounded-full" />
 									{category}
 								</h3>
-								<div className="flex flex-col items-center gap-0">
-									{rows.map((row, rowIndex) => (
-										<div
-											key={rowIndex}
-											className={`${ROW_CLASS} ${rowIndex % 2 === 1 ? 'hex-row-even' : ''}`}
-										>
-											{row.map((skill) => (
-												<SkillHex key={skill.name} skill={skill} />
-											))}
-										</div>
+								<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 sm:gap-2.5">
+									{categorySkills.map((skill) => (
+										<SkillCard key={skill.name} skill={skill} />
 									))}
 								</div>
 							</div>
