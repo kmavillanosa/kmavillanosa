@@ -136,7 +136,6 @@ cv:
         details: |
           Runtime: .NET Framework, .NET Core
           Frameworks: WPF, WinForms
-          Design Patterns: MVVM, IoC, Observer, Facade, Factory
 
       - label: Mobile Development
         details: Ionic React, React Native
@@ -176,8 +175,6 @@ cv:
 
       - label: Development Practices
         details: |
-          Architecture Patterns: Domain-Driven Design (DDD), Clean Architecture, Vertical Slice Architecture
-          Design Patterns: MVC, IoC, Observer, Facade, Factory, MVVM
           Methodologies: Agile Scrum, Kanban
 
       - label: Development Tools
