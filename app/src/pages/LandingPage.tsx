@@ -11,6 +11,7 @@ import StatsSection from '@/components/stats/StatsSection'
 import CTASection from '@/components/cta/CTASection'
 import ScrollMinimap from '@/components/layout/ScrollMinimap'
 import SEOHead from '@/components/seo/SEOHead'
+import { replaceYearsPlaceholder } from '@/utils/years-of-experience'
 
 function LandingPage() {
 	const { data: pages, loading: pagesLoading } = usePages()
@@ -47,7 +48,6 @@ function LandingPage() {
 		<div className="min-h-screen relative" style={{ isolation: 'isolate' }}>
 			<SEOHead
 				title="Full Stack Software Engineer"
-				description="Full Stack Developer · React, TypeScript, Node.js, WebGL. 10+ years. Remote from Philippines. Available for hire."
 				keywords="Full Stack Developer, React Developer, TypeScript, Node.js, 3D Graphics, WebGL, System Architecture, Remote Developer, Philippines"
 			/>
 			<ScrollMinimap sections={sections} />
@@ -86,7 +86,12 @@ function LandingPage() {
 								{siteSettings?.hero?.subtitle || 'Full Stack Software Engineer'}
 							</p>
 							<p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed">
-								{siteSettings?.hero?.description || siteSettings?.description || 'I make cool stuff for a living'}
+								{replaceYearsPlaceholder(
+									siteSettings?.hero?.description ||
+										siteSettings?.description ||
+										'I make cool stuff for a living',
+									siteSettings?.experienceSince
+								)}
 							</p>
 						</div>
 

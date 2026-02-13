@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useSiteSettings } from '@/hooks/useSiteSettings'
+import { replaceYearsPlaceholder } from '@/utils/years-of-experience'
 
 interface SEOHeadProps {
 	title?: string
@@ -27,10 +28,15 @@ function SEOHead({
 		? `${title} | ${siteSettings?.title || 'Kim Avillanosa'}`
 		: `${siteSettings?.title || 'Kim Avillanosa'} - Full Stack Software Engineer | Portfolio`
 
-	const fullDescription =
+	const rawDescription =
 		description ||
+		siteSettings?.hero?.description ||
 		siteSettings?.description ||
-		'Full Stack Developer · React, TypeScript, Node.js, WebGL. 10+ years. Remote from Philippines. Available for hire.'
+		'Full Stack Developer · React, TypeScript, Node.js, WebGL. {{years}}+ years. Remote from Philippines. Available for hire.'
+	const fullDescription = replaceYearsPlaceholder(
+		rawDescription,
+		siteSettings?.experienceSince
+	)
 
 	const fullKeywords =
 		keywords ||

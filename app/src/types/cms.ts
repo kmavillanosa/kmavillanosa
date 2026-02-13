@@ -9,6 +9,8 @@ export interface SiteSettings {
 	description: string
 	url: string
 	author: string
+	/** Start year for computing years of experience (e.g. 2016). Used to derive "X+ years" in stats and descriptions. */
+	experienceSince?: number
 	logo?: string
 	theme?: {
 		primaryColor: string

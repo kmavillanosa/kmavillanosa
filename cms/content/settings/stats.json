@@ -1,7 +1,7 @@
 {
 	"stats": [
 		{
-			"value": "8+",
+			"value": "{{years}}+",
 			"label": "Years of Experience",
 			"description": "Building software solutions"
 		},

@@ -3,6 +3,7 @@
   "description": "I make cool stuff for a living",
   "url": "https://kmavillanosa.github.io/kmavillanosa",
   "author": "Kim Avillanosa",
+  "experienceSince": 2016,
   "theme": {
     "primaryColor": "green",
     "secondaryColor": "emerald",
@@ -11,7 +12,7 @@
   "logo": "/kmavillanosa/cms/media/484150136_28887338870879440_7384188797542236195_n.jpg",
   "hero": {
     "subtitle": "Full Stack Software Engineer",
-    "description": "Full Stack Developer · React, TypeScript, Node.js, WebGL. 10+ years. Remote from Philippines. Available for hire."
+    "description": "Full Stack Developer · React, TypeScript, Node.js, WebGL. {{years}}+ years. Remote from Philippines. Available for hire."
   },
   "cta": {
     "title": "Ready to Build Something Amazing?",

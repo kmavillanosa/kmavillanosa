@@ -1,5 +1,7 @@
 import { useStats } from '@/hooks/useStats'
+import { useSiteSettings } from '@/hooks/useSiteSettings'
 import { Spinner } from 'flowbite-react'
+import { getYearsOfExperience } from '@/utils/years-of-experience'
 
 const statIcons: Record<string, JSX.Element> = {
 	'Years of Experience': (
@@ -21,6 +23,8 @@ const statIcons: Record<string, JSX.Element> = {
 
 function StatsSection() {
 	const { data: statsData, loading } = useStats()
+	const { data: siteSettings } = useSiteSettings()
+	const experienceSince = siteSettings?.experienceSince
 
 	if (loading) {
 		return (
@@ -38,7 +42,15 @@ function StatsSection() {
 		return null
 	}
 
-	const stats = statsData.stats
+	const stats = statsData.stats.map((stat) => {
+		const isYearsStat =
+			stat.label === 'Years of Experience' ||
+			stat.value === '{{years}}+'
+		const value = isYearsStat
+			? `${getYearsOfExperience(experienceSince)}+`
+			: stat.value
+		return { ...stat, value }
+	})
 
 	return (
 		<section id="stats-section" className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
