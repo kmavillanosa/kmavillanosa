@@ -4,7 +4,10 @@ import StackIcon from 'tech-stack-icons'
 import { useThemeStore } from '@/stores/themeStore'
 import { getTechStackIconName, getSkillLogoUrl } from './skill-logos'
 
-function SkillCard({
+const HEX_COLS = 8
+const ROW_CLASS = 'flex flex-wrap justify-center gap-[4px] mb-[-2px]'
+
+function SkillHex({
 	skill,
 }: {
 	skill: { name: string; category: string; icon?: string }
@@ -12,43 +15,46 @@ function SkillCard({
 	const theme = useThemeStore((s) => s.theme)
 	const techStackIconName = getTechStackIconName(skill.name, skill.icon)
 	const logoUrl = getSkillLogoUrl(skill.name, skill.icon)
-
 	const variant = theme === 'dark' ? 'dark' : 'light'
 
 	return (
 		<div
-			className="
-				group flex items-center gap-3 sm:gap-4 rounded-xl border border-gray-200/80 dark:border-gray-600/60
-				bg-white dark:bg-gray-800/80 px-4 py-3 sm:px-5 sm:py-3.5
-				transition-all duration-300 hover:shadow-lg hover:shadow-gray-200/50 dark:hover:shadow-gray-900/50
-				hover:border-green-200 dark:hover:border-green-700/60 hover:-translate-y-0.5
-			"
+			className="skill-hex w-14 h-16 sm:w-16 sm:h-[74px] flex flex-col items-center justify-center bg-white dark:bg-gray-800/90 border border-gray-200/80 dark:border-gray-600/60 transition-all duration-200 hover:border-green-400 dark:hover:border-green-500 hover:shadow-md hover:scale-105 hover:z-10"
+			title={skill.name}
 		>
-			<div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-gray-100 dark:bg-gray-700/80 flex items-center justify-center overflow-hidden ring-1 ring-gray-200/50 dark:ring-gray-600/50">
+			<div className="flex-shrink-0 w-6 h-6 sm:w-7 sm:h-7 flex items-center justify-center [&_svg]:w-full [&_svg]:h-full [&_svg]:object-contain">
 				{techStackIconName ? (
 					<StackIcon
 						name={techStackIconName}
 						variant={variant}
-						className="w-6 h-6 sm:w-8 sm:h-8 [&_svg]:w-full [&_svg]:h-full [&_svg]:object-contain"
+						className="w-full h-full [&_svg]:w-full [&_svg]:h-full [&_svg]:object-contain"
 					/>
 				) : logoUrl ? (
 					<img
 						src={logoUrl}
 						alt=""
-						className="w-6 h-6 sm:w-8 sm:h-8 object-contain"
+						className="w-full h-full object-contain"
 						loading="lazy"
 					/>
 				) : (
-					<span className="text-lg sm:text-xl font-bold text-gray-400 dark:text-gray-500 select-none">
+					<span className="text-xs sm:text-sm font-bold text-gray-400 dark:text-gray-500 select-none">
 						{skill.name.charAt(0)}
 					</span>
 				)}
 			</div>
-			<span className="font-medium text-gray-800 dark:text-gray-200 text-sm sm:text-base truncate">
-				{skill.name}
+			<span className="text-[10px] sm:text-xs font-medium text-gray-700 dark:text-gray-300 truncate w-full text-center px-0.5 mt-0.5 leading-tight">
+				{skill.name.length > 10 ? skill.name.slice(0, 9) + '…' : skill.name}
 			</span>
 		</div>
 	)
+}
+
+function chunk<T>(arr: T[], size: number): T[][] {
+	const out: T[][] = []
+	for (let i = 0; i < arr.length; i += size) {
+		out.push(arr.slice(i, i + size))
+	}
+	return out
 }
 
 function SkillsSection() {
@@ -82,7 +88,7 @@ function SkillsSection() {
 			className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900"
 		>
 			<div className="max-w-7xl mx-auto">
-				<div className="text-center mb-12 sm:mb-16">
+				<div className="text-center mb-10 sm:mb-12">
 					<div className="inline-block mb-4">
 						<span className="text-green-600 dark:text-green-400 font-semibold text-sm uppercase tracking-wider">
 							Skills & Technologies
@@ -97,18 +103,26 @@ function SkillsSection() {
 					</p>
 				</div>
 
-				<div className="space-y-10 sm:space-y-12">
+				<div className="space-y-8 sm:space-y-10">
 					{categories.map((category) => {
 						const categorySkills = skills.filter((s) => s.category === category)
+						const rows = chunk(categorySkills, HEX_COLS)
 						return (
 							<div key={category}>
-								<h3 className="text-base sm:text-lg font-semibold text-gray-700 dark:text-gray-300 mb-4 flex items-center gap-2">
+								<h3 className="text-base sm:text-lg font-semibold text-gray-700 dark:text-gray-300 mb-3 flex items-center gap-2">
 									<span className="w-1 h-5 sm:h-6 bg-gradient-to-b from-green-500 to-emerald-500 rounded-full" />
 									{category}
 								</h3>
-								<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
-									{categorySkills.map((skill) => (
-										<SkillCard key={skill.name} skill={skill} />
+								<div className="flex flex-col items-center gap-0">
+									{rows.map((row, rowIndex) => (
+										<div
+											key={rowIndex}
+											className={`${ROW_CLASS} ${rowIndex % 2 === 1 ? 'hex-row-even' : ''}`}
+										>
+											{row.map((skill) => (
+												<SkillHex key={skill.name} skill={skill} />
+											))}
+										</div>
 									))}
 								</div>
 							</div>

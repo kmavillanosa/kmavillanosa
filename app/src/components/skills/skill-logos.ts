@@ -76,7 +76,6 @@ export function getTechStackIconName(
 export const SKILL_LOGO_MAP: Record<string, string> = {
 	'WPF': 'wpf.png',
 	'Zustand': 'zustand.png',
-	'Keycloak': 'jenkins.png',
 }
 
 export function getSkillLogoUrl(skillName: string, iconFromCms?: string): string | null {

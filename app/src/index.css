@@ -109,3 +109,17 @@ body {
 	animation: progress 1.5s ease-in-out infinite;
 }
 
+/* Skills section: hexagonal (honeycomb) grid */
+.skill-hex {
+	clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+/* Offset every other row by half a hex width for honeycomb */
+.hex-row-even {
+	margin-left: 30px;
+}
+@media (min-width: 640px) {
+	.hex-row-even {
+		margin-left: 34px;
+	}
+}
+
