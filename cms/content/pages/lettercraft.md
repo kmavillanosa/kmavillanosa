@@ -1,9 +1,8 @@
 ---
 title: LetterCraft
 date: 2025-01-27T00:00:00.000+08:00
-description: >+
-  Professional Cover Letter Generator - Create polished cover letters with
-  customizable templates for job applications and Upwork proposals
+description: Professional Cover Letter Generator - Create polished cover letters
+  with customizable templates for job applications and Upwork proposals
 ---
 ![src](/kmavillanosa/cms/media/lettercraft-professional-cover-letter-generator-02-13-2026_09_06_am.png "image ")
 
