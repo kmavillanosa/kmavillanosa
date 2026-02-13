@@ -28,7 +28,7 @@ function NavigationLoader() {
 
 	return (
 		<div 
-			className={`fixed inset-0 z-[100] flex items-center justify-center bg-white/90 dark:bg-gray-900/90 backdrop-blur-xl transition-all duration-500 ${
+			className={`fixed inset-0 z-[100] flex items-center justify-center bg-white/90 dark:bg-[var(--theme-bg-page)]/90 backdrop-blur-xl transition-all duration-500 ${
 				isVisible ? 'opacity-100' : 'opacity-0'
 			}`}
 			style={{

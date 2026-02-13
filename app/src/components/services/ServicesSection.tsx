@@ -58,13 +58,13 @@ function ServicesSection() {
 	}
 
 	return (
-		<section id="services-section" className="py-10 sm:py-12 px-4 sm:px-6 bg-ivory-50 dark:bg-gray-900">
+		<section id="services-section" className="py-10 sm:py-12 px-4 sm:px-6 bg-theme-page">
 			<div className="max-w-5xl mx-auto">
 				<div className="text-center mb-8">
-					<h2 className="text-xl sm:text-2xl font-bold text-stone-900 dark:text-white mb-1">
+					<h2 className="text-xl sm:text-2xl font-bold text-theme-text-primary mb-1">
 						What I Offer
 					</h2>
-					<p className="text-sm text-stone-600 dark:text-gray-400 max-w-xl mx-auto">
+					<p className="text-sm text-theme-text-secondary max-w-xl mx-auto">
 						Development services across web, desktop, and automation.
 					</p>
 				</div>
@@ -73,14 +73,14 @@ function ServicesSection() {
 					{services.services.map((service, index) => (
 						<div
 							key={index}
-							className="bg-white dark:bg-gray-800 rounded-lg p-4 border border-stone-200 dark:border-gray-700"
+							className="bg-theme-surface rounded-lg p-4 border border-theme"
 						>
 							<div className="flex items-start gap-3">
-								<div className="flex-shrink-0 w-10 h-10 rounded-md bg-ivory-100 dark:bg-gray-700 flex items-center justify-center text-stone-600 dark:text-gray-300">
+								<div className="flex-shrink-0 w-10 h-10 rounded-md bg-theme-elevated-muted flex items-center justify-center text-theme-text-secondary">
 									{getServiceIcon(service)}
 								</div>
 								<div className="flex-1 min-w-0">
-									<h3 className="text-sm font-semibold text-stone-900 dark:text-white">
+									<h3 className="text-sm font-semibold text-theme-text-primary">
 										{service}
 									</h3>
 								</div>

@@ -67,7 +67,7 @@ function ScrollMinimap({ sections }: ScrollMinimapProps) {
 
 	return (
 		<div className="fixed right-4 top-1/2 -translate-y-1/2 z-40 hidden lg:block">
-			<nav className="flex flex-col items-center gap-1.5 py-2 px-1.5 bg-ivory-100 dark:bg-gray-800 border border-stone-200 dark:border-gray-600 rounded-md">
+			<nav className="flex flex-col items-center gap-1.5 py-2 px-1.5 bg-theme-elevated border border-theme-muted rounded-md">
 				{sections.map((section) => {
 					const isActive = activeSection === section.id
 					return (
@@ -76,13 +76,13 @@ function ScrollMinimap({ sections }: ScrollMinimapProps) {
 							onClick={() => scrollToSection(section.id)}
 							className={`group relative flex items-center justify-center w-3 h-3 rounded-full transition-all duration-300 ${
 								isActive
-									? 'bg-green-600 dark:bg-green-500'
-									: 'bg-stone-300 dark:bg-gray-600 hover:bg-stone-400 dark:hover:bg-gray-500'
+									? 'bg-theme-accent'
+									: 'bg-theme-elevated-muted hover:bg-theme-border'
 							}`}
 							aria-label={`Go to ${section.label} section`}
 							title={section.label}
 						>
-							<span className="absolute right-full mr-2 px-2 py-1 text-xs font-medium text-stone-700 dark:text-gray-300 bg-ivory-50 dark:bg-gray-800 rounded border border-stone-200 dark:border-gray-600 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+							<span className="absolute right-full mr-2 px-2 py-1 text-xs font-medium text-theme-text-primary bg-theme-surface rounded border border-theme whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
 								{section.label}
 							</span>
 						</button>

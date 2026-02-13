@@ -28,7 +28,7 @@ function StatsSection() {
 
 	if (loading) {
 		return (
-			<section id="stats-section" className="py-20 px-4 bg-ivory-50 dark:bg-gray-900">
+			<section id="stats-section" className="py-20 px-4 bg-theme-page">
 				<div className="max-w-7xl mx-auto">
 					<div className="flex justify-center items-center min-h-[400px]">
 						<Spinner size="xl" />
@@ -53,26 +53,26 @@ function StatsSection() {
 	})
 
 	return (
-		<section id="stats-section" className="py-10 sm:py-12 px-4 sm:px-6 bg-ivory-100 dark:bg-gray-800">
+		<section id="stats-section" className="py-10 sm:py-12 px-4 sm:px-6 bg-theme-elevated">
 			<div className="max-w-5xl mx-auto">
 				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
 					{stats.map((stat, index) => (
 						<div
 							key={index}
-							className="bg-white dark:bg-gray-800 rounded-lg p-4 border border-stone-200 dark:border-gray-700 text-center"
+							className="bg-theme-surface rounded-lg p-4 border border-theme text-center"
 						>
 							<div className="flex justify-center mb-2">
-								<div className="w-10 h-10 rounded-md bg-ivory-100 dark:bg-gray-700 flex items-center justify-center text-stone-600 dark:text-gray-300">
+								<div className="w-10 h-10 rounded-md bg-theme-elevated-muted flex items-center justify-center text-theme-text-secondary">
 									{statIcons[stat.label] || statIcons['Specialization']}
 								</div>
 							</div>
-							<div className="text-2xl sm:text-3xl font-bold text-stone-900 dark:text-white">
+							<div className="text-2xl sm:text-3xl font-bold text-theme-text-primary">
 								{stat.value}
 							</div>
-							<div className="text-sm font-semibold text-stone-800 dark:text-gray-200">
+							<div className="text-sm font-semibold text-theme-text-secondary">
 								{stat.label}
 							</div>
-							<p className="text-xs text-stone-600 dark:text-gray-400 mt-0.5">
+							<p className="text-xs text-theme-text-muted mt-0.5">
 								{stat.description}
 							</p>
 						</div>

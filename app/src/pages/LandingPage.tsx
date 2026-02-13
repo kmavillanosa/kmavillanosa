@@ -65,25 +65,25 @@ function LandingPage() {
 				</div>
 				
 				{/* Solid overlay for readability — no blur */}
-				<div className="absolute inset-0 bg-ivory-50/85 dark:bg-gray-900/70"></div>
+				<div className="absolute inset-0 bg-theme-hero-overlay"></div>
 
 				<div className="text-center max-w-3xl w-full relative z-10">
 					<div className="flex flex-col items-center gap-6 animate-fade-in">
 						{/* Badge */}
-						<div className="inline-flex items-center gap-2 px-4 py-2 bg-ivory-100 dark:bg-green-900/30 border border-stone-300 dark:border-green-800 rounded-md text-sm text-stone-700 dark:text-green-300 font-medium">
+						<div className="inline-flex items-center gap-2 px-4 py-2 bg-theme-elevated border border-theme rounded-md text-sm text-theme-text-secondary font-medium">
 							<svg className="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
 								<path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
 							</svg>
 							<span className="whitespace-nowrap">📍 Available for remote work • Contract opportunities</span>
 						</div>
 
-						<h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-stone-900 dark:text-white tracking-tight leading-tight">
+						<h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-theme-text-primary tracking-tight leading-tight">
 							Kim Avillanosa
 						</h1>
-						<p className="text-lg sm:text-xl font-semibold text-green-700 dark:text-green-400">
+						<p className="text-lg sm:text-xl font-semibold text-theme-accent">
 							{siteSettings?.hero?.subtitle || 'Full Stack Software Engineer'}
 						</p>
-						<p className="text-sm sm:text-base text-stone-600 dark:text-gray-400 max-w-xl mx-auto leading-relaxed">
+						<p className="text-sm sm:text-base text-theme-text-secondary max-w-xl mx-auto leading-relaxed">
 							{replaceYearsPlaceholder(
 								siteSettings?.hero?.description ||
 									siteSettings?.description ||
@@ -95,7 +95,7 @@ function LandingPage() {
 						<div className="flex flex-wrap justify-center gap-2 mt-4">
 							<Button
 								onClick={handleDownloadResume}
-								className="bg-green-600 hover:bg-green-700 text-white border-0 px-4 py-2.5 text-sm font-medium rounded-md transition-colors"
+								className="bg-theme-accent hover:bg-theme-accent-hover text-theme-accent-foreground border-0 px-4 py-2.5 text-sm font-medium rounded-md transition-colors"
 							>
 								Download CV
 							</Button>
@@ -104,7 +104,7 @@ function LandingPage() {
 								target="_blank"
 								rel="noopener noreferrer"
 								as="a"
-								className="bg-transparent border border-stone-400 text-stone-700 hover:border-stone-600 hover:bg-stone-50 dark:border-stone-500 dark:text-stone-300 dark:hover:bg-stone-800 px-4 py-2.5 text-sm font-medium rounded-md transition-colors"
+								className="bg-transparent border border-theme text-theme-text-secondary hover:border-theme-muted hover:bg-theme-elevated px-4 py-2.5 text-sm font-medium rounded-md transition-colors"
 							>
 								LinkedIn
 							</Button>
@@ -113,14 +113,14 @@ function LandingPage() {
 								target="_blank"
 								rel="noopener noreferrer"
 								as="a"
-								className="bg-transparent border border-stone-400 text-stone-700 hover:border-stone-600 hover:bg-stone-50 dark:border-stone-500 dark:text-stone-300 dark:hover:bg-stone-800 px-4 py-2.5 text-sm font-medium rounded-md transition-colors"
+								className="bg-transparent border border-theme text-theme-text-secondary hover:border-theme-muted hover:bg-theme-elevated px-4 py-2.5 text-sm font-medium rounded-md transition-colors"
 							>
 								GitHub
 							</Button>
 							<Button
 								as={Link}
 								to="/contact"
-								className="bg-transparent border border-stone-400 text-stone-700 hover:border-stone-600 hover:bg-stone-50 dark:border-stone-500 dark:text-stone-300 dark:hover:bg-stone-800 px-4 py-2.5 text-sm font-medium rounded-md transition-colors"
+								className="bg-transparent border border-theme text-theme-text-secondary hover:border-theme-muted hover:bg-theme-elevated px-4 py-2.5 text-sm font-medium rounded-md transition-colors"
 							>
 								Contact
 							</Button>
@@ -128,7 +128,7 @@ function LandingPage() {
 
 						<button
 							onClick={scrollToServices}
-							className="mt-6 flex flex-col items-center gap-1 text-stone-500 dark:text-gray-400 hover:text-stone-700 dark:hover:text-gray-300 transition-colors text-xs font-medium"
+							className="mt-6 flex flex-col items-center gap-1 text-theme-text-muted hover:text-theme-text-secondary transition-colors text-xs font-medium"
 							aria-label="Scroll to services"
 						>
 							<span>Scroll</span>
@@ -151,13 +151,13 @@ function LandingPage() {
 
 			{/* Portfolio Section */}
 			{featuredPages.length > 0 && (
-				<section id="portfolio-section" className="py-10 sm:py-12 px-4 sm:px-6 bg-ivory-100 dark:bg-gray-800">
+				<section id="portfolio-section" className="py-10 sm:py-12 px-4 sm:px-6 bg-theme-elevated">
 					<div className="max-w-5xl mx-auto">
 						<div className="text-center mb-8">
-							<h2 className="text-xl sm:text-2xl font-bold text-stone-900 dark:text-white mb-1">
+							<h2 className="text-xl sm:text-2xl font-bold text-theme-text-primary mb-1">
 								Featured Work
 							</h2>
-							<p className="text-sm text-stone-600 dark:text-gray-400 max-w-xl mx-auto">
+							<p className="text-sm text-theme-text-secondary max-w-xl mx-auto">
 								Recent projects and contributions.
 							</p>
 						</div>
@@ -197,13 +197,13 @@ function LandingPage() {
 
 			{/* Experience Section */}
 			{experiences.length > 0 && (
-				<section id="experience-section" className="py-10 sm:py-12 px-4 sm:px-6 bg-ivory-50 dark:bg-gray-800">
+				<section id="experience-section" className="py-10 sm:py-12 px-4 sm:px-6 bg-theme-surface">
 					<div className="max-w-5xl mx-auto">
 						<div className="text-center mb-8">
-							<h2 className="text-xl sm:text-2xl font-bold text-stone-900 dark:text-white mb-1">
+							<h2 className="text-xl sm:text-2xl font-bold text-theme-text-primary mb-1">
 								Experience
 							</h2>
-							<p className="text-sm text-stone-600 dark:text-gray-400 max-w-xl mx-auto">
+							<p className="text-sm text-theme-text-secondary max-w-xl mx-auto">
 								Career path and companies I've worked with.
 							</p>
 						</div>

@@ -58,7 +58,7 @@ function ExperienceView() {
 		<article className="max-w-2xl mx-auto px-4 sm:px-6 py-6 pt-4">
 			<Link
 				to="/"
-				className="inline-flex items-center gap-1 text-sm text-stone-600 dark:text-gray-400 hover:text-stone-900 dark:hover:text-white mb-6 transition-colors"
+				className="inline-flex items-center gap-1 text-sm text-theme-text-secondary hover:text-theme-text-primary mb-6 transition-colors"
 			>
 				<svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 					<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -66,11 +66,11 @@ function ExperienceView() {
 				Back
 			</Link>
 
-			<div className="bg-white dark:bg-gray-800 rounded-lg border border-stone-200 dark:border-gray-700 p-4 sm:p-5">
+			<div className="bg-theme-surface rounded-lg border border-theme p-4 sm:p-5">
 				{/* Header */}
-				<div className="flex gap-3 sm:gap-4 mb-4 pb-4 border-b border-stone-200 dark:border-gray-700">
+				<div className="flex gap-3 sm:gap-4 mb-4 pb-4 border-b border-theme">
 					{experience.companyLogo && experience.companyLogo.trim() && (
-						<div className="flex-shrink-0 w-12 h-12 rounded-lg bg-stone-100 dark:bg-gray-700 flex items-center justify-center overflow-hidden border border-stone-200 dark:border-gray-600">
+						<div className="flex-shrink-0 w-12 h-12 rounded-lg bg-theme-elevated-muted flex items-center justify-center overflow-hidden border border-theme-muted">
 							<img
 								src={experience.companyLogo}
 								alt={experience.company}
@@ -83,21 +83,21 @@ function ExperienceView() {
 					)}
 					<div className="flex-1 min-w-0">
 						<div className="flex flex-wrap items-start justify-between gap-2">
-							<h1 className="text-xl sm:text-2xl font-bold text-stone-900 dark:text-white">
+							<h1 className="text-xl sm:text-2xl font-bold text-theme-text-primary">
 								{experience.company}
 							</h1>
-							<span className="text-xs font-medium text-stone-500 dark:text-gray-400 uppercase tracking-wide">
+							<span className="text-xs font-medium text-theme-text-muted uppercase tracking-wide">
 								{experience.type}
 							</span>
 						</div>
-						<p className="text-sm font-semibold text-stone-700 dark:text-gray-300 mt-0.5">
+						<p className="text-sm font-semibold text-theme-text-secondary mt-0.5">
 							{experience.position}
 						</p>
-						<div className="flex flex-wrap items-center gap-x-3 gap-y-0.5 mt-1 text-xs text-stone-500 dark:text-gray-400">
+						<div className="flex flex-wrap items-center gap-x-3 gap-y-0.5 mt-1 text-xs text-theme-text-muted">
 							<span>{experience.period}</span>
 							{experience.companyLocation && (
 								<>
-									<span className="text-stone-300 dark:text-gray-600">·</span>
+									<span className="text-theme-border">·</span>
 									<span>{experience.companyLocation}</span>
 								</>
 							)}
@@ -107,10 +107,10 @@ function ExperienceView() {
 
 				{experience.companyAbout && (
 					<div className="mb-4">
-						<h2 className="text-xs font-semibold text-stone-500 dark:text-gray-400 uppercase tracking-wider mb-1.5">
+						<h2 className="text-xs font-semibold text-theme-text-muted uppercase tracking-wider mb-1.5">
 							About
 						</h2>
-						<p className="text-sm text-stone-600 dark:text-gray-400 leading-relaxed">
+						<p className="text-sm text-theme-text-secondary leading-relaxed">
 							{experience.companyAbout}
 						</p>
 					</div>
@@ -118,14 +118,14 @@ function ExperienceView() {
 
 				{Array.isArray(experience.responsibilities) && experience.responsibilities.length > 0 && (
 					<div>
-						<h2 className="text-xs font-semibold text-stone-500 dark:text-gray-400 uppercase tracking-wider mb-2">
+						<h2 className="text-xs font-semibold text-theme-text-muted uppercase tracking-wider mb-2">
 							Responsibilities
 						</h2>
 						<ul className="space-y-2">
 							{experience.responsibilities.map((item, i) => (
 								<li key={i} className="flex items-start gap-2">
-									<span className="text-stone-400 dark:text-gray-500 mt-0.5 flex-shrink-0">•</span>
-									<span className="text-sm text-stone-600 dark:text-gray-400 leading-relaxed">
+									<span className="text-theme-text-muted mt-0.5 flex-shrink-0">•</span>
+									<span className="text-sm text-theme-text-secondary leading-relaxed">
 										{item}
 									</span>
 								</li>
