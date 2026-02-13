@@ -11,18 +11,18 @@ function CTASection() {
 	}
 
 	return (
-		<section id="cta-section" className="py-10 sm:py-12 px-4 sm:px-6 bg-theme-cta-bg">
+		<section id="cta-section" className="py-12 sm:py-14 px-4 sm:px-6 bg-theme-cta-bg">
 			<div className="max-w-2xl mx-auto text-center">
 				<div className="mb-6">
 					<h2 className="text-xl sm:text-2xl font-bold text-theme-accent-foreground mb-2">
 						{siteSettings?.cta?.title || "Ready to work together?"}
 					</h2>
-					<p className="text-sm text-white/90 mb-4">
+					<p className="text-sm text-white/90">
 						{siteSettings?.cta?.description || "Open to new opportunities. Let's talk."}
 					</p>
 				</div>
 
-				<div className="flex flex-col sm:flex-row flex-wrap gap-2 sm:gap-3 justify-center">
+				<div className="flex flex-col sm:flex-row flex-wrap gap-3 justify-center">
 					<Button
 						onClick={handleDownloadResume}
 						className="w-full sm:w-auto px-4 py-2.5 bg-theme-accent-foreground text-theme-cta-bg font-medium text-sm rounded-md border-0 hover:opacity-90 transition-opacity"
@@ -63,7 +63,7 @@ function CTASection() {
 				</div>
 
 				<p className="mt-6 text-white/80 text-xs">
-					Available for remote work • Contract opportunities
+					Open to new opportunities
 				</p>
 			</div>
 		</section>

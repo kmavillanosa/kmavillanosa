@@ -60,7 +60,7 @@ function ServicesSection() {
 	return (
 		<section id="services-section" className="py-10 sm:py-12 px-4 sm:px-6 bg-theme-page">
 			<div className="max-w-5xl mx-auto">
-				<div className="text-center mb-8">
+				<div className="text-center mb-6">
 					<h2 className="text-xl sm:text-2xl font-bold text-theme-text-primary mb-1">
 						What I Offer
 					</h2>
@@ -69,22 +69,18 @@ function ServicesSection() {
 					</p>
 				</div>
 
-				<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+				<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
 					{services.services.map((service, index) => (
 						<div
 							key={index}
-							className="bg-theme-surface rounded-lg p-4 border border-theme"
+							className="flex items-center gap-3 bg-theme-surface rounded-lg p-4 border border-theme min-h-[72px]"
 						>
-							<div className="flex items-start gap-3">
-								<div className="flex-shrink-0 w-10 h-10 rounded-md bg-theme-elevated-muted flex items-center justify-center text-theme-text-secondary">
-									{getServiceIcon(service)}
-								</div>
-								<div className="flex-1 min-w-0">
-									<h3 className="text-sm font-semibold text-theme-text-primary">
-										{service}
-									</h3>
-								</div>
+							<div className="flex-shrink-0 w-10 h-10 rounded-md bg-theme-elevated-muted flex items-center justify-center text-theme-text-secondary">
+								{getServiceIcon(service)}
 							</div>
+							<h3 className="text-sm font-semibold text-theme-text-primary">
+								{service}
+							</h3>
 						</div>
 					))}
 				</div>

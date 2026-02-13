@@ -74,13 +74,13 @@ function LandingPage() {
 				<div className="absolute inset-0 bg-theme-hero-overlay"></div>
 
 				<div className="text-center max-w-3xl w-full relative z-10">
-					<div className="flex flex-col items-center gap-6 animate-fade-in">
+					<div className="flex flex-col items-center gap-5 animate-fade-in">
 						{/* Badge */}
 						<div className="inline-flex items-center gap-2 px-4 py-2 bg-theme-elevated border border-theme rounded-md text-sm text-theme-text-secondary font-medium">
 							<svg className="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
 								<path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
 							</svg>
-							<span className="whitespace-nowrap">📍 Available for remote work • Contract opportunities</span>
+							<span className="whitespace-nowrap">📍 Open to new opportunities</span>
 						</div>
 
 						<h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-theme-text-primary tracking-tight leading-tight">
@@ -148,17 +148,20 @@ function LandingPage() {
 
 			{/* Availability — open to / timezone (hirer-focused) */}
 			{(siteSettings?.availability?.openTo?.length || siteSettings?.availability?.timezone) && (
-				<section id="availability-section" className="py-6 px-4 sm:px-6 bg-theme-surface border-y border-theme">
-					<div className="max-w-5xl mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-center gap-4 sm:gap-8 text-center sm:text-left">
+				<section id="availability-section" className="py-5 sm:py-6 px-4 sm:px-6 bg-theme-surface border-y border-theme">
+					<div className="max-w-5xl mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-center gap-4 sm:gap-6 text-center sm:text-left">
 						{siteSettings.availability.openTo?.length > 0 && (
 							<div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
 								<span className="text-xs font-semibold text-theme-text-muted uppercase tracking-wider">Open to</span>
 								{siteSettings.availability.openTo.map((item) => (
-									<span key={item} className="px-2.5 py-1 text-sm font-medium rounded bg-theme-elevated text-theme-text-secondary border border-theme-muted">
+									<span key={item} className="px-2.5 py-1 text-sm font-medium rounded-md bg-theme-elevated text-theme-text-secondary border border-theme-muted">
 										{item}
 									</span>
 								))}
 							</div>
+						)}
+						{siteSettings.availability.openTo?.length > 0 && siteSettings.availability.timezone && (
+							<div className="hidden sm:block w-px h-6 bg-theme-border flex-shrink-0" aria-hidden="true" />
 						)}
 						{siteSettings.availability.timezone && (
 							<div className="flex items-center justify-center sm:justify-start gap-1.5 text-sm text-theme-text-muted">
@@ -182,7 +185,7 @@ function LandingPage() {
 			{(siteSettings?.valueProps ?? []).length > 0 && (
 				<section id="value-props-section" className="py-10 sm:py-12 px-4 sm:px-6 bg-theme-page">
 					<div className="max-w-5xl mx-auto">
-						<div className="text-center mb-8">
+						<div className="text-center mb-6">
 							<h2 className="text-xl sm:text-2xl font-bold text-theme-text-primary mb-1">
 								What I bring
 							</h2>
@@ -190,10 +193,10 @@ function LandingPage() {
 								Why I'm a strong fit for remote and contract roles.
 							</p>
 						</div>
-						<ul className="space-y-4">
+						<ul className="space-y-3">
 							{(siteSettings?.valueProps ?? []).map((text, i) => (
-								<li key={i} className="flex items-start gap-3 p-3 rounded-lg bg-theme-surface border border-theme">
-									<span className="flex-shrink-0 w-6 h-6 rounded-full bg-theme-accent text-theme-accent-foreground flex items-center justify-center text-xs font-bold">
+								<li key={i} className="flex items-start gap-3 p-4 rounded-lg bg-theme-surface border border-theme">
+									<span className="flex-shrink-0 w-6 h-6 rounded-full bg-theme-accent text-theme-accent-foreground flex items-center justify-center text-xs font-bold mt-0.5">
 										{i + 1}
 									</span>
 									<span className="text-sm text-theme-text-secondary leading-relaxed pt-0.5">
@@ -210,7 +213,7 @@ function LandingPage() {
 			{(siteSettings?.certifications ?? []).length > 0 && (
 				<section id="certifications-section" className="py-10 sm:py-12 px-4 sm:px-6 bg-theme-surface">
 					<div className="max-w-5xl mx-auto">
-						<div className="text-center mb-8">
+						<div className="text-center mb-6">
 							<h2 className="text-xl sm:text-2xl font-bold text-theme-text-primary mb-1">
 								Certifications
 							</h2>
@@ -218,7 +221,7 @@ function LandingPage() {
 								Credentials and professional certifications.
 							</p>
 						</div>
-						<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+						<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
 							{(siteSettings?.certifications ?? []).map((cert, i) => (
 								<a
 									key={i}
@@ -258,7 +261,7 @@ function LandingPage() {
 			{featuredPages.length > 0 && (
 				<section id="portfolio-section" className="py-10 sm:py-12 px-4 sm:px-6 bg-theme-elevated">
 					<div className="max-w-5xl mx-auto">
-						<div className="text-center mb-8">
+						<div className="text-center mb-6">
 							<h2 className="text-xl sm:text-2xl font-bold text-theme-text-primary mb-1">
 								Featured Work
 							</h2>
@@ -268,12 +271,12 @@ function LandingPage() {
 						</div>
 
 						{pagesLoading ? (
-							<div className="flex justify-center items-center min-h-[400px]">
+							<div className="flex justify-center items-center min-h-[320px]">
 								<Spinner size="xl" />
 							</div>
 						) : (
 							<>
-								<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mb-6">
+								<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
 									{featuredPages.map((page) => (
 										<div key={page.slug} className="h-full">
 											<PortfolioCard page={page} />
@@ -282,7 +285,7 @@ function LandingPage() {
 								</div>
 
 								{pages.length > featuredPages.length && (
-									<div className="text-center mt-8">
+									<div className="text-center mt-6">
 										<Button
 											as={Link}
 											to="/portfolio"
@@ -304,7 +307,7 @@ function LandingPage() {
 			{experiences.length > 0 && (
 				<section id="experience-section" className="py-10 sm:py-12 px-4 sm:px-6 bg-theme-surface">
 					<div className="max-w-5xl mx-auto">
-						<div className="text-center mb-8">
+						<div className="text-center mb-6">
 							<h2 className="text-xl sm:text-2xl font-bold text-theme-text-primary mb-1">
 								Experience
 							</h2>
@@ -314,11 +317,11 @@ function LandingPage() {
 						</div>
 
 						{experiencesLoading ? (
-							<div className="flex justify-center items-center min-h-[400px]">
+							<div className="flex justify-center items-center min-h-[320px]">
 								<Spinner size="xl" />
 							</div>
 						) : (
-							<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+							<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
 								{experiences.map((experience) => (
 									<div key={experience.slug} className="h-full">
 										<ExperienceCard experience={experience} />

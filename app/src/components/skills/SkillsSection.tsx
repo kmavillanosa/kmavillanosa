@@ -83,16 +83,16 @@ function SkillsSection() {
 					</p>
 				</div>
 
-				<div className="space-y-4">
+				<div className="space-y-6">
 					{categories.map((category) => {
 						const categorySkills = skills.filter((s) => s.category === category)
 						return (
 							<div key={category}>
-								<h3 className="text-sm font-semibold text-theme-text-secondary mb-1.5 flex items-center gap-2">
-									<span className="w-0.5 h-3.5 bg-theme-border rounded-full" />
+								<h3 className="text-sm font-semibold text-theme-text-secondary mb-2 flex items-center gap-2">
+									<span className="w-0.5 h-3.5 bg-theme-accent rounded-full" />
 									{category}
 								</h3>
-								<div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2">
+								<div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 sm:gap-2.5">
 									{categorySkills.map((skill) => (
 										<SkillCard key={skill.name} skill={skill} />
 									))}
