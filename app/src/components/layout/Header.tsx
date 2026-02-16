@@ -155,12 +155,6 @@ function Header() {
                 </a>
               </div>
             </div>
-            <Link
-              to="/contact"
-              className="px-3 py-2 text-sm font-medium text-theme-text-secondary hover:text-theme-text-primary rounded-md transition-colors"
-            >
-              Contact
-            </Link>
             <a
               href="https://calendly.com/careers-kmavillanosa/30min"
               target="_blank"
@@ -265,13 +259,6 @@ function Header() {
                 CV (OCR)
               </a>
             </div>
-            <Link
-              to="/contact"
-              className="mt-2 px-3 py-2.5 text-sm font-medium text-theme-text-primary hover:bg-theme-elevated rounded-md transition-colors"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Contact
-            </Link>
             <a
               href="https://calendly.com/careers-kmavillanosa/30min"
               target="_blank"
