@@ -4,6 +4,6 @@
 - [Resume / CV](http://88.222.245.88/resume)
 - [Portfolio site](https://kmavillanosa.github.io/kmavillanosa)
 
-**GitHub metrics** (updated weekly)
+**GitHub metrics**
 
-![GitHub metrics](https://raw.githubusercontent.com/kmavillanosa/kmavillanosa/main/github-metrics.svg)
+<img src="https://metrics.lecoq.io/kmavillanosa?template=classic&config.timezone=Asia%2FManila" alt="GitHub metrics" width="100%">
