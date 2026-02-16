@@ -1,17 +1,13 @@
 name: Deploy to GitHub Pages
 
-# Only build what's affected: skip RenderCV when only app changed; cache deps and CV.
-# - App build always runs (it consumes cms/ at build time).
+# Runs on every push to main so the app is always deployed.
+# - App build always runs (consumes cms/ at build time).
 # - RenderCV runs only when cms/ changed; otherwise CV is restored from cache.
 # - node_modules cached by package-lock hash.
 
 on:
   push:
     branches: [main]
-    paths:
-      - 'cms/**'
-      - 'app/**'
-      - '.github/workflows/**'
   workflow_dispatch:
 
 permissions:
