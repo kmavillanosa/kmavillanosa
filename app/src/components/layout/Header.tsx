@@ -161,6 +161,14 @@ function Header() {
             >
               Contact
             </Link>
+            <a
+              href="https://calendly.com/careers-kmavillanosa/30min"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-3 py-2 text-sm font-medium bg-theme-accent text-theme-accent-foreground rounded-md hover:opacity-90 transition-opacity"
+            >
+              Schedule a call
+            </a>
             <ThemeToggle />
             <a
               href="/kmavillanosa/cms/admin/index.html"
@@ -264,6 +272,15 @@ function Header() {
             >
               Contact
             </Link>
+            <a
+              href="https://calendly.com/careers-kmavillanosa/30min"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-2 px-3 py-2.5 text-sm font-medium bg-theme-accent text-theme-accent-foreground rounded-md hover:opacity-90 transition-opacity text-center"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Schedule a call
+            </a>
             <a
               href="/kmavillanosa/cms/admin/index.html"
               target="_blank"
