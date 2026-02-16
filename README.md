@@ -8,4 +8,4 @@
 
 **GitHub metrics**
 
-<img src="https://raw.githubusercontent.com/kmavillanosa/kmavillanosa/main/github-metrics.svg" alt="GitHub metrics" width="60%"
+<img src="https://raw.githubusercontent.com/kmavillanosa/kmavillanosa/main/github-metrics.svg" alt="GitHub metrics" width="100%">
