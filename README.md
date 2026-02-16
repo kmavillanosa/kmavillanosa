@@ -8,16 +8,4 @@
 
 **GitHub metrics**
 
-<img src="https://raw.githubusercontent.com/kmavillanosa/kmavillanosa/main/github-metrics.svg" alt="GitHub metrics" width="100%">
-
----
-
-**Contribution graph (snake)**
-
-<img src="https://raw.githubusercontent.com/kmavillanosa/kmavillanosa/output/dist/github-contribution-grid-snake.svg" alt="Contribution snake" width="100%">
-
----
-
-**3D contribution graph**
-
-<img src="https://raw.githubusercontent.com/kmavillanosa/kmavillanosa/main/profile-3d-contrib.svg" alt="3D contribution graph" width="100%">
+<img src="https://raw.githubusercontent.com/kmavillanosa/kmavillanosa/main/github-metrics.svg" alt="GitHub metrics" width="60%"
