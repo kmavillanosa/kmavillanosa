@@ -8,7 +8,7 @@
 
 **GitHub metrics**
 
-<img src="https://metrics.lecoq.io/kmavillanosa?template=classic&config.timezone=Asia%2FManila" alt="GitHub metrics" width="100%">
+<img src="https://raw.githubusercontent.com/kmavillanosa/kmavillanosa/main/github-metrics.svg" alt="GitHub metrics" width="100%">
 
 ---
 
