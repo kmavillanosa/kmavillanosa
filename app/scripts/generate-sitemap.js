@@ -15,6 +15,7 @@ async function generateSitemap() {
 		{ url: '/portfolio', changefreq: 'weekly', priority: 0.9 },
 		{ url: '/slides', changefreq: 'monthly', priority: 0.7 },
 		{ url: '/contact', changefreq: 'monthly', priority: 0.8 },
+		{ url: '/github-stats', changefreq: 'daily', priority: 0.7 },
 	]
 
 	// Get all page files

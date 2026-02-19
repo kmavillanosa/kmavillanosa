@@ -136,6 +136,16 @@ function Header() {
                 >
                   Slides
                 </Link>
+                <Link
+                  to="/github-stats"
+                  className={`block px-3 py-2 text-sm transition-colors ${
+                    location.pathname === "/github-stats"
+                      ? "bg-theme-elevated-muted text-theme-accent font-medium"
+                      : "text-theme-text-secondary hover:bg-theme-elevated-muted"
+                  }`}
+                >
+                  GitHub stats
+                </Link>
                 <div className="border-t border-theme my-1" />
                 <a
                   href={resumeUrl}
@@ -239,6 +249,13 @@ function Header() {
                 onClick={() => setIsMenuOpen(false)}
               >
                 Slides
+              </Link>
+              <Link
+                to="/github-stats"
+                className="block px-3 py-2 text-sm text-theme-text-secondary hover:bg-theme-elevated rounded-md transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                GitHub stats
               </Link>
               <a
                 href={resumeUrl}

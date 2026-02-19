@@ -6,6 +6,7 @@ import PortfolioPage from './pages/PortfolioPage'
 import OcrRedirect from './pages/OcrRedirect'
 import ContactPage from './pages/ContactPage'
 import SlidesPage from './pages/SlidesPage'
+import GitHubStatsPage from './pages/GitHubStatsPage'
 import PageView from './pages/PageView'
 import ExperienceView from './pages/ExperienceView'
 import NotFound from './pages/NotFound'
@@ -22,6 +23,7 @@ function App() {
 					<Route path="/experience/:slug" element={<ExperienceView />} />
 					<Route path="/contact" element={<ContactPage />} />
 					<Route path="/slides" element={<SlidesPage />} />
+					<Route path="/github-stats" element={<GitHubStatsPage />} />
 					<Route path="*" element={<NotFound />} />
 				</Routes>
 			</Layout>

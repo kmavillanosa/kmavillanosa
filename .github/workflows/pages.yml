@@ -1,10 +1,12 @@
 # Deploy to GitHub Pages + refresh profile metrics (unified).
 #
 # - Push (app/cms/workflows only): build app, refresh metrics, deploy. Path filter avoids
-#   re-running when only README or github-metrics.svg change (e.g. after schedule run).
-# - Schedule (daily 00:00 UTC): refresh metrics only (commit github-metrics.svg for profile README).
-# - workflow_dispatch: same as push (full build + metrics + deploy).
+#   re-running when only README or github-metrics.svg change.
+# - Schedule (daily 00:00 UTC): same workflow (generate metrics, build, deploy). No commit to main.
+# - workflow_dispatch: full build + metrics + deploy.
 #
+# Metrics SVG is generated into the build and served from the site; profile README points to
+# the deployed URL. No bot commits to main, so the portfolio is never overwritten.
 # REQUIRED: METRICS_TOKEN repo secret (PAT, no scopes) for lowlighter/metrics.
 
 name: Deploy to GitHub Pages
@@ -21,7 +23,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
   pages: write
   id-token: write
 
@@ -53,9 +55,9 @@ jobs:
         with:
           token: ${{ secrets.METRICS_TOKEN }}
           user: ${{ github.repository_owner }}
-          filename: github-metrics.svg
+          filename: app/public/github-metrics.svg
           config_timezone: Asia/Manila
-          committer_message: "chore: update metrics"
+          output_action: none
           template: classic
           base: header, activity, community, repositories, metadata
           plugin_introduction: yes
@@ -82,13 +84,8 @@ jobs:
           plugin_topics_limit: 0
           plugin_topics_mode: icons
 
-      - name: Sync repo after metrics commit
-        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
-        run: git pull origin main --rebase || true
-
       - name: Detect changed paths
         id: paths
-        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             echo "app=true" >> $GITHUB_OUTPUT
@@ -103,7 +100,6 @@ jobs:
 
       - name: Cache node_modules
         id: cache-node
-        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
         uses: actions/cache@v4
         with:
           path: app/node_modules
@@ -113,7 +109,6 @@ jobs:
 
       - name: Cache CV output
         id: cache-cv
-        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
         uses: actions/cache@v4
         with:
           path: cms/rendercv_output
@@ -121,7 +116,6 @@ jobs:
           restore-keys: cv-
 
       - name: Setup Node.js
-        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
         uses: actions/setup-node@v4
         with:
           node-version: '20'
@@ -129,21 +123,20 @@ jobs:
           cache-dependency-path: app/package-lock.json
 
       - name: Setup Python and Install RenderCV
-        if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && (steps.paths.outputs.cms == 'true' || steps.cache-cv.outputs.cache-hit != 'true')
+        if: steps.paths.outputs.cms == 'true' || steps.cache-cv.outputs.cache-hit != 'true'
         uses: actions/setup-python@v5
         with:
           python-version: '3.x'
 
       - name: Install RenderCV
-        if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && (steps.paths.outputs.cms == 'true' || steps.cache-cv.outputs.cache-hit != 'true')
+        if: steps.paths.outputs.cms == 'true' || steps.cache-cv.outputs.cache-hit != 'true'
         run: pip install "rendercv[full]"
 
       - name: Generate CV
-        if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && (steps.paths.outputs.cms == 'true' || steps.cache-cv.outputs.cache-hit != 'true')
+        if: steps.paths.outputs.cms == 'true' || steps.cache-cv.outputs.cache-hit != 'true'
         run: rendercv render "cms/kmavillanosa_CV.yaml"
 
       - name: Copy CV files to public directory
-        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
         run: |
           mkdir -p app/public/cv
           if [ -f "cms/rendercv_output/Kim_Cyriel_S._Avillanosa_CV.pdf" ]; then
@@ -157,21 +150,17 @@ jobs:
           fi
 
       - name: Install dependencies
-        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
         working-directory: ./app
         run: npm ci
 
       - name: Build app
-        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
         working-directory: ./app
         run: npm run build
 
       - name: Setup Pages
-        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
         uses: actions/configure-pages@v4
 
       - name: Copy CMS content, robots.txt, and 404.html to dist
-        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
         run: |
           cp -r cms dist/cms || true
           cp .nojekyll dist/ 2>/dev/null || touch dist/.nojekyll
@@ -180,12 +169,10 @@ jobs:
           cp app/public/sitemap.xml dist/sitemap.xml || true
 
       - name: Upload artifact
-        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist
 
       - name: Deploy to GitHub Pages
         id: deployment
-        if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
         uses: actions/deploy-pages@v4
