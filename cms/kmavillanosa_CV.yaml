@@ -17,6 +17,19 @@ cv:
       - Enjoys collaborating with teams and continuously improving products.
 
     experience:
+      - company: Avillanosa Information Technology Solutions (itsavillanosa.com)
+        position: Owner / IT Solutions Business
+        start_date: 2026-05
+        end_date: present
+        location: Puerto Princesa City, Palawan, Philippines
+        summary:
+        highlights:
+          - Founded and operate an IT solutions business serving local clients in Puerto Princesa City, Palawan
+          - Develop and deliver custom software solutions, including multi-tenant web applications
+          - Handle full-stack development, system architecture, and deployment
+          - Work directly with clients to gather requirements and implement business-specific systems
+          - Focus on building scalable and maintainable SaaS-style applications for small businesses
+
       - company: Cabinets by Computer
         position: Front-End Developer (3D / WebGL)
         start_date: 2024-11
