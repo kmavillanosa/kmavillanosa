@@ -54,6 +54,7 @@ export const SKILL_TO_TECH_STACK_ICON: Record<string, IconName> = {
 	'MS Teams': 'microsoft',
 	'Trello': 'trello',
 	'Jira': 'jira',
+	"Vite" : 'vitejs',
 }
 
 const CMS_MEDIA_BASE = '/kmavillanosa/cms/media'
