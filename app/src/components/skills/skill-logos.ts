@@ -60,6 +60,79 @@ export const SKILL_TO_TECH_STACK_ICON: Record<string, IconName> = {
 const CMS_MEDIA_BASE = '/kmavillanosa/cms/media'
 
 /**
+ * Preferred icons from dashboardicons.com (homarr-labs/dashboard-icons), served
+ * via jsDelivr. These take priority over tech-stack-icons when a slug exists.
+ * @see https://dashboardicons.com/icons
+ */
+const DASHBOARD_ICON_BASE =
+	'https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg'
+
+export const SKILL_TO_DASHBOARD_ICON: Record<string, string> = {
+	'Claude': 'claude-ai',
+	'Claude Code': 'claude-ai',
+	'TypeScript': 'typescript',
+	'JavaScript': 'javascript',
+	'C#': 'csharp',
+	'React': 'reactjs',
+	'Create-React-App': 'reactjs',
+	'React Native': 'reactjs',
+	'Vite React': 'vite',
+	'Next.js': 'nextjs',
+	'CSS': 'css',
+	'Bootstrap': 'bootstrap',
+	'Tailwind CSS': 'tailwind',
+	'Keycloak': 'keycloak',
+	'Azure AD': 'azure',
+	'MySQL': 'mysql',
+	'MSSQL': 'microsoft-sql-server',
+	'Azure': 'azure',
+	'Netlify': 'netlify',
+	'Vercel': 'vercel',
+	'Docker': 'docker',
+	'Docker Compose': 'docker',
+	'Jenkins': 'jenkins',
+	'Azure Pipeline': 'azure-devops',
+	'Azure DevOps': 'azure-devops',
+	'GitHub Workflows': 'github',
+	'Git': 'git',
+	'GitLab': 'gitlab',
+	'GitHub': 'github',
+	'Swagger': 'swagger',
+	'Slack': 'slack',
+	'MS Teams': 'microsoft-teams',
+	'OpenProject': 'openproject',
+	'Trello': 'atlassian-trello',
+	'Jira': 'jira',
+	'Selenium': 'selenium',
+	'draw.io': 'diagrams-net',
+}
+
+/** Slugs that ship a `-light` variant (light-colored, for dark backgrounds). */
+const DASHBOARD_ICON_LIGHT_VARIANTS = new Set([
+	'claude-ai',
+	'javascript',
+	'nextjs',
+	'css',
+	'microsoft-sql-server',
+	'vercel',
+	'github',
+])
+
+/**
+ * Returns a dashboardicons.com SVG URL for a skill, or null if none is mapped.
+ * On dark theme, uses the `-light` variant when available for better contrast.
+ */
+export function getDashboardIconUrl(
+	skillName: string,
+	theme: 'light' | 'dark'
+): string | null {
+	const slug = SKILL_TO_DASHBOARD_ICON[skillName]
+	if (!slug) return null
+	const useLight = theme === 'dark' && DASHBOARD_ICON_LIGHT_VARIANTS.has(slug)
+	return `${DASHBOARD_ICON_BASE}/${useLight ? `${slug}-light` : slug}.svg`
+}
+
+/**
  * Returns the tech-stack-icons icon name for a skill, or null if not available.
  * CMS icon override (filename) is not used for tech-stack-icons; use for local fallback only.
  */

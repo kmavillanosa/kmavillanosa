@@ -2,7 +2,7 @@ import { useSkills } from '@/hooks/useSkills'
 import { Spinner } from 'flowbite-react'
 import StackIcon from 'tech-stack-icons'
 import { useThemeStore } from '@/stores/themeStore'
-import { getTechStackIconName, getSkillLogoUrl } from './skill-logos'
+import { getTechStackIconName, getSkillLogoUrl, getDashboardIconUrl } from './skill-logos'
 
 function SkillCard({
 	skill,
@@ -10,6 +10,7 @@ function SkillCard({
 	skill: { name: string; category: string; icon?: string }
 }) {
 	const theme = useThemeStore((s) => s.theme)
+	const dashboardIconUrl = skill.icon ? null : getDashboardIconUrl(skill.name, theme)
 	const techStackIconName = getTechStackIconName(skill.name, skill.icon)
 	const logoUrl = getSkillLogoUrl(skill.name, skill.icon)
 	const variant = theme === 'dark' ? 'dark' : 'light'
@@ -19,7 +20,14 @@ function SkillCard({
 			className="flex items-center gap-2 sm:gap-3 rounded-lg border border-theme-muted bg-theme-surface px-3 py-2 sm:px-3 sm:py-2"
 		>
 			<div className="flex-shrink-0 w-8 h-8 sm:w-9 sm:h-9 rounded-md bg-theme-elevated-muted flex items-center justify-center ring-1 ring-theme-border-muted">
-				{techStackIconName ? (
+				{dashboardIconUrl ? (
+					<img
+						src={dashboardIconUrl}
+						alt=""
+						className="w-5 h-5 sm:w-6 sm:h-6 object-contain"
+						loading="lazy"
+					/>
+				) : techStackIconName ? (
 					<StackIcon
 						name={techStackIconName}
 						variant={variant}

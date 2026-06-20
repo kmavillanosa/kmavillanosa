@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="light">
+<html lang="en" class="dark">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -69,9 +69,18 @@
 			})(window, document, "clarity", "script", "urwfh7life");
 		</script>
 		<script>
-			// Force light mode on page load
-			document.documentElement.classList.remove('dark');
-			document.documentElement.classList.add('light');
+			// Default to dark mode unless the user has explicitly chosen otherwise.
+			(function () {
+				var theme = 'dark';
+				try {
+					var stored = localStorage.getItem('theme-storage');
+					if (stored) {
+						theme = JSON.parse(stored).state?.theme || 'dark';
+					}
+				} catch (e) { theme = 'dark'; }
+				document.documentElement.classList.toggle('dark', theme === 'dark');
+				document.documentElement.classList.toggle('light', theme !== 'dark');
+			})();
 		</script>
 		<script>
 			// Single Page Apps for GitHub Pages
