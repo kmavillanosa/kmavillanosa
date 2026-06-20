@@ -28,11 +28,32 @@
   "resumeUrl": "https://kmavillanosa.github.io/kmavillanosa/cv/Kim_Cyriel_S._Avillanosa_CV.pdf",
   "certifications": [
     {
+      "title": "Introduction to Claude Projects",
+      "issuer": "Skillsoft",
+      "year": "Apr 2026",
+      "credentialId": "181003235",
+      "url": "https://skillsoft.digitalbadges.skillsoft.com/3d3f2a24-073f-4291-ba0f-174116e2943a"
+    },
+    {
+      "title": "Generative AI and Its Impact to Everyday Business",
+      "issuer": "Skillsoft",
+      "year": "Oct 2025",
+      "credentialId": "163192919",
+      "url": "https://skillsoft.digitalbadges.skillsoft.com/34515a34-0fa7-43ee-afdf-4f2af63b9a35"
+    },
+    {
+      "title": "Artificial Intelligence and Machine Learning",
+      "issuer": "Skillsoft",
+      "year": "Oct 2025",
+      "credentialId": "163182120",
+      "url": "https://skillsoft.digitalbadges.skillsoft.com/696f16c7-7cdd-4fb3-819b-b4524b57c08b"
+    },
+    {
       "title": "Systems and Service Architecture - Microservices Architecture",
       "issuer": "NobleProg",
       "year": "May 2018",
       "credentialId": "551751",
-      "url": "https://media.licdn.com/dms/image/v2/D562DAQGVvZO0nYmCWw/profile-treasury-document-images_800/B56Ztayk12JYAc-/1/1766754769893?e=1772064000&v=beta&t=A92NySzviTriAMvxgVlwm36kGqGlXM1A2BjIRGCvbdw"
+      "url": "https://cert.nobleprog.com/certificate/551751/4a693"
     }
   ]
 }

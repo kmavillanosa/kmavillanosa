@@ -3,7 +3,9 @@ cv:
   location: Puerto Princesa City, Palawan, Philippines
   email:
   phone:
-  website: https://itsavillanosa.com
+  website:
+    - https://itsavillanosa.com
+    - https://kmavillanosa.github.io/kmavillanosa
   social_networks:
     - network: LinkedIn
       username: kmavillanosa

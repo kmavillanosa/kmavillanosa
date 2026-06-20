@@ -1,6 +1,18 @@
 {
 	"skills": [
 		{
+			"name": "Claude",
+			"category": "AI"
+		},
+		{
+			"name": "Claude Code",
+			"category": "AI"
+		},
+		{
+			"name": "OpenCLAW",
+			"category": "AI"
+		},
+		{
 			"name": "TypeScript",
 			"category": "Languages"
 		},
@@ -262,6 +274,7 @@
 		}
 	],
 	"categoryColors": {
+		"AI": "from-emerald-100 to-emerald-50 dark:from-emerald-900/40 dark:to-emerald-800/40 text-emerald-700 dark:text-emerald-300",
 		"Languages": "from-slate-100 to-slate-50 dark:from-slate-900/40 dark:to-slate-800/40 text-slate-700 dark:text-slate-300",
 		"Frontend": "from-blue-100 to-blue-50 dark:from-blue-900/40 dark:to-blue-800/40 text-blue-700 dark:text-blue-300",
 		"Desktop": "from-purple-100 to-purple-50 dark:from-purple-900/40 dark:to-purple-800/40 text-purple-700 dark:text-purple-300",

@@ -5,103 +5,109 @@
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
     <loc>https://kmavillanosa.github.io/kmavillanosa</loc>
-    <lastmod>2026-02-13</lastmod>
+    <lastmod>2026-06-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1</priority>
   </url>
   <url>
     <loc>https://kmavillanosa.github.io/kmavillanosa/portfolio</loc>
-    <lastmod>2026-02-13</lastmod>
+    <lastmod>2026-06-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://kmavillanosa.github.io/kmavillanosa/slides</loc>
-    <lastmod>2026-02-13</lastmod>
+    <lastmod>2026-06-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://kmavillanosa.github.io/kmavillanosa/contact</loc>
-    <lastmod>2026-02-13</lastmod>
+    <lastmod>2026-06-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://kmavillanosa.github.io/kmavillanosa/github-stats</loc>
+    <lastmod>2026-06-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://kmavillanosa.github.io/kmavillanosa/portfolio/bill-tracker</loc>
-    <lastmod>2026-02-13</lastmod>
+    <lastmod>2026-06-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://kmavillanosa.github.io/kmavillanosa/portfolio/ippy</loc>
-    <lastmod>2026-02-13</lastmod>
+    <lastmod>2026-06-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://kmavillanosa.github.io/kmavillanosa/portfolio/just-a-chair</loc>
-    <lastmod>2026-02-13</lastmod>
+    <lastmod>2026-06-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://kmavillanosa.github.io/kmavillanosa/portfolio/kitchen-preview</loc>
-    <lastmod>2026-02-13</lastmod>
+    <lastmod>2026-06-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://kmavillanosa.github.io/kmavillanosa/portfolio/lettercraft</loc>
-    <lastmod>2026-02-13</lastmod>
+    <lastmod>2026-06-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://kmavillanosa.github.io/kmavillanosa/portfolio/shp-sun-heat-power</loc>
-    <lastmod>2026-02-13</lastmod>
+    <lastmod>2026-06-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://kmavillanosa.github.io/kmavillanosa/experience/amihan-solutions</loc>
-    <lastmod>2026-02-13</lastmod>
+    <lastmod>2026-06-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://kmavillanosa.github.io/kmavillanosa/experience/cabinets-by-computer</loc>
-    <lastmod>2026-02-13</lastmod>
+    <lastmod>2026-06-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://kmavillanosa.github.io/kmavillanosa/experience/city-government-puerto-princesa</loc>
-    <lastmod>2026-02-13</lastmod>
+    <lastmod>2026-06-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://kmavillanosa.github.io/kmavillanosa/experience/ipp</loc>
-    <lastmod>2026-02-13</lastmod>
+    <lastmod>2026-06-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://kmavillanosa.github.io/kmavillanosa/experience/palawan-express</loc>
-    <lastmod>2026-02-13</lastmod>
+    <lastmod>2026-06-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://kmavillanosa.github.io/kmavillanosa/experience/palawan-group</loc>
-    <lastmod>2026-02-13</lastmod>
+    <lastmod>2026-06-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://kmavillanosa.github.io/kmavillanosa/experience/yondu</loc>
-    <lastmod>2026-02-13</lastmod>
+    <lastmod>2026-06-20</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

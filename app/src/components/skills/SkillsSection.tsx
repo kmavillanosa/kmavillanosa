@@ -74,11 +74,12 @@ function SkillsSection() {
 			className="py-10 sm:py-12 px-4 sm:px-6 bg-theme-page"
 		>
 			<div className="max-w-5xl mx-auto">
-				<div className="text-center mb-6">
-					<h2 className="text-xl sm:text-2xl font-bold text-theme-text-primary mb-1">
-						Skills & Technologies
+				<div className="flex flex-col items-center text-center mb-8">
+					<span className="section-eyebrow mb-3">Tech Stack</span>
+					<h2 className="text-2xl sm:text-3xl font-bold text-theme-text-primary mb-2">
+						Skills &amp; Technologies
 					</h2>
-					<p className="text-sm text-theme-text-secondary max-w-xl mx-auto">
+					<p className="text-sm sm:text-base text-theme-text-secondary max-w-xl mx-auto">
 						Technologies and frameworks I work with.
 					</p>
 				</div>
