@@ -134,6 +134,33 @@ cv:
         highlights:
           - https://cert.nobleprog.com/certificate/551751/4a693
 
+      - title: Artificial Intelligence and Machine Learning
+        issuer: Skillsoft
+        label: Skillsoft - Artificial Intelligence and Machine Learning
+        details: Credential ID 163182120
+        date: 2025-10
+        summary: Artificial Intelligence and Machine Learning
+        highlights:
+          - https://skillsoft.digitalbadges.skillsoft.com/696f16c7-7cdd-4fb3-819b-b4524b57c08b
+
+      - title: Generative AI and Its Impact to Everyday Business
+        issuer: Skillsoft
+        label: Skillsoft - Generative AI and Its Impact to Everyday Business
+        details: Credential ID 163192919
+        date: 2025-10
+        summary: Generative AI and Its Impact to Everyday Business
+        highlights:
+          - https://skillsoft.digitalbadges.skillsoft.com/34515a34-0fa7-43ee-afdf-4f2af63b9a35
+
+      - title: Introduction to Claude Projects
+        issuer: Skillsoft
+        label: Skillsoft - Introduction to Claude Projects
+        details: Credential ID 181003235
+        date: 2026-04
+        summary: Introduction to Claude Projects
+        highlights:
+          - https://skillsoft.digitalbadges.skillsoft.com/3d3f2a24-073f-4291-ba0f-174116e2943a
+
     skills:
       - label: Programming Languages
         details: TypeScript, JavaScript, C#
@@ -155,6 +182,9 @@ cv:
 
       - label: Mobile Development
         details: Ionic React, React Native
+
+      - label: AI Tools & Assistants
+        details: Claude, Claude Code, OpenCLAW
 
       - label: Low-Code Development
         details: OutSystems Platform (Knowledge of fundamentals and basic implementation, acquired through self-study)
@@ -209,30 +239,78 @@ design:
 
   page:
     size: us-letter
-    top_margin: 0.7in
-    bottom_margin: 0.7in
-    left_margin: 0.7in
-    right_margin: 0.7in
+    top_margin: 0.6in
+    bottom_margin: 0.6in
+    left_margin: 0.65in
+    right_margin: 0.65in
+    show_footer: true
+    show_top_note: true
 
   colors:
-    name: "212121"
+    body: "212121"
+    name: "1a1a1a"
+    headline: rgb(90, 90, 90)
     connections: rgb(0, 79, 144)
     section_titles: rgb(0, 79, 144)
     links: rgb(0, 79, 144)
+    footer: rgb(140, 140, 140)
+    top_note: rgb(140, 140, 140)
+
+  typography:
+    line_spacing: 0.65em
+    alignment: justified
+    date_and_location_column_alignment: right
+    font_size:
+      body: 10pt
+      name: 26pt
+      headline: 10pt
+      connections: 9.5pt
+      section_titles: 1.3em
+    small_caps:
+      section_titles: true
+    bold:
+      name: true
+      section_titles: true
 
   links:
-    underline: false
+    underline: true
+    show_external_link_icon: false
 
   header:
     alignment: center
-    photo_width: 3.5cm
+    photo_width: 3.3cm
+    space_below_name: 0.35cm
+    space_below_headline: 0.5cm
+    space_below_connections: 0.6cm
+    connections:
+      show_icons: true
+      separator: "|"
+      space_between_connections: 0.45cm
 
   section_titles:
-    line_thickness: 0.5pt
+    type: with_partial_line
+    line_thickness: 0.6pt
+    space_above: 0.55cm
+    space_below: 0.28cm
+
+  sections:
+    allow_page_break: true
+    space_between_regular_entries: 1.05em
+    space_between_text_based_entries: 0.35em
+    show_time_spans_in:
+      - experience
 
   entries:
     date_and_location_width: 4.15cm
+    side_space: 0.2cm
     short_second_row: true
+    allow_page_break: false
+    highlights:
+      bullet: "◦"
+      space_left: 0.35cm
+      space_above: 0.12cm
+      space_between_items: 0.18cm
+      space_between_bullet_and_text: 0.4em
 
 rendercv_settings:
   render_command:

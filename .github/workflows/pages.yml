@@ -1,13 +1,8 @@
-# Deploy to GitHub Pages + refresh profile metrics (unified).
+# Deploy to GitHub Pages.
 #
-# - Push (app/cms/workflows only): build app, refresh metrics, deploy. Path filter avoids
-#   re-running when only README or github-metrics.svg change.
-# - Schedule (daily 00:00 UTC): same workflow (generate metrics, build, deploy). No commit to main.
-# - workflow_dispatch: full build + metrics + deploy.
-#
-# Metrics SVG is generated into the build and served from the site; profile README points to
-# the deployed URL. No bot commits to main, so the portfolio is never overwritten.
-# REQUIRED: METRICS_TOKEN repo secret (PAT, no scopes) for lowlighter/metrics.
+# - Push (app/cms/workflows only): build app, deploy. Path filter avoids re-running
+#   when only README or other root files change.
+# - workflow_dispatch: full build + deploy.
 
 name: Deploy to GitHub Pages
 
@@ -18,8 +13,6 @@ on:
       - 'app/**'
       - 'cms/**'
       - '.github/workflows/**'
-  schedule:
-    - cron: "0 0 * * *"
   workflow_dispatch:
 
 permissions:
@@ -42,47 +35,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
-      - name: Check METRICS_TOKEN secret
-        run: |
-          if [ -z "${{ secrets.METRICS_TOKEN }}" ]; then
-            echo "::error::METRICS_TOKEN secret is not set. Create a PAT at https://github.com/settings/tokens (classic, no scopes) and add it as a repository secret named METRICS_TOKEN in this repo's Settings → Secrets and variables → Actions."
-            exit 1
-          fi
-
-      - name: Generate profile metrics
-        uses: lowlighter/metrics@latest
-        with:
-          token: ${{ secrets.METRICS_TOKEN }}
-          user: ${{ github.repository_owner }}
-          filename: app/public/github-metrics.svg
-          config_timezone: Asia/Manila
-          output_action: none
-          template: classic
-          base: header, activity, community, repositories, metadata
-          plugin_introduction: yes
-          plugin_isocalendar: yes
-          plugin_isocalendar_duration: full-year
-          plugin_languages: yes
-          plugin_languages_details: bytes-size, percentage
-          plugin_achievements: yes
-          plugin_achievements_threshold: X
-          plugin_achievements_display: detailed
-          plugin_calendar: yes
-          plugin_calendar_limit: 11
-          plugin_habits: yes
-          plugin_habits_facts: yes
-          plugin_habits_charts: yes
-          plugin_licenses: yes
-          plugin_skyline: yes
-          plugin_skyline_year: 2024
-          plugin_skyline_frames: 120
-          plugin_skyline_quality: 1
-          plugin_stargazers: yes
-          plugin_stargazers_charts_type: chartist
-          plugin_topics: yes
-          plugin_topics_limit: 0
-          plugin_topics_mode: icons
 
       - name: Detect changed paths
         id: paths
