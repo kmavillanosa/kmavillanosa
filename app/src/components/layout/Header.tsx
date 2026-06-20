@@ -11,12 +11,34 @@ function Header() {
   const isResourcesPage =
     location.pathname === "/portfolio" || location.pathname === "/slides";
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isResourcesOpen, setIsResourcesOpen] = useState(false);
   const resumeUrl = siteSettings?.resumeUrl || "https://kmavillanosa.github.io/kmavillanosa/cv/Kim_Cyriel_S._Avillanosa_CV.pdf";
 
-  // Close menu when route changes
+  // Close menus when route changes
   useEffect(() => {
     setIsMenuOpen(false);
+    setIsResourcesOpen(false);
   }, [location.pathname]);
+
+  // Close the desktop Resources dropdown on outside click or Escape
+  useEffect(() => {
+    if (!isResourcesOpen) return;
+    const handlePointer = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      if (!target.closest("[data-resources-menu]")) {
+        setIsResourcesOpen(false);
+      }
+    };
+    const handleKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsResourcesOpen(false);
+    };
+    document.addEventListener("click", handlePointer);
+    document.addEventListener("keydown", handleKey);
+    return () => {
+      document.removeEventListener("click", handlePointer);
+      document.removeEventListener("keydown", handleKey);
+    };
+  }, [isResourcesOpen]);
 
   // Close menu when clicking outside
   useEffect(() => {
@@ -100,22 +122,27 @@ function Header() {
             >
               Home
             </Link>
-            <div className="relative group">
+            <div className="relative" data-resources-menu>
               <button
+                onClick={() => setIsResourcesOpen((v) => !v)}
                 className={`px-3 py-2 text-sm font-medium rounded-md flex items-center gap-1 transition-colors ${
-                  isResourcesPage
+                  isResourcesPage || isResourcesOpen
                     ? "text-theme-accent"
                     : "text-theme-text-secondary hover:text-theme-text-primary"
                 }`}
-                aria-expanded="false"
+                aria-expanded={isResourcesOpen}
                 aria-haspopup="true"
               >
                 Resources
-                <svg className="w-3.5 h-3.5 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className={`w-3.5 h-3.5 transition-transform ${isResourcesOpen ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
-              <div className="absolute top-full left-0 mt-0.5 w-44 bg-theme-surface rounded-lg border border-theme shadow-sm py-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-opacity duration-150 z-50">
+              <div
+                className={`absolute top-full left-0 mt-1 w-44 bg-theme-surface rounded-lg border border-theme shadow-lg py-1 transition-all duration-150 z-50 ${
+                  isResourcesOpen ? "opacity-100 visible translate-y-0" : "opacity-0 invisible -translate-y-1 pointer-events-none"
+                }`}
+              >
                 <Link
                   to="/portfolio"
                   className={`block px-3 py-2 text-sm transition-colors first:rounded-t-lg ${
