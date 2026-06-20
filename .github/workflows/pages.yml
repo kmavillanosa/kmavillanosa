@@ -82,7 +82,7 @@ jobs:
 
       - name: Install RenderCV
         if: steps.paths.outputs.cms == 'true' || steps.cache-cv.outputs.cache-hit != 'true'
-        run: pip install "rendercv[full]"
+        run: pip install "rendercv[full]==2.6"
 
       - name: Generate CV
         if: steps.paths.outputs.cms == 'true' || steps.cache-cv.outputs.cache-hit != 'true'
