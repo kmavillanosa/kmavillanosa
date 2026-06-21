@@ -50,12 +50,17 @@ jobs:
           echo "cms=$([ -n "$(grep -E '^cms/' /tmp/changed.txt 2>/dev/null)" ] && echo true || echo false)" >> $GITHUB_OUTPUT
           echo "workflow=$([ -n "$(grep -E '^\\.github/' /tmp/changed.txt 2>/dev/null)" ] && echo true || echo false)" >> $GITHUB_OUTPUT
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          package_json_file: app/package.json
+
       - name: Cache node_modules
         id: cache-node
         uses: actions/cache@v4
         with:
           path: app/node_modules
-          key: node-${{ runner.os }}-${{ hashFiles('app/package-lock.json') }}
+          key: node-${{ runner.os }}-${{ hashFiles('app/pnpm-lock.yaml') }}
           restore-keys: |
             node-${{ runner.os }}-
 
@@ -71,8 +76,8 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'
-          cache-dependency-path: app/package-lock.json
+          cache: 'pnpm'
+          cache-dependency-path: app/pnpm-lock.yaml
 
       - name: Setup Python and Install RenderCV
         if: steps.paths.outputs.cms == 'true' || steps.cache-cv.outputs.cache-hit != 'true'
@@ -103,11 +108,11 @@ jobs:
 
       - name: Install dependencies
         working-directory: ./app
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: Build app
         working-directory: ./app
-        run: npm run build
+        run: pnpm build
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
