@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, lazy, Suspense } from 'react'
 import { Link } from 'react-router-dom'
 import { Button, Spinner } from 'flowbite-react'
 import { usePages } from '@/hooks/usePages'
@@ -11,6 +11,8 @@ import StatsSection from '@/components/stats/StatsSection'
 import CTASection from '@/components/cta/CTASection'
 import ScrollMinimap from '@/components/layout/ScrollMinimap'
 import SEOHead from '@/components/seo/SEOHead'
+
+const CareerTour = lazy(() => import('@/components/career/CareerTour'))
 import { replaceYearsPlaceholder } from '@/utils/years-of-experience'
 
 /** Short blurb shown under each expertise row. Falls back to a generic line. */
@@ -56,12 +58,14 @@ function LandingPage() {
 		{ id: 'expertise-section', label: 'What I do' },
 		{ id: 'work-section', label: 'Work' },
 		{ id: 'programme-section', label: "Let's talk" },
+		{ id: 'career-tour-section', label: 'Career tour' },
 		{ id: 'more-section', label: 'Experience' },
 		{ id: 'skills-section', label: 'Skills' },
 		{ id: 'cta-section', label: 'Contact' },
 	].filter((section) => {
 		if (section.id === 'work-section' && featuredPages.length === 0) return false
 		if (section.id === 'more-section' && experiences.length === 0) return false
+		if (section.id === 'career-tour-section' && experiences.length === 0) return false
 		if (section.id === 'expertise-section' && expertise.length === 0) return false
 		return true
 	})
@@ -371,6 +375,15 @@ function LandingPage() {
 					</div>
 				</div>
 			</section>
+
+			{/* ============================================================
+			    CAREER TOUR — interactive 3D flythrough of the timeline
+			    ============================================================ */}
+			{experiences.length > 0 && (
+				<Suspense fallback={null}>
+					<CareerTour />
+				</Suspense>
+			)}
 
 			{/* ============================================================
 			    MORE FOR YOU — experience grid (ING "More for you")
