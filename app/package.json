@@ -23,10 +23,12 @@
 		"rehype-raw": "^7.0.0",
 		"remark-gfm": "^4.0.0",
 		"tech-stack-icons": "^3.5.8",
+		"three": "^0.184.0",
 		"zustand": "^4.5.2"
 	},
 	"devDependencies": {
 		"@types/js-yaml": "^4.0.9",
+		"@types/three": "^0.184.1",
 		"@types/react": "^18.3.5",
 		"@types/react-dom": "^18.3.0",
 		"@typescript-eslint/eslint-plugin": "^7.18.0",
