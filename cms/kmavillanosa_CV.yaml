@@ -1,6 +1,6 @@
 cv:
   name: Kim Cyriel S. Avillanosa
-  photo: ../profile.jpg
+  photo: profile.jpg
   location: Puerto Princesa City, Palawan, Philippines
   email: "careers.kmavillanosa@gmail.com"
   phone: "+63-945-287-3791"
@@ -17,9 +17,7 @@ cv:
 
   sections:
     about_me:
-      - Senior full-stack software engineer with 10 years of experience shipping production web, desktop, and 3D applications for international teams across Switzerland, Australia, and Spain.
-      - Core stack is React, Next.js, and TypeScript on the front end with C#/.NET and Node.js (NestJS) on the back end, grounded in Domain-Driven Design, Clean Architecture, and Vertical Slice.
-      - Track record of leading multinational teams, owning CI/CD and data migrations, mentoring engineers, and delivering maintainable, well-tested systems.
+      - Highly accomplished Software Engineer with 10 years of experience in full-stack development, architecture, and team leadership. Proven ability to design and ship scalable, multi-tenant SaaS applications, with expertise in TypeScript, JavaScript, React, and .NET. Successfully delivered 3D product visualization using WebGL, and mentored junior developers. Adept at translating complex business requirements into robust technical solutions and optimizing development workflows to drive project success.
 
     experience:
       - company: Avillanosa Information Technology Solutions (itsavillanosa.com)
@@ -29,10 +27,10 @@ cv:
         location: Puerto Princesa City, Palawan, Philippines
         summary:
         highlights:
-          - Founded and operate an independent IT solutions firm delivering custom software to local and offshore clients
-          - Design and ship multi-tenant, SaaS-style web applications end to end — architecture, full-stack development, and deployment
-          - Engage directly with clients to translate business requirements into scalable, maintainable systems
-          - Bill B2B as an independent senior contractor with availability across AU/NZ business hours
+          - Established and manage an independent IT solutions firm, providing custom software development to local and international clientele
+          - Architect, develop, and deploy multi-tenant, SaaS-style web applications, with expertise in TypeScript, JavaScript, React, and .NET from concept to completion
+          - Collaborate directly with clients to translate complex business requirements into scalable and maintainable system designs
+          - Serve as an independent senior contractor, offering services to B2B clients with availability across AU/NZ business hours
 
       - company: Cabinets by Computer
         position: Senior Front-End Developer (3D / WebGL)
@@ -41,10 +39,10 @@ cv:
         location: Connewarre, Victoria, Australia
         summary:
         highlights:
-          - Built and shipped production 3D product visualization using Three.js / WebGL for an Australian product team
-          - Delivered performant, photo-realistic visual implementations in the browser
-          - Developed internal automation and tooling that streamlined the design-to-production workflow
-          - Mentored developers on 3D graphics and front-end best practices
+          - Engineered and launched production-ready 3D product visualizations utilizing Three.js and WebGL for an Australian product team
+          - Delivered high-performance, photorealistic visual implementations within the web browser
+          - Created internal automation tools that significantly streamlined the design-to-production workflow
+          - Mentored fellow developers in the areas of 3D graphics and advanced front-end best practices
 
       - company: Amihan Solutions / Medgate Switzerland
         position: Senior Software Developer (Frontend)
@@ -53,10 +51,10 @@ cv:
         location: Rafz, Zurich, Switzerland
         summary:
         highlights:
-          - Delivered frontend features and internal tooling for a Swiss telemedicine platform
-          - Led investigations, code reviews, and refactors to improve code quality and maintainability
-          - Prepared and delivered technical presentations to stakeholders
-          - Worked async with a distributed European team
+          - Implemented frontend features and developed internal tooling for a Swiss telemedicine platform
+          - Spearheaded investigations, conducted code reviews, and initiated refactors to enhance code quality and maintainability
+          - Prepared and delivered technical presentations to key stakeholders
+          - Collaborated asynchronously with a distributed European team
 
       - company: Palawan Group of Companies
         position: Software Engineering Consultant
@@ -65,9 +63,9 @@ cv:
         location: Puerto Princesa, Philippines
         summary:
         highlights:
-          - Researched and modernized legacy systems
-          - Provided architectural and technical guidance to engineering teams
-          - Performed code reviews and performance optimizations
+          - Researched and modernized existing legacy systems to improve efficiency and performance
+          - Provided crucial architectural and technical guidance to various engineering teams
+          - Executed code reviews and implemented performance optimizations across multiple projects
 
       - company: Yondu, Inc. / Morphsys Inc & Applus+
         position: Lead Senior Software Engineer (Full Stack)
@@ -76,11 +74,11 @@ cv:
         location: Taguig, Philippines / Barcelona, Spain
         summary:
         highlights:
-          - Led multinational development teams across Manila and Barcelona
-          - Designed scalable system architectures and established Git and CI/CD workflows
-          - Owned data migrations and production deployments
-          - Authored technical documentation and user manuals
-          - Mentored engineers and optimized team processes
+          - Directed multinational development teams located in Manila and Barcelona
+          - Architected scalable system designs and established robust Git and CI/CD workflows
+          - Managed critical data migrations and oversaw production deployments
+          - Authored comprehensive technical documentation and user manuals
+          - Mentored junior engineers and optimized team processes for increased productivity
 
       - company: Palawan Express Pera Padala
         position: Software Engineer
@@ -89,10 +87,10 @@ cv:
         location: Puerto Princesa City, Philippines
         summary:
         highlights:
-          - Developed web services using Clean Architecture for a national remittance network
-          - Built integrations spanning desktop and web applications
-          - Wrote documentation, unit tests, and deployment guides
-          - Supervised tasks and optimized delivery workflows
+          - Developed web services utilizing Clean Architecture principles for a national remittance network
+          - Engineered integrations connecting disparate desktop and web applications
+          - Authored essential documentation, unit tests, and deployment guides
+          - Supervised project tasks and optimized delivery workflows for enhanced efficiency
 
       - company: International Payments Processing, Inc.
         position: Programmer
@@ -101,9 +99,9 @@ cv:
         location: Puerto Princesa City, Philippines
         summary:
         highlights:
-          - Built data extraction and reporting tools
-          - Developed automation for email workflows
-          - Created inventory and reconciliation tools
+          - Constructed data extraction and reporting tools to facilitate business intelligence
+          - Automated routine email workflows, reducing manual effort and improving response times
+          - Developed inventory and reconciliation tools to enhance financial accuracy
 
       - company: City Government of Puerto Princesa
         position: Tech Support
@@ -112,8 +110,8 @@ cv:
         location: Puerto Princesa City, Philippines
         summary:
         highlights:
-          - Maintained hardware and network infrastructure
-          - Installed cabling, access points, and printers
+          - Maintained critical hardware and network infrastructure to ensure operational continuity
+          - Installed and configured cabling, access points, and printers to support user needs
 
     education:
       - institution: Palawan State University
@@ -233,8 +231,6 @@ cv:
           Communication: Slack, MS Teams
           Project Management: OpenProject, Trello, Jira
 
-  sort_entries: none
-
 design:
   theme: classic
 
@@ -319,7 +315,7 @@ design:
       space_between_items: 0.18cm
       space_between_bullet_and_text: 0.4em
 
-rendercv_settings:
+settings:
   render_command:
     dont_generate_markdown: true
     dont_generate_html: true
