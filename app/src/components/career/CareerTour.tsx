@@ -97,6 +97,77 @@ function CareerTour() {
 			halos.push(halo)
 		})
 
+		// --- Logo / monogram badges (billboards above each planet) -----------------
+		interface Badge {
+			sprite: THREE.Sprite
+			texture: THREE.CanvasTexture
+			redraw: () => void
+		}
+		const BADGE_PX = 256
+		const badges: Badge[] = pts.map((p, i) => {
+			const stop = stops[i]
+			const canvasEl = document.createElement('canvas')
+			canvasEl.width = BADGE_PX
+			canvasEl.height = BADGE_PX
+			const ctx = canvasEl.getContext('2d')!
+			const texture = new THREE.CanvasTexture(canvasEl)
+			texture.anisotropy = renderer.capabilities.getMaxAnisotropy()
+
+			let logoImg: HTMLImageElement | null = null
+
+			const redraw = () => {
+				const s = BADGE_PX
+				const accentCss = readCssColor('--theme-accent', '#16a34a')
+				ctx.clearRect(0, 0, s, s)
+				// Rounded white card.
+				const r = 44
+				const pad = 12
+				ctx.fillStyle = '#ffffff'
+				ctx.beginPath()
+				ctx.roundRect(pad, pad, s - pad * 2, s - pad * 2, r)
+				ctx.fill()
+				ctx.lineWidth = 6
+				ctx.strokeStyle = accentCss
+				ctx.stroke()
+
+				if (logoImg && logoImg.complete && logoImg.naturalWidth > 0) {
+					// Contain the logo inside the card (no distortion).
+					const box = s - pad * 2 - 48
+					const scale = Math.min(box / logoImg.naturalWidth, box / logoImg.naturalHeight)
+					const w = logoImg.naturalWidth * scale
+					const h = logoImg.naturalHeight * scale
+					ctx.drawImage(logoImg, (s - w) / 2, (s - h) / 2, w, h)
+				} else {
+					// Monogram fallback.
+					const letter = (stop.company || '?').trim().charAt(0).toUpperCase()
+					ctx.fillStyle = accentCss
+					ctx.font = `bold ${s * 0.5}px -apple-system, "Segoe UI", sans-serif`
+					ctx.textAlign = 'center'
+					ctx.textBaseline = 'middle'
+					ctx.fillText(letter, s / 2, s / 2 + 8)
+				}
+				texture.needsUpdate = true
+			}
+			redraw()
+
+			if (stop.companyLogo && stop.companyLogo.trim()) {
+				const img = new Image()
+				img.onload = () => {
+					logoImg = img
+					redraw()
+				}
+				img.src = stop.companyLogo
+			}
+
+			const sprite = new THREE.Sprite(
+				new THREE.SpriteMaterial({ map: texture, transparent: true, depthWrite: false })
+			)
+			sprite.position.copy(p).add(new THREE.Vector3(0, 1.8, 0))
+			sprite.scale.set(2.2, 2.2, 1)
+			scene.add(sprite)
+			return { sprite, texture, redraw }
+		})
+
 		// Starfield for depth.
 		const starCount = 600
 		const starPos = new Float32Array(starCount * 3)
@@ -129,6 +200,7 @@ function CareerTour() {
 				m.emissive = accent
 			})
 			halos.forEach((h) => ((h.material as THREE.MeshBasicMaterial).color = accent))
+			badges.forEach((b) => b.redraw())
 		}
 		const themeObserver = new MutationObserver(applyAccent)
 		themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] })
@@ -174,7 +246,7 @@ function CareerTour() {
 			raf = requestAnimationFrame(tick)
 			const t = clock.getElapsedTime()
 			// Ease the camera toward the scroll target.
-			smooth += (progressRef.current - smooth) * 0.06
+			smooth += (progressRef.current - smooth) * 0.03
 
 			const u = clamp(smooth, 0, 1)
 			// Map progress onto the inner (un-padded) span of the curve.
@@ -183,7 +255,7 @@ function CareerTour() {
 			const cu = lo + u * span
 			curve.getPointAt(clamp(cu, 0, 1), tmp)
 			camPos.copy(tmp).add(new THREE.Vector3(0, 2.2, 7.5))
-			camera.position.lerp(camPos, 0.1)
+			camera.position.lerp(camPos, 0.06)
 			curve.getPointAt(clamp(cu + 0.03, 0, 1), lookAt)
 			camera.lookAt(lookAt)
 			keyLight.position.copy(camera.position)
@@ -197,6 +269,13 @@ function CareerTour() {
 				m.emissiveIntensity += ((isActive ? 1.3 : 0.55) - m.emissiveIntensity) * 0.12
 				halos[i].scale.copy(n.scale)
 				halos[i].rotation.y = t * 0.3
+
+				// Badge floats gently and grows a touch when active.
+				const badge = badges[i].sprite
+				const bTarget = isActive ? 2.7 : 2.2
+				const bs = THREE.MathUtils.lerp(badge.scale.x, bTarget, 0.12)
+				badge.scale.set(bs, bs, 1)
+				badge.position.y = n.position.y + 1.8 + Math.sin(t * 1.2 + i) * 0.12
 			})
 			stars.rotation.z = t * 0.01
 
@@ -217,6 +296,11 @@ function CareerTour() {
 			starGeo.dispose()
 			nodes.forEach((n) => (n.material as THREE.Material).dispose())
 			halos.forEach((h) => (h.material as THREE.Material).dispose())
+			badges.forEach((b) => {
+				b.texture.dispose()
+				const mat = b.sprite.material as THREE.Material
+				mat.dispose()
+			})
 		}
 	}, [count, reduced, stops])
 
@@ -245,7 +329,7 @@ function CareerTour() {
 			id="career-tour-section"
 			ref={sectionRef}
 			className="relative bg-theme-cta-bg"
-			style={{ height: `${count * 75 + 60}vh` }}
+			style={{ height: `${count * 115 + 60}vh` }}
 			aria-label="3D tour of my career"
 		>
 			<div className="sticky top-0 h-screen w-full overflow-hidden">
