@@ -51,27 +51,89 @@ function CareerTour() {
 			return o
 		}
 
-		// --- The office room -------------------------------------------------------
+		// --- The office room (enclosed, neutral tones) -----------------------------
 		const deskGap = 7
-		const roomLen = count * deskGap + 40
+		const roomLen = count * deskGap + 30
+		const wallX = 5.5
+		const wallH = 3.8
+		const centerZ = -(count * deskGap) / 2 + deskGap / 2
+		const frontZ = 6 // a touch behind the camera's start
+		const backZ = centerZ - roomLen / 2
 
-		// Floor + subtle grid.
-		const floor = new THREE.Mesh(
-			track(new THREE.PlaneGeometry(60, roomLen)),
-			track(new THREE.MeshStandardMaterial({ color: 0x0b1220, roughness: 1 }))
-		)
+		// Opaque neutral background so no page color shows through the canvas.
+		scene.background = new THREE.Color(0x1b1e24)
+		scene.fog = new THREE.Fog(0x1b1e24, 18, roomLen * 0.9)
+
+		const floorMat = track(new THREE.MeshStandardMaterial({ color: 0x2c2f36, roughness: 0.95 }))
+		const wallMat = track(new THREE.MeshStandardMaterial({ color: 0x3a3f48, roughness: 1 }))
+		const ceilMat = track(new THREE.MeshStandardMaterial({ color: 0x262a31, roughness: 1 }))
+
+		// Floor
+		const floor = new THREE.Mesh(track(new THREE.PlaneGeometry(wallX * 2, roomLen)), floorMat)
 		floor.rotation.x = -Math.PI / 2
-		floor.position.z = -(count * deskGap) / 2 + deskGap / 2
+		floor.position.z = centerZ
 		scene.add(floor)
 
-		const grid = new THREE.GridHelper(80, 80, accent.getHex(), accent.getHex())
-		grid.position.set(0, 0.01, floor.position.z)
+		// Faint neutral floor tiling for scale (not the green grid).
+		const grid = new THREE.GridHelper(roomLen, Math.round(roomLen / 1.5), 0x556070, 0x556070)
+		grid.position.set(0, 0.02, centerZ)
 		const gridMat = grid.material as THREE.LineBasicMaterial
 		gridMat.transparent = true
-		gridMat.opacity = 0.1
+		gridMat.opacity = 0.08
 		track(grid.geometry)
 		track(gridMat)
 		scene.add(grid)
+
+		// Ceiling
+		const ceiling = new THREE.Mesh(track(new THREE.PlaneGeometry(wallX * 2, roomLen)), ceilMat)
+		ceiling.rotation.x = Math.PI / 2
+		ceiling.position.set(0, wallH, centerZ)
+		scene.add(ceiling)
+
+		// Side walls
+		const sideWallGeo = track(new THREE.PlaneGeometry(roomLen, wallH))
+		for (const sx of [-1, 1]) {
+			const wall = new THREE.Mesh(sideWallGeo, wallMat)
+			wall.position.set(wallX * sx, wallH / 2, centerZ)
+			wall.rotation.y = -sx * (Math.PI / 2)
+			scene.add(wall)
+		}
+
+		// Back + front walls
+		const endWallGeo = track(new THREE.PlaneGeometry(wallX * 2, wallH))
+		const backWall = new THREE.Mesh(endWallGeo, wallMat)
+		backWall.position.set(0, wallH / 2, backZ)
+		scene.add(backWall)
+		const frontWall = new THREE.Mesh(endWallGeo, wallMat)
+		frontWall.position.set(0, wallH / 2, frontZ)
+		frontWall.rotation.y = Math.PI
+		scene.add(frontWall)
+
+		// Recessed ceiling light panels running down the room.
+		const panelGeo = track(new THREE.PlaneGeometry(1.6, 1.0))
+		const panelMat = track(
+			new THREE.MeshStandardMaterial({ color: 0xfff4dc, emissive: 0xfff4dc, emissiveIntensity: 0.9 })
+		)
+		const panelCount = Math.max(2, Math.ceil(roomLen / 7))
+		for (let i = 0; i < panelCount; i++) {
+			const panel = new THREE.Mesh(panelGeo, panelMat)
+			panel.rotation.x = Math.PI / 2
+			panel.position.set(0, wallH - 0.02, frontZ - 3 - i * 7)
+			scene.add(panel)
+		}
+
+		// Framed art on the side walls for life.
+		const frameGeo = track(new THREE.PlaneGeometry(1.2, 0.8))
+		const frameMat = track(new THREE.MeshStandardMaterial({ color: 0x4f5560, roughness: 0.8 }))
+		const frameRows = Math.max(1, Math.floor(count))
+		for (let i = 0; i < frameRows; i++) {
+			for (const sx of [-1, 1]) {
+				const frame = new THREE.Mesh(frameGeo, frameMat)
+				frame.position.set(wallX * sx - 0.02 * sx, 2.0, frontZ - 4 - i * deskGap)
+				frame.rotation.y = -sx * (Math.PI / 2)
+				scene.add(frame)
+			}
+		}
 
 		// Shared geometries.
 		const g = {
@@ -370,7 +432,6 @@ function CareerTour() {
 		// --- Theme reactivity ------------------------------------------------------
 		const applyAccent = () => {
 			accent = new THREE.Color(readCssColor('--theme-accent', '#16a34a'))
-			gridMat.color = accent
 			accentLight.color = accent
 			drawCode()
 			stations.forEach((s) => s.redraw())
@@ -470,7 +531,7 @@ function CareerTour() {
 	// Reduced-motion / no-WebGL friendly: skip the canvas, keep it accessible.
 	if (reduced) {
 		return (
-			<section id="career-tour-section" className="py-14 sm:py-20 px-4 sm:px-6 bg-theme-cta-bg text-theme-accent-foreground">
+			<section id="career-tour-section" className="py-14 sm:py-20 px-4 sm:px-6 text-white" style={{ backgroundColor: '#1b1e24' }}>
 				<div className="max-w-3xl mx-auto text-center">
 					<span className="section-eyebrow mb-3" style={{ color: 'rgba(255,255,255,0.85)' }}>Career tour</span>
 					<h2 className="text-2xl sm:text-3xl font-bold mt-3 mb-3">A journey through my career</h2>
@@ -487,8 +548,8 @@ function CareerTour() {
 		<section
 			id="career-tour-section"
 			ref={sectionRef}
-			className="relative bg-theme-cta-bg"
-			style={{ height: `${count * 115 + 60}vh` }}
+			className="relative"
+			style={{ height: `${count * 115 + 60}vh`, backgroundColor: '#1b1e24' }}
 			aria-label="3D tour of my career"
 		>
 			<div className="sticky top-0 h-screen w-full overflow-hidden">
