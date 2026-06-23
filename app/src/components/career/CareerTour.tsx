@@ -491,11 +491,19 @@ function CareerTour() {
 
 			// Flames grow with experience — the career heating up. Lined along the
 			// front edge of the desk, count rising with each successive job.
+			// Flames = the chaos of the work: more roles → more fires, scattered
+			// wider across the desktop. Jittered (but deterministic) placement.
 			const flames: THREE.Mesh[] = []
-			const flameCount = Math.min(i + 1, 6)
+			const flameCount = Math.min(i + 1, 8)
+			const rand = (n: number) => {
+				const s = Math.sin(n * 127.1) * 43758.5453
+				return s - Math.floor(s)
+			}
+			const xMax = Math.min(1.35, 0.2 + flameCount * 0.18)
 			for (let fcnt = 0; fcnt < flameCount; fcnt++) {
-				const fx = (fcnt - (flameCount - 1) / 2) * 0.2
-				flames.push(addFlame(group, fx, 0.52))
+				const x = (rand(i * 7.3 + fcnt) * 2 - 1) * xMax
+				const z = -0.52 + rand(i * 13.7 + fcnt * 3.1) * 0.46 // back half of desk
+				flames.push(addFlame(group, x, z))
 			}
 
 			scene.add(group)
