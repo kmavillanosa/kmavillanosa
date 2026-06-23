@@ -139,9 +139,11 @@ function CareerTour() {
 		const g = {
 			deskTop: track(new THREE.BoxGeometry(3.0, 0.09, 1.15)),
 			deskLeg: track(new THREE.BoxGeometry(0.1, 1.0, 1.05)),
-			monBase: track(new THREE.BoxGeometry(0.5, 0.04, 0.3)),
-			monStand: track(new THREE.BoxGeometry(0.12, 0.5, 0.12)),
-			screen: track(new THREE.BoxGeometry(1.25, 0.76, 0.06)),
+			monBase: track(new THREE.BoxGeometry(0.42, 0.04, 0.26)),
+			monStand: track(new THREE.BoxGeometry(0.1, 0.32, 0.08)),
+			screen: track(new THREE.BoxGeometry(1.2, 0.6, 0.05)),
+			flameOuter: track(new THREE.ConeGeometry(0.06, 0.22, 12)),
+			flameInner: track(new THREE.ConeGeometry(0.035, 0.14, 12)),
 			kb: track(new THREE.BoxGeometry(0.8, 0.05, 0.28)),
 			seat: track(new THREE.BoxGeometry(0.62, 0.1, 0.6)),
 			back: track(new THREE.BoxGeometry(0.62, 0.75, 0.1)),
@@ -178,6 +180,12 @@ function CareerTour() {
 		const metalMat = track(new THREE.MeshStandardMaterial({ color: 0x4b5563, roughness: 0.4, metalness: 0.6 }))
 		const mugMat = track(new THREE.MeshStandardMaterial({ color: 0xf5f5f5, roughness: 0.5 }))
 		const coffeeMat = track(new THREE.MeshStandardMaterial({ color: 0x3a1f0a, roughness: 0.3 }))
+		const flameOuterMat = track(
+			new THREE.MeshStandardMaterial({ color: 0xff6a00, emissive: 0xff5500, emissiveIntensity: 1.4, transparent: true, opacity: 0.92 })
+		)
+		const flameInnerMat = track(
+			new THREE.MeshStandardMaterial({ color: 0xffd24d, emissive: 0xffcc33, emissiveIntensity: 1.8 })
+		)
 		const maxAniso = renderer.capabilities.getMaxAnisotropy()
 
 		// Cache attire materials so stations of the same tier share them.
@@ -371,11 +379,22 @@ function CareerTour() {
 			const mug = new THREE.Mesh(g.mugBody, mugMat)
 			mug.position.set(x, 1.11, z)
 			const coffee = new THREE.Mesh(g.mugCoffee, coffeeMat)
-			coffee.position.set(x, 1.17, z)
+			coffee.position.set(x, 1.13, z) // sits below the brim, not full
 			// Handle: ring in the vertical X-Y plane, inner edge meeting the cup wall.
 			const handle = new THREE.Mesh(g.mugHandle, mugMat)
 			handle.position.set(x + 0.105, 1.1, z)
 			parent.add(mug, coffee, handle)
+		}
+
+		/** A flickering flame (outer + inner cone); returns the outer mesh for animation. */
+		const addFlame = (parent: THREE.Group, x: number, z: number): THREE.Mesh => {
+			const outer = new THREE.Mesh(g.flameOuter, flameOuterMat)
+			outer.position.set(x, 1.16, z)
+			const inner = new THREE.Mesh(g.flameInner, flameInnerMat)
+			inner.position.y = -0.02 // child, scales with the outer flame
+			outer.add(inner)
+			parent.add(outer)
+			return outer
 		}
 
 		// Desk spots for mugs (avoids keyboard at z≈-0.2 and monitors at z≈-0.42).
@@ -394,11 +413,11 @@ function CareerTour() {
 			m.position.set(x, 0, -0.42)
 			m.rotation.y = rotY
 			const base = new THREE.Mesh(g.monBase, darkMat)
-			base.position.y = 1.06
+			base.position.set(0, 1.05, -0.05)
 			const stand = new THREE.Mesh(g.monStand, darkMat)
-			stand.position.y = 1.32
+			stand.position.set(0, 1.2, -0.08) // behind the screen
 			const screen = new THREE.Mesh(g.screen, [darkMat, darkMat, darkMat, darkMat, screenMat, darkMat])
-			screen.position.y = 1.68
+			screen.position.set(0, 1.55, 0)
 			m.add(base, stand, screen)
 			parent.add(m)
 		}
@@ -406,6 +425,7 @@ function CareerTour() {
 		interface Station {
 			logoMat: THREE.MeshStandardMaterial
 			armGroups: THREE.Group[]
+			flames: THREE.Mesh[]
 			redraw: () => void
 		}
 
@@ -469,8 +489,17 @@ function CareerTour() {
 			// The programmer — me, dressed for the era.
 			const armGroups = buildPerson(group, tier)
 
+			// Flames grow with experience — the career heating up. Lined along the
+			// front edge of the desk, count rising with each successive job.
+			const flames: THREE.Mesh[] = []
+			const flameCount = Math.min(i + 1, 6)
+			for (let fcnt = 0; fcnt < flameCount; fcnt++) {
+				const fx = (fcnt - (flameCount - 1) / 2) * 0.2
+				flames.push(addFlame(group, fx, 0.52))
+			}
+
 			scene.add(group)
-			return { logoMat, armGroups, redraw }
+			return { logoMat, armGroups, flames, redraw }
 		})
 
 		// Lighting
@@ -560,6 +589,12 @@ function CareerTour() {
 				// Typing motion: rock the forearms at the shoulder pivot.
 				s.armGroups[0].rotation.x = isActive ? Math.sin(t * 9) * 0.06 : 0
 				s.armGroups[1].rotation.x = isActive ? Math.sin(t * 9 + 1.1) * 0.06 : 0
+				// Flicker the flames.
+				s.flames.forEach((fl, k) => {
+					const flick = 0.85 + Math.sin(t * 11 + k * 1.7) * 0.12 + Math.sin(t * 19 + k) * 0.05
+					fl.scale.set(0.9 + Math.sin(t * 7 + k) * 0.08, flick, 0.9 + Math.cos(t * 8 + k) * 0.08)
+					fl.rotation.z = Math.sin(t * 6 + k * 2) * 0.08
+				})
 			})
 
 			renderer.render(scene, camera)
