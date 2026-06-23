@@ -145,6 +145,13 @@ function CareerTour() {
 			kb: track(new THREE.BoxGeometry(0.8, 0.05, 0.28)),
 			seat: track(new THREE.BoxGeometry(0.62, 0.1, 0.6)),
 			back: track(new THREE.BoxGeometry(0.62, 0.75, 0.1)),
+			chairPost: track(new THREE.CylinderGeometry(0.04, 0.045, 0.4, 12)),
+			chairHub: track(new THREE.CylinderGeometry(0.09, 0.09, 0.06, 12)),
+			chairLeg: track(new THREE.BoxGeometry(0.05, 0.04, 0.34)),
+			caster: track(new THREE.SphereGeometry(0.045, 10, 10)),
+			mugBody: track(new THREE.CylinderGeometry(0.07, 0.06, 0.13, 18)),
+			mugCoffee: track(new THREE.CylinderGeometry(0.062, 0.062, 0.01, 18)),
+			mugHandle: track(new THREE.TorusGeometry(0.045, 0.014, 8, 16)),
 			// Body
 			hips: track(new THREE.BoxGeometry(0.52, 0.34, 0.42)),
 			torso: track(new THREE.BoxGeometry(0.5, 0.66, 0.32)),
@@ -168,6 +175,9 @@ function CareerTour() {
 		const skinMat = track(new THREE.MeshStandardMaterial({ color: 0xeab38a, roughness: 0.7 }))
 		const hairMat = track(new THREE.MeshStandardMaterial({ color: 0x2b2b2b, roughness: 0.85 }))
 		const shoeMat = track(new THREE.MeshStandardMaterial({ color: 0x111827, roughness: 0.7 }))
+		const metalMat = track(new THREE.MeshStandardMaterial({ color: 0x4b5563, roughness: 0.4, metalness: 0.6 }))
+		const mugMat = track(new THREE.MeshStandardMaterial({ color: 0xf5f5f5, roughness: 0.5 }))
+		const coffeeMat = track(new THREE.MeshStandardMaterial({ color: 0x3a1f0a, roughness: 0.3 }))
 		const maxAniso = renderer.capabilities.getMaxAnisotropy()
 
 		// Cache attire materials so stations of the same tier share them.
@@ -407,12 +417,36 @@ function CareerTour() {
 			addMonitor(group, -0.78, logoMat, 0.28)
 			addMonitor(group, 0.78, codeScreenMat, -0.28)
 
-			// Chair (behind the person, on the camera side)
+			// Chair: seat + back + gas post + 5-star base with casters.
+			const chairZ = 0.42
 			const seat = new THREE.Mesh(g.seat, darkMat)
-			seat.position.set(0, 0.55, 0.42)
+			seat.position.set(0, 0.55, chairZ)
 			const back = new THREE.Mesh(g.back, darkMat)
-			back.position.set(0, 0.95, 0.68)
-			group.add(seat, back)
+			back.position.set(0, 0.95, chairZ + 0.26)
+			const post = new THREE.Mesh(g.chairPost, metalMat)
+			post.position.set(0, 0.3, chairZ)
+			const hub = new THREE.Mesh(g.chairHub, metalMat)
+			hub.position.set(0, 0.1, chairZ)
+			group.add(seat, back, post, hub)
+			for (let k = 0; k < 5; k++) {
+				const a = (k / 5) * Math.PI * 2
+				const leg = new THREE.Mesh(g.chairLeg, metalMat)
+				leg.position.set(Math.sin(a) * 0.17, 0.07, chairZ + Math.cos(a) * 0.17)
+				leg.rotation.y = -a
+				const caster = new THREE.Mesh(g.caster, darkMat)
+				caster.position.set(Math.sin(a) * 0.32, 0.045, chairZ + Math.cos(a) * 0.32)
+				group.add(leg, caster)
+			}
+
+			// Coffee mug on the desk.
+			const mug = new THREE.Mesh(g.mugBody, mugMat)
+			mug.position.set(0.62, 1.11, 0.22)
+			const coffee = new THREE.Mesh(g.mugCoffee, coffeeMat)
+			coffee.position.set(0.62, 1.17, 0.22)
+			const handle = new THREE.Mesh(g.mugHandle, mugMat)
+			handle.position.set(0.69, 1.11, 0.22)
+			handle.rotation.y = Math.PI / 2
+			group.add(mug, coffee, handle)
 
 			// The programmer — me, dressed for the era.
 			const armGroups = buildPerson(group, tier)
