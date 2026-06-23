@@ -366,6 +366,28 @@ function CareerTour() {
 			})
 		)
 
+		/** Adds a coffee mug (body + coffee + side handle) at (x,z) on the desktop. */
+		const addMug = (parent: THREE.Group, x: number, z: number) => {
+			const mug = new THREE.Mesh(g.mugBody, mugMat)
+			mug.position.set(x, 1.11, z)
+			const coffee = new THREE.Mesh(g.mugCoffee, coffeeMat)
+			coffee.position.set(x, 1.17, z)
+			// Handle: ring in the vertical X-Y plane, inner edge meeting the cup wall.
+			const handle = new THREE.Mesh(g.mugHandle, mugMat)
+			handle.position.set(x + 0.105, 1.1, z)
+			parent.add(mug, coffee, handle)
+		}
+
+		// Desk spots for mugs (avoids keyboard at z≈-0.2 and monitors at z≈-0.42).
+		const mugSpots: [number, number][] = [
+			[0.62, 0.22],
+			[-0.62, 0.22],
+			[1.0, 0.05],
+			[-1.0, 0.05],
+			[0.85, 0.42],
+			[-0.85, 0.42],
+		]
+
 		/** Adds a monitor (base + stand + screen) at x, angled by rotY, to a group. */
 		const addMonitor = (parent: THREE.Group, x: number, screenMat: THREE.Material, rotY: number) => {
 			const m = new THREE.Group()
@@ -438,15 +460,11 @@ function CareerTour() {
 				group.add(leg, caster)
 			}
 
-			// Coffee mug on the desk.
-			const mug = new THREE.Mesh(g.mugBody, mugMat)
-			mug.position.set(0.62, 1.11, 0.22)
-			const coffee = new THREE.Mesh(g.mugCoffee, coffeeMat)
-			coffee.position.set(0.62, 1.17, 0.22)
-			const handle = new THREE.Mesh(g.mugHandle, mugMat)
-			handle.position.set(0.69, 1.11, 0.22)
-			handle.rotation.y = Math.PI / 2
-			group.add(mug, coffee, handle)
+			// Coffee mugs — more cups stack up the deeper into the career.
+			const cupCount = Math.min(i + 1, mugSpots.length)
+			for (let c = 0; c < cupCount; c++) {
+				addMug(group, mugSpots[c][0], mugSpots[c][1])
+			}
 
 			// The programmer — me, dressed for the era.
 			const armGroups = buildPerson(group, tier)
