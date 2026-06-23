@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import * as THREE from 'three'
 import { useExperiences } from '@/hooks/useExperiences'
 
@@ -26,7 +26,8 @@ function CareerTour() {
 	const reduced = prefersReducedMotion()
 
 	// Most-recent-first from the loader; reverse so the tour reads start → now.
-	const stops = [...experiences].reverse()
+	// Memoized so a re-render (e.g. on scroll) doesn't churn the scene effect.
+	const stops = useMemo(() => [...experiences].reverse(), [experiences])
 	const count = stops.length
 
 	useEffect(() => {
@@ -162,11 +163,13 @@ function CareerTour() {
 			legR.position.set(1.1, 0.5, 0)
 			group.add(top, legL, legR)
 
-			// Monitor (faces +Z, toward the aisle/camera)
+			// Monitor sits on the LEFT of the desk (faces +Z, toward the camera) so it
+			// doesn't hide the person, who sits to the right facing the camera.
+			const monX = -0.65
 			const base = new THREE.Mesh(g.monBase, darkMat)
-			base.position.set(0, 1.06, -0.3)
+			base.position.set(monX, 1.06, -0.3)
 			const stand = new THREE.Mesh(g.monStand, darkMat)
-			stand.position.set(0, 1.28, -0.3)
+			stand.position.set(monX, 1.28, -0.3)
 			const { tex, redraw } = makeScreen(stop)
 			const screenMat = track(
 				new THREE.MeshStandardMaterial({
@@ -178,19 +181,22 @@ function CareerTour() {
 				})
 			)
 			const screen = new THREE.Mesh(g.screen, [darkMat, darkMat, darkMat, darkMat, screenMat, darkMat])
-			screen.position.set(0, 1.62, -0.28)
+			screen.position.set(monX, 1.62, -0.28)
 			const kb = new THREE.Mesh(g.kb, darkMat)
-			kb.position.set(0, 1.06, 0.25)
+			kb.position.set(0.3, 1.06, 0.2)
 			group.add(base, stand, screen, kb)
 
-			// Chair
+			// The programmer — me — sits on the near side facing the camera.
+			const personX = 0.35
+			const personZ = -0.45
+
+			// Chair (behind the person, away from camera)
 			const seat = new THREE.Mesh(g.seat, darkMat)
-			seat.position.set(0, 0.55, -0.95)
+			seat.position.set(personX, 0.55, personZ - 0.25)
 			const back = new THREE.Mesh(g.back, darkMat)
-			back.position.set(0, 0.95, -1.25)
+			back.position.set(personX, 0.95, personZ - 0.55)
 			group.add(seat, back)
 
-			// The programmer — me, at every desk.
 			const shirt = track(
 				new THREE.MeshStandardMaterial({
 					color: accent.clone(),
@@ -200,17 +206,18 @@ function CareerTour() {
 				})
 			)
 			const torso = new THREE.Mesh(g.torso, shirt)
-			torso.position.set(0, 0.95, -0.7)
+			torso.position.set(personX, 0.95, personZ)
 			const head = new THREE.Mesh(g.head, skinMat)
-			head.position.set(0, 1.45, -0.7)
+			head.position.set(personX, 1.45, personZ)
 			const hair = new THREE.Mesh(g.hair, hairMat)
-			hair.position.set(0, 1.47, -0.7)
+			hair.position.set(personX, 1.47, personZ)
+			// Arms reach forward (+Z) toward the keyboard.
 			const armL = new THREE.Mesh(g.arm, shirt)
-			armL.position.set(-0.28, 1.05, -0.35)
-			armL.rotation.x = -0.45
+			armL.position.set(personX - 0.22, 1.05, personZ + 0.35)
+			armL.rotation.x = 0.45
 			const armR = new THREE.Mesh(g.arm, shirt)
-			armR.position.set(0.28, 1.05, -0.35)
-			armR.rotation.x = -0.45
+			armR.position.set(personX + 0.22, 1.05, personZ + 0.35)
+			armR.rotation.x = 0.45
 			group.add(torso, head, hair, armL, armR)
 
 			scene.add(group)
@@ -270,7 +277,8 @@ function CareerTour() {
 
 		// --- Render loop -----------------------------------------------------------
 		let raf = 0
-		let smooth = 0
+		let smooth = progressRef.current // seed from current scroll, no replay from desk 1
+		let firstFrame = true
 		const camPos = new THREE.Vector3()
 		const lookAt = new THREE.Vector3()
 		const clock = new THREE.Clock()
@@ -288,7 +296,12 @@ function CareerTour() {
 
 			// Camera walks down the aisle at a 3/4 angle to the active desk.
 			camPos.set(2.2, 1.75, focusZ + 5.0)
-			camera.position.lerp(camPos, 0.06)
+			if (firstFrame) {
+				camera.position.copy(camPos)
+				firstFrame = false
+			} else {
+				camera.position.lerp(camPos, 0.06)
+			}
 			lookAt.set(0, 1.35, focusZ - 0.4)
 			camera.lookAt(lookAt)
 			keyLight.position.set(camera.position.x, camera.position.y + 2, camera.position.z)
