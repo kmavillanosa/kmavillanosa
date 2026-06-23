@@ -136,71 +136,78 @@ function CareerTour() {
 		const tierFor = (frac: number): Tier =>
 			frac < 0.25 ? TIERS[0] : frac < 0.5 ? TIERS[1] : frac < 0.78 ? TIERS[2] : TIERS[3]
 
-		/** Builds an anatomical seated figure with stage-appropriate attire. */
+		/**
+		 * Builds an anatomical seated figure with stage-appropriate attire.
+		 * The figure faces -Z (into the desk / toward the monitors); the camera
+		 * sits on +Z, giving an over-the-shoulder view. Hands rest on the desk.
+		 */
 		const buildPerson = (parent: THREE.Group, tier: Tier): THREE.Group[] => {
 			const person = new THREE.Group()
-			person.position.set(0, 0, -0.35)
+			person.position.set(0, 0, 0.32) // near side, in front of the desk
 			const topMat = mat(`top${tier.id}`, tier.top)
 			const pantsMat = mat(`pants${tier.id}`, tier.pants)
 			const sleeveMat = tier.jacket ? mat(`jacket${tier.id}`, tier.jacket) : topMat
 
 			const hips = new THREE.Mesh(g.hips, pantsMat)
-			hips.position.set(0, 0.66, -0.05)
+			hips.position.set(0, 0.66, 0.0)
 			person.add(hips)
 
+			// Legs go forward (-Z) under the desk.
 			for (const sx of [-1, 1]) {
 				const thigh = new THREE.Mesh(g.thigh, pantsMat)
-				thigh.position.set(0.14 * sx, 0.62, 0.18)
+				thigh.position.set(0.14 * sx, 0.62, -0.18)
 				const shin = new THREE.Mesh(g.shin, pantsMat)
-				shin.position.set(0.14 * sx, 0.34, 0.44)
+				shin.position.set(0.14 * sx, 0.34, -0.44)
 				const shoe = new THREE.Mesh(g.shoe, shoeMat)
-				shoe.position.set(0.14 * sx, 0.06, 0.56)
+				shoe.position.set(0.14 * sx, 0.06, -0.56)
 				person.add(thigh, shin, shoe)
 			}
 
 			const torso = new THREE.Mesh(g.torso, topMat)
-			torso.position.set(0, 1.08, -0.08)
-			torso.rotation.x = -0.06
+			torso.position.set(0, 1.08, 0.05)
+			torso.rotation.x = 0.06 // slight lean back into the chair
 			person.add(torso)
 
 			if (tier.jacket) {
 				const jacketMat = mat(`jacket${tier.id}`, tier.jacket)
 				const jacket = new THREE.Mesh(g.jacket, jacketMat)
-				jacket.position.set(0, 1.06, -0.09)
-				jacket.rotation.x = -0.06
+				jacket.position.set(0, 1.06, 0.06)
+				jacket.rotation.x = 0.06
 				person.add(jacket)
 				for (const sx of [-1, 1]) {
 					const lapel = new THREE.Mesh(g.lapel, jacketMat)
-					lapel.position.set(0.1 * sx, 1.2, 0.13)
+					lapel.position.set(0.1 * sx, 1.2, -0.11)
 					lapel.rotation.z = 0.2 * sx
 					person.add(lapel)
 				}
 			}
 			if (tier.tie) {
 				const tie = new THREE.Mesh(g.tie, mat(`tie${tier.id}`, tier.tie))
-				tie.position.set(0, 1.08, 0.15)
+				tie.position.set(0, 1.08, -0.13)
 				person.add(tie)
 			}
 
 			const neck = new THREE.Mesh(g.neck, skinMat)
-			neck.position.set(0, 1.42, -0.06)
+			neck.position.set(0, 1.42, 0.04)
 			const head = new THREE.Mesh(g.head, skinMat)
-			head.position.set(0, 1.58, -0.04)
+			head.position.set(0, 1.58, 0.03)
 			const hair = new THREE.Mesh(g.hair, hairMat)
-			hair.position.set(0, 1.6, -0.05)
+			hair.position.set(0, 1.6, 0.08) // hair toward the back (camera side)
 			person.add(neck, head, hair)
 
+			// Arms hinge at the shoulder and reach forward (-Z) onto the desktop.
 			const armGroups: THREE.Group[] = []
 			for (const sx of [-1, 1]) {
 				const ag = new THREE.Group()
-				ag.position.set(0.31 * sx, 1.34, -0.08)
+				ag.position.set(0.31 * sx, 1.34, 0.04)
 				const shoulder = new THREE.Mesh(g.shoulder, sleeveMat)
 				const upper = new THREE.Mesh(g.upperArm, sleeveMat)
-				upper.position.set(0, -0.2, 0.02)
+				upper.position.set(0, -0.12, -0.1)
+				upper.rotation.x = -0.6
 				const fore = new THREE.Mesh(g.foreArm, sleeveMat)
-				fore.position.set(0, -0.4, 0.22)
+				fore.position.set(0, -0.24, -0.34)
 				const hand = new THREE.Mesh(g.hand, skinMat)
-				hand.position.set(0, -0.42, 0.46)
+				hand.position.set(0, -0.26, -0.52)
 				ag.add(shoulder, upper, fore, hand)
 				person.add(ag)
 				armGroups.push(ag)
@@ -321,10 +328,10 @@ function CareerTour() {
 			const legR = new THREE.Mesh(g.deskLeg, deskMat)
 			legR.position.set(1.4, 0.5, 0)
 			const kb = new THREE.Mesh(g.kb, darkMat)
-			kb.position.set(0, 1.06, 0.05)
+			kb.position.set(0, 1.06, -0.2)
 			group.add(top, legL, legR, kb)
 
-			// Dual-monitor setup flanking the person: logo (left) + code (right).
+			// Dual monitors in front of the person, screens turned to face them.
 			const { tex, redraw } = makeLogoScreen(stop)
 			const logoMat = track(
 				new THREE.MeshStandardMaterial({
@@ -335,14 +342,14 @@ function CareerTour() {
 					roughness: 0.4,
 				})
 			)
-			addMonitor(group, -1.15, logoMat, 0.32)
-			addMonitor(group, 1.15, codeScreenMat, -0.32)
+			addMonitor(group, -0.78, logoMat, 0.28)
+			addMonitor(group, 0.78, codeScreenMat, -0.28)
 
-			// Chair (behind the person)
+			// Chair (behind the person, on the camera side)
 			const seat = new THREE.Mesh(g.seat, darkMat)
-			seat.position.set(0, 0.55, -0.45)
+			seat.position.set(0, 0.55, 0.42)
 			const back = new THREE.Mesh(g.back, darkMat)
-			back.position.set(0, 0.95, -0.72)
+			back.position.set(0, 0.95, 0.68)
 			group.add(seat, back)
 
 			// The programmer — me, dressed for the era.
@@ -420,14 +427,14 @@ function CareerTour() {
 			const focusZ = -f * deskGap
 
 			// Camera holds a slightly raised 3/4 angle on the active desk.
-			camPos.set(1.5, 1.95, focusZ + 5.3)
+			camPos.set(1.5, 2.0, focusZ + 4.6)
 			if (firstFrame) {
 				camera.position.copy(camPos)
 				firstFrame = false
 			} else {
 				camera.position.lerp(camPos, 0.06)
 			}
-			lookAt.set(0, 1.25, focusZ - 0.45)
+			lookAt.set(0, 1.3, focusZ - 0.3)
 			camera.lookAt(lookAt)
 			keyLight.position.set(camera.position.x, camera.position.y + 2, camera.position.z)
 			accentLight.position.set(0, 2.5, -fi * deskGap + 0.2)
