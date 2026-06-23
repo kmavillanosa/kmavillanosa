@@ -6,7 +6,6 @@ import { useExperiences } from '@/hooks/useExperiences'
 import { useServices } from '@/hooks/useServices'
 import { useSiteSettings } from '@/hooks/useSiteSettings'
 import PortfolioCard from '@/components/portfolio/PortfolioCard'
-import ExperienceCard from '@/components/experience/ExperienceCard'
 import SkillsSection from '@/components/skills/SkillsSection'
 import StatsSection from '@/components/stats/StatsSection'
 import CTASection from '@/components/cta/CTASection'
@@ -394,13 +393,79 @@ function LandingPage() {
 								<Spinner size="xl" />
 							</div>
 						) : (
-							<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
-								{experiences.map((experience) => (
-									<div key={experience.slug} className="h-full">
-										<ExperienceCard experience={experience} />
-									</div>
-								))}
-							</div>
+							<ol className="relative max-w-3xl mx-auto border-l-2 border-theme ml-3 sm:ml-4">
+								{experiences.map((experience) => {
+									const responsibilities = Array.isArray(experience.responsibilities)
+										? experience.responsibilities
+										: []
+									return (
+										<li key={experience.slug} className="relative pl-8 sm:pl-10 pb-10 last:pb-0">
+											{/* Node marker */}
+											<span className="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-theme-accent ring-4 ring-theme-surface" aria-hidden="true" />
+
+											<Link to={`/experience/${experience.slug}`} className="group block">
+												<div className="flex items-start gap-3">
+													{experience.companyLogo && experience.companyLogo.trim() && (
+														<div className="flex-shrink-0 w-11 h-11 rounded-lg bg-theme-elevated-muted flex items-center justify-center overflow-hidden border border-theme-muted">
+															<img
+																src={experience.companyLogo}
+																alt={experience.company}
+																className="w-full h-full object-contain p-1.5"
+																onError={(e) => {
+																	(e.target as HTMLImageElement).style.display = 'none'
+																}}
+															/>
+														</div>
+													)}
+													<div className="flex-1 min-w-0">
+														<div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+															<h3 className="text-base sm:text-lg font-bold text-theme-text-primary leading-tight group-hover:text-theme-accent transition-colors">
+																{experience.position}
+															</h3>
+															{experience.type && (
+																<span className="px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide rounded bg-theme-elevated text-theme-text-muted border border-theme-muted">
+																	{experience.type}
+																</span>
+															)}
+														</div>
+														<p className="text-sm font-medium text-theme-text-secondary mt-0.5">
+															{experience.company}
+														</p>
+														<div className="flex flex-wrap items-center gap-2 mt-1 text-xs text-theme-text-muted">
+															<span>{experience.period}</span>
+															{experience.companyLocation && (
+																<>
+																	<span className="text-theme-border">·</span>
+																	<span>{experience.companyLocation}</span>
+																</>
+															)}
+														</div>
+													</div>
+												</div>
+
+												{experience.companyAbout && (
+													<p className="text-sm text-theme-text-muted mt-3 leading-relaxed">
+														{experience.companyAbout}
+													</p>
+												)}
+
+												{responsibilities.length > 0 && (
+													<ul className="mt-3 space-y-1.5">
+														{responsibilities.map((item, i) => (
+															<li key={i} className="flex items-start gap-2.5">
+																<svg className="w-4 h-4 flex-shrink-0 text-theme-accent mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+																	<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+																</svg>
+																<span className="text-sm text-theme-text-secondary leading-relaxed">{item}</span>
+															</li>
+														))}
+													</ul>
+												)}
+											</Link>
+										</li>
+									)
+								})}
+							</ol>
 						)}
 					</div>
 				</section>
