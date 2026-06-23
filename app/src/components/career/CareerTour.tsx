@@ -43,113 +43,94 @@ function CareerTour() {
 
 		let accent = new THREE.Color(readCssColor('--theme-accent', '#16a34a'))
 
-		// --- Build the career path -------------------------------------------------
-		const gap = 9
-		const spread = 5
-		const pts = stops.map(
-			(_, i) =>
-				new THREE.Vector3(
-					Math.sin(i * 0.9) * spread,
-					Math.cos(i * 0.6) * spread * 0.45,
-					-i * gap
-				)
-		)
-		// Pad ends so the camera has runway before the first / after the last node.
-		const curvePts = [
-			pts[0].clone().add(new THREE.Vector3(0, 0, gap)),
-			...pts,
-			pts[pts.length - 1].clone().add(new THREE.Vector3(0, 0, -gap)),
-		]
-		const curve = new THREE.CatmullRomCurve3(curvePts, false, 'catmullrom', 0.4)
-
-		// Glowing ribbon along the path.
-		const tubeGeo = new THREE.TubeGeometry(curve, 240, 0.06, 8, false)
-		const tubeMat = new THREE.MeshBasicMaterial({ color: accent, transparent: true, opacity: 0.35 })
-		const tube = new THREE.Mesh(tubeGeo, tubeMat)
-		scene.add(tube)
-
-		// Node markers + halos at each career stop.
-		const nodes: THREE.Mesh[] = []
-		const halos: THREE.Mesh[] = []
-		const nodeGeo = new THREE.SphereGeometry(0.55, 32, 32)
-		const haloGeo = new THREE.SphereGeometry(0.9, 24, 24)
-		pts.forEach((p) => {
-			const node = new THREE.Mesh(
-				nodeGeo,
-				new THREE.MeshStandardMaterial({
-					color: accent,
-					emissive: accent,
-					emissiveIntensity: 0.7,
-					roughness: 0.3,
-					metalness: 0.1,
-				})
-			)
-			node.position.copy(p)
-			scene.add(node)
-			nodes.push(node)
-
-			const halo = new THREE.Mesh(
-				haloGeo,
-				new THREE.MeshBasicMaterial({ color: accent, transparent: true, opacity: 0.12 })
-			)
-			halo.position.copy(p)
-			scene.add(halo)
-			halos.push(halo)
-		})
-
-		// --- Logo / monogram badges (billboards above each planet) -----------------
-		interface Badge {
-			sprite: THREE.Sprite
-			texture: THREE.CanvasTexture
-			redraw: () => void
+		// Track every disposable so cleanup is a single loop.
+		const disposables: { dispose(): void }[] = []
+		const track = <T extends { dispose(): void }>(o: T): T => {
+			disposables.push(o)
+			return o
 		}
-		const BADGE_PX = 256
-		const badges: Badge[] = pts.map((p, i) => {
-			const stop = stops[i]
-			const canvasEl = document.createElement('canvas')
-			canvasEl.width = BADGE_PX
-			canvasEl.height = BADGE_PX
-			const ctx = canvasEl.getContext('2d')!
-			const texture = new THREE.CanvasTexture(canvasEl)
-			texture.anisotropy = renderer.capabilities.getMaxAnisotropy()
 
+		// --- The office room -------------------------------------------------------
+		const deskGap = 7
+		const roomLen = count * deskGap + 40
+
+		// Floor + subtle grid.
+		const floor = new THREE.Mesh(
+			track(new THREE.PlaneGeometry(60, roomLen)),
+			track(new THREE.MeshStandardMaterial({ color: 0x0b1220, roughness: 1 }))
+		)
+		floor.rotation.x = -Math.PI / 2
+		floor.position.z = -(count * deskGap) / 2 + deskGap / 2
+		scene.add(floor)
+
+		const grid = new THREE.GridHelper(80, 80, accent.getHex(), accent.getHex())
+		grid.position.set(0, 0.01, floor.position.z)
+		const gridMat = grid.material as THREE.LineBasicMaterial
+		gridMat.transparent = true
+		gridMat.opacity = 0.1
+		track(grid.geometry)
+		track(gridMat)
+		scene.add(grid)
+
+		// Shared geometries.
+		const g = {
+			deskTop: track(new THREE.BoxGeometry(2.4, 0.09, 1.1)),
+			deskLeg: track(new THREE.BoxGeometry(0.1, 1.0, 1.0)),
+			monBase: track(new THREE.BoxGeometry(0.5, 0.04, 0.3)),
+			monStand: track(new THREE.BoxGeometry(0.12, 0.45, 0.12)),
+			screen: track(new THREE.BoxGeometry(1.35, 0.82, 0.06)),
+			seat: track(new THREE.BoxGeometry(0.62, 0.1, 0.6)),
+			back: track(new THREE.BoxGeometry(0.62, 0.75, 0.1)),
+			torso: track(new THREE.BoxGeometry(0.55, 0.7, 0.34)),
+			head: track(new THREE.SphereGeometry(0.22, 24, 24)),
+			hair: track(new THREE.SphereGeometry(0.235, 24, 24, 0, Math.PI * 2, 0, Math.PI * 0.62)),
+			arm: track(new THREE.BoxGeometry(0.13, 0.13, 0.62)),
+			kb: track(new THREE.BoxGeometry(0.7, 0.05, 0.26)),
+		}
+		// Shared materials (the "set dressing" — same across every desk).
+		const deskMat = track(new THREE.MeshStandardMaterial({ color: 0xb08968, roughness: 0.85 }))
+		const darkMat = track(new THREE.MeshStandardMaterial({ color: 0x1f2937, roughness: 0.6, metalness: 0.2 }))
+		const skinMat = track(new THREE.MeshStandardMaterial({ color: 0xeab38a, roughness: 0.7 }))
+		const hairMat = track(new THREE.MeshStandardMaterial({ color: 0x2b2b2b, roughness: 0.85 }))
+		const maxAniso = renderer.capabilities.getMaxAnisotropy()
+
+		/** Draws a monitor screen: dark background + the company logo (or monogram). */
+		const makeScreen = (stop: (typeof stops)[number]) => {
+			const c = document.createElement('canvas')
+			c.width = 256
+			c.height = 256
+			const ctx = c.getContext('2d')!
+			const tex = track(new THREE.CanvasTexture(c))
+			tex.anisotropy = maxAniso
 			let logoImg: HTMLImageElement | null = null
-
 			const redraw = () => {
-				const s = BADGE_PX
 				const accentCss = readCssColor('--theme-accent', '#16a34a')
-				ctx.clearRect(0, 0, s, s)
-				// Rounded white card.
-				const r = 44
-				const pad = 12
-				ctx.fillStyle = '#ffffff'
-				ctx.beginPath()
-				ctx.roundRect(pad, pad, s - pad * 2, s - pad * 2, r)
-				ctx.fill()
-				ctx.lineWidth = 6
-				ctx.strokeStyle = accentCss
-				ctx.stroke()
-
+				ctx.fillStyle = '#0b1220'
+				ctx.fillRect(0, 0, 256, 256)
+				ctx.fillStyle = accentCss
+				ctx.fillRect(0, 0, 256, 12) // title bar
 				if (logoImg && logoImg.complete && logoImg.naturalWidth > 0) {
-					// Contain the logo inside the card (no distortion).
-					const box = s - pad * 2 - 48
+					const box = 150
 					const scale = Math.min(box / logoImg.naturalWidth, box / logoImg.naturalHeight)
 					const w = logoImg.naturalWidth * scale
 					const h = logoImg.naturalHeight * scale
-					ctx.drawImage(logoImg, (s - w) / 2, (s - h) / 2, w, h)
+					// White plate so transparent/letter logos read on the dark screen.
+					ctx.fillStyle = '#ffffff'
+					ctx.fillRect((256 - w) / 2 - 10, (256 - h) / 2 - 10 + 6, w + 20, h + 20)
+					ctx.drawImage(logoImg, (256 - w) / 2, (256 - h) / 2 + 6, w, h)
 				} else {
-					// Monogram fallback.
-					const letter = (stop.company || '?').trim().charAt(0).toUpperCase()
 					ctx.fillStyle = accentCss
-					ctx.font = `bold ${s * 0.5}px -apple-system, "Segoe UI", sans-serif`
+					ctx.font = 'bold 120px -apple-system, "Segoe UI", sans-serif'
 					ctx.textAlign = 'center'
 					ctx.textBaseline = 'middle'
-					ctx.fillText(letter, s / 2, s / 2 + 8)
+					ctx.fillText((stop.company || '?').trim().charAt(0).toUpperCase(), 128, 140)
 				}
-				texture.needsUpdate = true
+				// Faint "code" lines.
+				ctx.fillStyle = 'rgba(255,255,255,0.12)'
+				for (let r = 0; r < 3; r++) ctx.fillRect(24, 210 + r * 12, 120 + r * 30, 4)
+				tex.needsUpdate = true
 			}
 			redraw()
-
 			if (stop.companyLogo && stop.companyLogo.trim()) {
 				const img = new Image()
 				img.onload = () => {
@@ -158,49 +139,102 @@ function CareerTour() {
 				}
 				img.src = stop.companyLogo
 			}
+			return { tex, redraw }
+		}
 
-			const sprite = new THREE.Sprite(
-				new THREE.SpriteMaterial({ map: texture, transparent: true, depthWrite: false })
+		interface Station {
+			shirt: THREE.MeshStandardMaterial
+			screenMat: THREE.MeshStandardMaterial
+			arms: THREE.Mesh[]
+			redraw: () => void
+		}
+
+		const stations: Station[] = stops.map((stop, i) => {
+			const group = new THREE.Group()
+			group.position.z = -i * deskGap
+
+			// Desk
+			const top = new THREE.Mesh(g.deskTop, deskMat)
+			top.position.y = 1.0
+			const legL = new THREE.Mesh(g.deskLeg, deskMat)
+			legL.position.set(-1.1, 0.5, 0)
+			const legR = new THREE.Mesh(g.deskLeg, deskMat)
+			legR.position.set(1.1, 0.5, 0)
+			group.add(top, legL, legR)
+
+			// Monitor (faces +Z, toward the aisle/camera)
+			const base = new THREE.Mesh(g.monBase, darkMat)
+			base.position.set(0, 1.06, -0.3)
+			const stand = new THREE.Mesh(g.monStand, darkMat)
+			stand.position.set(0, 1.28, -0.3)
+			const { tex, redraw } = makeScreen(stop)
+			const screenMat = track(
+				new THREE.MeshStandardMaterial({
+					map: tex,
+					emissive: 0xffffff,
+					emissiveMap: tex,
+					emissiveIntensity: 0.5,
+					roughness: 0.4,
+				})
 			)
-			sprite.position.copy(p).add(new THREE.Vector3(0, 1.8, 0))
-			sprite.scale.set(2.2, 2.2, 1)
-			scene.add(sprite)
-			return { sprite, texture, redraw }
+			const screen = new THREE.Mesh(g.screen, [darkMat, darkMat, darkMat, darkMat, screenMat, darkMat])
+			screen.position.set(0, 1.62, -0.28)
+			const kb = new THREE.Mesh(g.kb, darkMat)
+			kb.position.set(0, 1.06, 0.25)
+			group.add(base, stand, screen, kb)
+
+			// Chair
+			const seat = new THREE.Mesh(g.seat, darkMat)
+			seat.position.set(0, 0.55, -0.95)
+			const back = new THREE.Mesh(g.back, darkMat)
+			back.position.set(0, 0.95, -1.25)
+			group.add(seat, back)
+
+			// The programmer — me, at every desk.
+			const shirt = track(
+				new THREE.MeshStandardMaterial({
+					color: accent.clone(),
+					emissive: accent.clone(),
+					emissiveIntensity: 0,
+					roughness: 0.6,
+				})
+			)
+			const torso = new THREE.Mesh(g.torso, shirt)
+			torso.position.set(0, 0.95, -0.7)
+			const head = new THREE.Mesh(g.head, skinMat)
+			head.position.set(0, 1.45, -0.7)
+			const hair = new THREE.Mesh(g.hair, hairMat)
+			hair.position.set(0, 1.47, -0.7)
+			const armL = new THREE.Mesh(g.arm, shirt)
+			armL.position.set(-0.28, 1.05, -0.35)
+			armL.rotation.x = -0.45
+			const armR = new THREE.Mesh(g.arm, shirt)
+			armR.position.set(0.28, 1.05, -0.35)
+			armR.rotation.x = -0.45
+			group.add(torso, head, hair, armL, armR)
+
+			scene.add(group)
+			return { shirt, screenMat, arms: [armL, armR], redraw }
 		})
 
-		// Starfield for depth.
-		const starCount = 600
-		const starPos = new Float32Array(starCount * 3)
-		for (let i = 0; i < starCount; i++) {
-			starPos[i * 3] = (Math.random() - 0.5) * 80
-			starPos[i * 3 + 1] = (Math.random() - 0.5) * 60
-			starPos[i * 3 + 2] = -Math.random() * count * gap - 5
-		}
-		const starGeo = new THREE.BufferGeometry()
-		starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3))
-		const stars = new THREE.Points(
-			starGeo,
-			new THREE.PointsMaterial({ color: accent, size: 0.12, transparent: true, opacity: 0.5 })
-		)
-		scene.add(stars)
-
-		scene.add(new THREE.AmbientLight(0xffffff, 0.6))
-		const keyLight = new THREE.PointLight(accent.getHex(), 2, 60)
+		// Lighting
+		scene.add(new THREE.HemisphereLight(0xffffff, 0x202830, 0.7))
+		scene.add(new THREE.AmbientLight(0xffffff, 0.35))
+		const keyLight = new THREE.PointLight(0xffffff, 1.2, 80)
 		scene.add(keyLight)
+		const accentLight = new THREE.PointLight(accent.getHex(), 1.6, 26)
+		scene.add(accentLight)
 
 		// --- Theme reactivity ------------------------------------------------------
 		const applyAccent = () => {
 			accent = new THREE.Color(readCssColor('--theme-accent', '#16a34a'))
-			tubeMat.color = accent
-			stars.material.color = accent
-			keyLight.color = accent
-			nodes.forEach((n) => {
-				const m = n.material as THREE.MeshStandardMaterial
-				m.color = accent
-				m.emissive = accent
+			gridMat.color = accent
+			accentLight.color = accent
+			stations.forEach((s) => {
+				s.shirt.color = accent
+				s.shirt.emissive = accent
+				s.redraw()
 			})
-			halos.forEach((h) => ((h.material as THREE.MeshBasicMaterial).color = accent))
-			badges.forEach((b) => b.redraw())
 		}
 		const themeObserver = new MutationObserver(applyAccent)
 		themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] })
@@ -239,7 +273,6 @@ function CareerTour() {
 		let smooth = 0
 		const camPos = new THREE.Vector3()
 		const lookAt = new THREE.Vector3()
-		const tmp = new THREE.Vector3()
 		const clock = new THREE.Clock()
 
 		const tick = () => {
@@ -249,35 +282,27 @@ function CareerTour() {
 			smooth += (progressRef.current - smooth) * 0.03
 
 			const u = clamp(smooth, 0, 1)
-			// Map progress onto the inner (un-padded) span of the curve.
-			const lo = 1 / (count + 1)
-			const span = (count - 1) / (count + 1)
-			const cu = lo + u * span
-			curve.getPointAt(clamp(cu, 0, 1), tmp)
-			camPos.copy(tmp).add(new THREE.Vector3(0, 2.2, 7.5))
+			const f = u * (count - 1) // continuous focus position
+			const fi = Math.round(f)
+			const focusZ = -f * deskGap
+
+			// Camera walks down the aisle at a 3/4 angle to the active desk.
+			camPos.set(2.2, 1.75, focusZ + 5.0)
 			camera.position.lerp(camPos, 0.06)
-			curve.getPointAt(clamp(cu + 0.03, 0, 1), lookAt)
+			lookAt.set(0, 1.35, focusZ - 0.4)
 			camera.lookAt(lookAt)
-			keyLight.position.copy(camera.position)
+			keyLight.position.set(camera.position.x, camera.position.y + 2, camera.position.z)
+			accentLight.position.set(0, 2.4, -fi * deskGap - 0.3)
 
-			// Pulse the active node, settle the rest.
-			nodes.forEach((n, i) => {
-				const isActive = i === Math.round(u * (count - 1))
-				const target = isActive ? 1.35 + Math.sin(t * 3) * 0.12 : 1
-				n.scale.lerp(tmp.set(target, target, target), 0.12)
-				const m = n.material as THREE.MeshStandardMaterial
-				m.emissiveIntensity += ((isActive ? 1.3 : 0.55) - m.emissiveIntensity) * 0.12
-				halos[i].scale.copy(n.scale)
-				halos[i].rotation.y = t * 0.3
-
-				// Badge floats gently and grows a touch when active.
-				const badge = badges[i].sprite
-				const bTarget = isActive ? 2.7 : 2.2
-				const bs = THREE.MathUtils.lerp(badge.scale.x, bTarget, 0.12)
-				badge.scale.set(bs, bs, 1)
-				badge.position.y = n.position.y + 1.8 + Math.sin(t * 1.2 + i) * 0.12
+			stations.forEach((s, i) => {
+				const isActive = i === fi
+				// Highlight the active desk: shirt glow + brighter screen.
+				s.shirt.emissiveIntensity += ((isActive ? 0.45 : 0) - s.shirt.emissiveIntensity) * 0.1
+				s.screenMat.emissiveIntensity += ((isActive ? 1.1 : 0.4) - s.screenMat.emissiveIntensity) * 0.1
+				// Typing bob on the active programmer's arms.
+				s.arms[0].position.y = 1.05 + (isActive ? Math.sin(t * 9) * 0.045 : 0)
+				s.arms[1].position.y = 1.05 + (isActive ? Math.sin(t * 9 + 1.1) * 0.045 : 0)
 			})
-			stars.rotation.z = t * 0.01
 
 			renderer.render(scene, camera)
 		}
@@ -288,19 +313,8 @@ function CareerTour() {
 			window.removeEventListener('scroll', onScroll)
 			ro.disconnect()
 			themeObserver.disconnect()
+			disposables.forEach((d) => d.dispose())
 			renderer.dispose()
-			tubeGeo.dispose()
-			tubeMat.dispose()
-			nodeGeo.dispose()
-			haloGeo.dispose()
-			starGeo.dispose()
-			nodes.forEach((n) => (n.material as THREE.Material).dispose())
-			halos.forEach((h) => (h.material as THREE.Material).dispose())
-			badges.forEach((b) => {
-				b.texture.dispose()
-				const mat = b.sprite.material as THREE.Material
-				mat.dispose()
-			})
 		}
 	}, [count, reduced, stops])
 
@@ -338,8 +352,8 @@ function CareerTour() {
 				{/* Heading */}
 				<div className="pointer-events-none absolute top-0 inset-x-0 pt-20 sm:pt-24 px-6 text-center text-white">
 					<span className="section-eyebrow" style={{ color: 'rgba(255,255,255,0.85)' }}>Career tour</span>
-					<h2 className="mt-3 text-2xl sm:text-3xl font-bold drop-shadow">A journey through my career</h2>
-					<p className="mt-1 text-sm text-white/70">Scroll to fly through each chapter</p>
+					<h2 className="mt-3 text-2xl sm:text-3xl font-bold drop-shadow">Every desk, a different chapter</h2>
+					<p className="mt-1 text-sm text-white/70">Scroll to walk through the office — that's me at every desk</p>
 				</div>
 
 				{/* Active stop card */}
